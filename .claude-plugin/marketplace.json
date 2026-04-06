@@ -1,0 +1,33 @@
+{
+  "name": "stella-protocol",
+  "owner": {
+    "name": "Aditya Uttama"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/adityauttama/stella-protocol",
+  "repository": "https://github.com/adityauttama/stella-protocol",
+  "keywords": [
+    "product-management",
+    "ai-development",
+    "methodology",
+    "pm-tools"
+  ],
+  "plugins": [
+    {
+      "name": "stella-protocol",
+      "source": "./",
+      "description": "PM-first AI development protocol with satellite agents, phase governance, and built-in scope/veto enforcement.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Aditya Uttama"
+      },
+      "skills": [
+        "./skills/stella-protocol",
+        "./skills/stella-define",
+        "./skills/stella-build",
+        "./skills/stella-review",
+        "./skills/stella-close"
+      ]
+    }
+  ]
+}

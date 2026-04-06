@@ -1,0 +1,43 @@
+{
+  "name": "stella-protocol",
+  "version": "0.1.0",
+  "description": "PM-first AI development protocol. One mind, many satellites.",
+  "bin": {
+    "stella": "./cli/index.js"
+  },
+  "files": [
+    "protocol/",
+    "punk-records/",
+    "skills/",
+    "cli/",
+    ".claude-plugin/"
+  ],
+  "keywords": [
+    "ai",
+    "agent-skills",
+    "product-management",
+    "development-methodology",
+    "stella-protocol",
+    "ai-native",
+    "pm-tools"
+  ],
+  "author": {
+    "name": "Aditya Uttama",
+    "url": "https://github.com/adityauttama"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adityauttama/stella-protocol.git"
+  },
+  "homepage": "https://github.com/adityauttama/stella-protocol",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "@clack/prompts": "^1.0.0",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.3.0"
+  }
+}
