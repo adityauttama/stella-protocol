@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "PM-first AI development protocol. One mind, many satellites.",
   "bin": {
-    "stella": "./cli/index.js"
+    "stella": "cli/index.js"
   },
   "files": [
     "protocol/",
@@ -28,7 +28,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adityauttama/stella-protocol.git"
+    "url": "git+https://github.com/adityauttama/stella-protocol.git"
   },
   "homepage": "https://github.com/adityauttama/stella-protocol",
   "engines": {
