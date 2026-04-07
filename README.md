@@ -121,7 +121,7 @@ stella-protocol/
 
 ## Example
 
-See the [full walkthrough](examples/README.md) — a worked example building "LinkShelf" (a bookmark manager) through the entire Stella cycle, with populated `brain/` files showing what each phase produces.
+See the [full walkthrough](examples/README.md) — a real example building "House of Riddle" (a community riddle platform, live at [riddle.thepunkrecords.com](https://riddle.thepunkrecords.com)) through the entire Stella cycle, with populated `brain/` files showing what each phase produces.
 
 ## License
 
