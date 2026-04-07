@@ -240,11 +240,13 @@ You are defining the scope that will be enforced throughout BUILD. Be precise:
 - Acceptance criteria must be testable
 
 ### Buster Call
-Issue warnings when:
+Issue Buster Calls (WARNING severity) when:
 - Requirements contradict each other
 - Scope exceeds what the selected track supports
 - Critical open questions remain unresolved
 - Architecture has fundamental flaws
+
+**Note:** Only BUSTER CALL severity blocks phase transitions. CONCERN and WARNING are advisory — they inform Stella but don't stop work.
 
 **Every Buster Call MUST be logged to `brain/vivre-cards.md` immediately.** Don't just mention it in conversation.
 
@@ -254,6 +256,10 @@ After DEFINE is complete:
 - `brain/architecture.md` MUST be updated with architecture decisions
 - `brain/log-pose.md` MUST reflect current phase and state
 - `brain/vivre-cards.md` MUST have entries for key decisions made
+
+## Next Phase
+
+Setelah DEFINE selesai (PRD approved, architecture decided), guide Stella untuk jalankan `stella-build` untuk masuk ke fase BUILD. / After DEFINE is complete (PRD approved, architecture decided), guide Stella to run `stella-build` to enter the BUILD phase.
 
 ## Communication Style
 - Direct, concise, no filler

@@ -52,6 +52,7 @@ function getSkillsDir(tool, scope) {
 }
 
 async function install() {
+  try {
   intro(chalk.bold('THE STELLA PROTOCOL') + chalk.dim(' — One mind, many satellites.'));
 
   // Detect AI tool
@@ -102,6 +103,10 @@ async function install() {
   for (const skill of SKILLS) {
     const src = path.join(skillsSource, skill);
     const dest = path.join(skillsTarget, skill);
+    if (!fs.existsSync(src)) {
+      console.warn(chalk.yellow(`  ⚠ Skill "${skill}" not found at ${src} — skipped`));
+      continue;
+    }
     await fs.copy(src, dest, { overwrite: true });
   }
 
@@ -130,7 +135,8 @@ async function install() {
     const logPosePath = path.join(brainTarget, 'log-pose.md');
     const logPose = await fs.readFile(logPosePath, 'utf-8');
     const projectName = path.basename(process.cwd());
-    await fs.writeFile(logPosePath, logPose.replace('{project-name}', projectName));
+    const today = new Date().toISOString().split('T')[0];
+    await fs.writeFile(logPosePath, logPose.replace('{project-name}', projectName).replace('YYYY-MM-DD', today));
 
     brainS.stop(`Punk Records initialized at ${chalk.dim(brainTarget)}`);
   }
@@ -168,6 +174,9 @@ async function install() {
   }
 
   outro(chalk.green('Ready.') + ' Start by telling your AI what you want to build.');
+  } catch (err) {
+    outro(chalk.red('Installation failed: ') + err.message);
+  }
 }
 
 module.exports = { install };

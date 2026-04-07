@@ -25,7 +25,7 @@ Unlike a review you invoke, Cipher Pol is **always active**. Every satellite tha
 
 ### INTEL
 - **Drift:** Minor. Within the spirit of the PRD but not explicitly specified.
-- **Action:** Noted in `brain/log-pose.md` under Cipher Pol Report. Work continues.
+- **Action:** Logged to `brain/scope-changes.md`. Work continues.
 - **Example:** Adding a loading spinner not mentioned in the PRD.
 
 ### ALERT
@@ -81,7 +81,7 @@ When any satellite creates a new file, route, page, endpoint, or component durin
 Drift: New [type] created — [path/name]
 PRD says: [relevant scope reference]
 Classification: [INTEL / ALERT / INTERCEPT]
-Action: Logged to vivre-cards.md
+Action: Logged to scope-changes.md
 ```
 
 This applies to:
@@ -96,15 +96,27 @@ Minor implementation files (utilities, helpers, config) do not trigger Cipher Po
 
 ## Logging — MANDATORY
 
-**ALL scope additions — even approved ones — MUST be logged to `brain/vivre-cards.md`** with the prefix "Scope addition:" in the title. This creates an audit trail of how scope evolved during the project.
+**ALL scope drift — even approved additions — MUST be logged to `brain/scope-changes.md`** immediately. This is the primary audit trail of how scope evolved during the project.
 
-Format:
+Format for `brain/scope-changes.md`:
 ```markdown
-### [YYYY-MM-DD] Scope addition: [Description]
+### [YYYY-MM-DD] [Feature/File Name]
+- **File:** [path to new file]
+- **Classification:** INTEL | ALERT | INTERCEPT
+- **Reason:** [why this was needed]
+- **Requested by:** Stella | Agent
+- **Reviewed:** no
+```
+
+**Decision records go to `brain/vivre-cards.md`** — when Stella approves, rejects, or amends scope based on a Cipher Pol flag, log that decision (not the drift itself) to vivre-cards.md with the prefix "Scope decision:" in the title.
+
+Format for `brain/vivre-cards.md` (decisions only):
+```markdown
+### [YYYY-MM-DD] Scope decision: [Description]
 **Phase:** BUILD
 **Satellite:** Cipher Pol
 **Severity:** [INTEL / ALERT / INTERCEPT]
-**Added:** [what was added]
+**Change:** [what was added/changed]
 **PRD reference:** [what the PRD says about this area]
 **Decision:** [approved by Stella / rejected / PRD amended]
 ```

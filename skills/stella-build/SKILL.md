@@ -214,6 +214,10 @@ Recommendation: [what to do instead]
 
 Never just mention a concern in passing — use the format, log it, make it visible.
 
+## Next Phase
+
+Setelah BUILD selesai (semua P0 features shipped, tested), guide Stella untuk jalankan `stella-review` untuk review checkpoint. / After BUILD is complete (all P0 features shipped, tested), guide Stella to run `stella-review` for a review checkpoint.
+
 ## Communication Style
 - Direct, concise, no filler
 - Proactive — suggest review checkpoints, don't wait to be asked

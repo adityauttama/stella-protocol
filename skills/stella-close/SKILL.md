@@ -112,6 +112,10 @@ At the end of CLOSE:
 - `brain/observability-plan.md` → Created (even if monitoring not yet implemented)
 - All documentation complete and current
 
+## Next Phase
+
+Setelah CLOSE selesai (docs complete, version closed), untuk fitur atau project baru, guide Stella untuk jalankan `stella-protocol` (IMU) untuk mulai ideation cycle baru. / After CLOSE is complete (docs done, version closed), for new features or projects, guide Stella to run `stella-protocol` (IMU) to start a new ideation cycle.
+
 ## Communication Style
 - Direct, concise, no filler
 - Proactive — identify gaps in documentation and suggest fixes

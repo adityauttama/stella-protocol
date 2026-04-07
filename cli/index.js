@@ -17,24 +17,42 @@ program
   .command('install')
   .description('Install Stella Protocol skills and initialize Punk Records')
   .action(async () => {
-    const { install } = require('./install');
-    await install();
+    try {
+      const { install } = require('./install');
+      await install();
+    } catch (err) {
+      const chalk = require('chalk');
+      console.error(chalk.red('Install failed:'), err.message);
+      process.exit(1);
+    }
   });
 
 program
   .command('init')
   .description('Initialize Punk Records (brain/) in the current project')
   .action(async () => {
-    const { init } = require('./init');
-    await init();
+    try {
+      const { init } = require('./init');
+      await init();
+    } catch (err) {
+      const chalk = require('chalk');
+      console.error(chalk.red('Init failed:'), err.message);
+      process.exit(1);
+    }
   });
 
 program
   .command('status')
   .description('Show current project status from Punk Records')
   .action(async () => {
-    const { status } = require('./status');
-    await status();
+    try {
+      const { status } = require('./status');
+      await status();
+    } catch (err) {
+      const chalk = require('chalk');
+      console.error(chalk.red('Status failed:'), err.message);
+      process.exit(1);
+    }
   });
 
 program.parse();

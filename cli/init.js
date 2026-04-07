@@ -7,6 +7,7 @@ const { intro, outro, spinner } = require('@clack/prompts');
 const chalk = require('chalk');
 
 async function init() {
+  try {
   intro(chalk.bold('Punk Records') + chalk.dim(' — Initialize project brain'));
 
   const packageDir = path.resolve(__dirname, '..');
@@ -37,11 +38,15 @@ async function init() {
   const logPosePath = path.join(brainTarget, 'log-pose.md');
   const logPose = await fs.readFile(logPosePath, 'utf-8');
   const projectName = path.basename(process.cwd());
-  await fs.writeFile(logPosePath, logPose.replace('{project-name}', projectName));
+  const today = new Date().toISOString().split('T')[0];
+  await fs.writeFile(logPosePath, logPose.replace('{project-name}', projectName).replace('YYYY-MM-DD', today));
 
   s.stop('Punk Records initialized');
 
   outro(chalk.green('brain/ is ready.') + ' Files: log-pose.md, architecture.md, vivre-cards.md, ideas.md');
+  } catch (err) {
+    outro(chalk.red('Initialization failed: ') + err.message);
+  }
 }
 
 module.exports = { init };

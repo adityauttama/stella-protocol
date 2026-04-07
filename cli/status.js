@@ -6,6 +6,7 @@ const fs = require('fs-extra');
 const chalk = require('chalk');
 
 async function status() {
+  try {
   const brainDir = path.join(process.cwd(), 'brain');
   const logPosePath = path.join(brainDir, 'log-pose.md');
 
@@ -17,8 +18,8 @@ async function status() {
 
   const content = await fs.readFile(logPosePath, 'utf-8');
 
-  // Parse frontmatter
-  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+  // Parse frontmatter (strict: opening --- must be first line, closing --- must be on its own line)
+  const fmMatch = content.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
   if (fmMatch) {
     const fm = fmMatch[1];
     const lines = fm.split('\n').filter(Boolean);
@@ -39,6 +40,9 @@ async function status() {
   // Print body (skip frontmatter)
   const body = content.replace(/^---\n[\s\S]*?\n---\n*/, '');
   console.log(body);
+  } catch (err) {
+    console.error(chalk.red('Status check failed:'), err.message);
+  }
 }
 
 module.exports = { status };

@@ -181,6 +181,10 @@ After review finds issues, proactively guide the fix cycle:
 
 All findings logged to `brain/vivre-cards.md`. Unresolved BUSTER CALL blocks phase transitions.
 
+## Next Phase
+
+Setelah REVIEW selesai (semua findings resolved atau acknowledged), guide Stella untuk jalankan `stella-close` untuk masuk ke fase CLOSE. / After REVIEW is complete (all findings resolved or acknowledged), guide Stella to run `stella-close` to enter the CLOSE phase.
+
 ## Communication Style
 - Direct, concise, no filler
 - Proactive — suggest what to review, don't wait to be asked

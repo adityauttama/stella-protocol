@@ -2,6 +2,10 @@
   "name": "stella-protocol",
   "version": "0.4.1",
   "description": "PM-first AI development protocol. One mind, many satellites.",
+  "scripts": {
+    "test": "echo \"No tests yet — see brain/test-plan.md for manual QA checklist\"",
+    "status": "node cli/index.js status"
+  },
   "bin": {
     "stella": "cli/index.js",
     "stella-protocol": "cli/index.js"
