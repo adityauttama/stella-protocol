@@ -1,9 +1,10 @@
 {
   "name": "stella-protocol",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "PM-first AI development protocol. One mind, many satellites.",
   "bin": {
-    "stella": "cli/index.js"
+    "stella": "cli/index.js",
+    "stella-protocol": "cli/index.js"
   },
   "files": [
     "protocol/",
