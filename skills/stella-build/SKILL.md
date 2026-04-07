@@ -125,6 +125,34 @@ This prevents "try → fail → fix config → try again" cycles.
 - Rollback capability required for production
 - Health checks on critical endpoints
 
+### 📡 ODA — Visual Feedback Loop (during BUILD)
+
+**Activates from context:** When Stella shares a screenshot, asks about visual quality, or says "how does this look?"
+
+When Stella shares a screenshot:
+1. Read `brain/design-system.md` (if exists)
+2. Evaluate the screenshot against the design system
+3. Output max 5 specific observations with fixes:
+
+```
+**[Component]** — [issue]
+Fix: change `[current class]` to `[new class]` in `[file:line]`
+```
+
+4. Ask: "Mau saya apply fix ini?" / "Want me to apply these fixes?"
+
+Do NOT give vague feedback like "looks good" or "needs more spacing." Every observation must reference a specific design system rule and a specific file.
+
+### Edison — Design System Compliance
+
+When building UI components and `brain/design-system.md` exists:
+1. Read the design system before writing any component
+2. Use the defined color tokens, spacing, border radius, typography
+3. If the design system doesn't cover a case, ask Stella
+4. Do not invent new visual patterns — extend the system if needed
+
+---
+
 ## Governance (Always Active)
 
 ### Cipher Pol — Scope Monitoring
@@ -144,14 +172,23 @@ Gap: [the delta between approved and proposed]
 Recommendation: [approve / reject / amend PRD]
 ```
 
-Log ALL scope additions to `brain/vivre-cards.md` with prefix "Scope addition:" — even approved ones.
+Log ALL scope additions to `brain/scope-changes.md`:
+
+```markdown
+### [YYYY-MM-DD] [Feature/File Name]
+- **File:** [path to new file]
+- **Classification:** INTEL | ALERT | INTERCEPT
+- **Reason:** [why this is needed]
+- **Requested by:** Stella | Agent
+- **Reviewed:** no
+```
 
 **Never silently expand scope.** Even minor additions (INTEL level) must be logged.
 
 Severity levels:
-- **INTEL:** Minor addition within the spirit of the PRD. Log it, continue.
-- **ALERT:** Meaningful scope addition. Flag to Stella, wait for approval.
-- **INTERCEPT:** Significant new feature or architectural change. Block until PRD amended.
+- **INTEL:** Minor addition within the spirit of the PRD. Log to scope-changes.md, continue.
+- **ALERT:** Meaningful scope addition. Log, inform Stella ("Added [feature] — not in original PRD, classified ALERT"), continue if approved.
+- **INTERCEPT:** Significant new feature or architectural change. Log, ask for explicit approval before proceeding. If rejected, add to `brain/ideas.md` under "Parked" with reason.
 
 ### Buster Call — Quality & Security
 

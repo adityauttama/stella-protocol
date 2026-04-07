@@ -96,12 +96,23 @@ These triggers are not optional. Satellites must not ignore these patterns even 
 Format for the vivre card:
 ```markdown
 ### [YYYY-MM-DD] Buster Call: [Issue Title]
+**Status:** OPEN | RESOLVED | DEFERRED
 **Phase:** [current phase]
 **Satellite:** [who issued]
 **Severity:** [CONCERN / WARNING / BUSTER CALL]
 **Issue:** [what was found]
-**Resolution:** [pending / fixed / overridden — with detail]
+**Resolution:** [pending / description of fix / reason for deferral]
 ```
+
+When the issue is fixed, add a NEW vivre card (don't edit the original):
+```markdown
+### [YYYY-MM-DD] Resolved: [Original Issue Title]
+**Status:** RESOLVED
+**Fix:** [what was done]
+**Original:** [date of original finding]
+```
+
+The CLAUDE.md session hook checks for `Status: OPEN` entries at session start. OPEN + CRITICAL/HIGH severity items are flagged before any other work.
 
 ---
 

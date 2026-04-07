@@ -114,7 +114,7 @@ async function install() {
 
     await fs.ensureDir(brainTarget);
 
-    const templates = ['log-pose.md', 'architecture.md', 'vivre-cards.md', 'ideas.md'];
+    const templates = ['log-pose.md', 'architecture.md', 'vivre-cards.md', 'ideas.md', 'scope-changes.md', 'design-system.md'];
     for (const template of templates) {
       const src = path.join(brainSource, template);
       const dest = path.join(brainTarget, template);
@@ -130,6 +130,38 @@ async function install() {
     await fs.writeFile(logPosePath, logPose.replace('{project-name}', projectName));
 
     brainS.stop(`Punk Records initialized at ${chalk.dim(brainTarget)}`);
+  }
+
+  // Offer to add session hook to CLAUDE.md
+  const addHook = await confirm({
+    message: 'Add Stella session hook to CLAUDE.md? (auto context on every conversation)',
+    initialValue: true,
+  });
+
+  if (addHook && typeof addHook !== 'symbol') {
+    const hookS = spinner();
+    hookS.start('Adding session hook...');
+
+    const hookSource = path.join(packageDir, 'punk-records', 'stella-claude-md.md');
+    const claudeMdPath = path.join(process.cwd(), 'CLAUDE.md');
+
+    const hookContent = await fs.readFile(hookSource, 'utf-8');
+    // Extract just the session hook section (skip the template header)
+    const hookSection = hookContent.split('## Stella Protocol')[1];
+    const cleanHook = '## Stella Protocol' + hookSection;
+
+    if (fs.existsSync(claudeMdPath)) {
+      const existing = await fs.readFile(claudeMdPath, 'utf-8');
+      if (!existing.includes('Stella Protocol')) {
+        await fs.appendFile(claudeMdPath, '\n\n' + cleanHook);
+        hookS.stop('Session hook appended to existing CLAUDE.md');
+      } else {
+        hookS.stop('CLAUDE.md already has Stella Protocol section — skipped');
+      }
+    } else {
+      await fs.writeFile(claudeMdPath, cleanHook);
+      hookS.stop('CLAUDE.md created with session hook');
+    }
   }
 
   outro(chalk.green('Ready.') + ' Start by telling your AI what you want to build.');

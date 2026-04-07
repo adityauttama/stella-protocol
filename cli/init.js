@@ -23,7 +23,7 @@ async function init() {
 
   await fs.ensureDir(brainTarget);
 
-  const templates = ['log-pose.md', 'architecture.md', 'vivre-cards.md', 'ideas.md'];
+  const templates = ['log-pose.md', 'architecture.md', 'vivre-cards.md', 'ideas.md', 'scope-changes.md', 'design-system.md'];
   for (const template of templates) {
     const src = path.join(brainSource, template);
     const dest = path.join(brainTarget, template);

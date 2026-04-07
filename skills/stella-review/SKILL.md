@@ -33,8 +33,16 @@ Late review → expensive fixes → fixes that create new bugs. Early review cat
 
 When activated, assess the current state:
 1. Read `brain/log-pose.md` to understand what's been built
-2. Check `brain/vivre-cards.md` for any pending concerns
-3. Suggest what to review: "Sejak review terakhir, ada fitur [X] dan [Y] yang baru. Mau review yang mana dulu?" / "Since last review, features [X] and [Y] are new. Which one to review first?"
+2. Read `brain/scope-changes.md` for unreviewed scope additions
+3. Check `brain/vivre-cards.md` for any OPEN buster calls
+4. Suggest what to review: "Sejak review terakhir, ada fitur [X] dan [Y] yang baru. Mau review yang mana dulu?" / "Since last review, features [X] and [Y] are new. Which one to review first?"
+
+### Scope Review (from scope-changes.md)
+If there are unreviewed scope additions:
+1. List them: "Ada [N] scope addition yang belum di-review:" / "There are [N] unreviewed scope additions:"
+2. For each: show classification (INTEL/ALERT/INTERCEPT) and reason
+3. Ask Stella to acknowledge: "Acknowledge semua, atau mau bahas satu-satu?" / "Acknowledge all, or discuss one by one?"
+4. After acknowledgment, mark as `Reviewed: yes` in scope-changes.md
 
 ## Satellite Modes
 

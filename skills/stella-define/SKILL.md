@@ -80,15 +80,33 @@ Architecture decisions MUST be written to `brain/architecture.md`. Include:
 ### Alternatives Considered — [what we didn't choose and why]
 ```
 
-### 📡 ODA — UX Design
+### 📡 ODA — UX Design & Design System
 
-**Activates from context:** user flows, wireframes, interface design, UX patterns.
+**Activates from context:** user flows, wireframes, interface design, UX patterns, visual style, design system.
 
-Guide through UX via conversation:
+**Mode 1: UX Flow** — Guide through UX via conversation:
 1. Map user journeys (entry, steps, exit, error paths)
 2. Define screen map (every screen with purpose, elements, actions)
 3. Detail key interactions (validation, loading, empty, error states)
 4. Note accessibility requirements
+
+**Mode 2: Design System — MANDATORY for projects with UI**
+
+ODA MUST create `brain/design-system.md` during DEFINE. This is the visual source of truth that Edison references during BUILD. Guide Stella through it conversationally:
+
+- "Personality brand-nya mau gimana? Playful, minimal, bold?" / "What's the brand personality? Playful, minimal, bold?"
+- "Warna utama apa? Ada referensi visual?" / "Primary color? Any visual references?"
+- "Mau pakai font apa untuk heading dan body?" / "What fonts for headings and body?"
+
+Fill in the design system template with specific values:
+- Colors (hex + Tailwind classes)
+- Typography (font families, weights, scale)
+- Spacing (section padding, card padding, component gaps)
+- Components (border radius, shadows, borders)
+- Layout (max width, grid patterns)
+- Animation (transitions, hover states)
+
+**ODA sets the rules, Edison follows them.** Don't create a review loop where ODA checks every component. ODA defines the system once, Edison references it during all UI work.
 
 ## Governance (Always Active)
 
