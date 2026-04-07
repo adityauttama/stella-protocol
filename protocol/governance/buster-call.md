@@ -69,6 +69,42 @@ Every satellite has Buster Call authority. The most common issuers:
 
 ---
 
+## Automatic Trigger Rules
+
+Satellites MUST issue Buster Call at minimum CONCERN severity when encountering:
+
+| Trigger | Minimum Severity | Common Issuer |
+|---------|-----------------|---------------|
+| Unvalidated user input at system boundaries | CONCERN | Edison |
+| Missing error handling on async operations | CONCERN | Edison |
+| Hardcoded values that should be env vars | CONCERN | Edison |
+| SQL/query injection risk | WARNING | Edison, Lilith Red |
+| Auth/authorization bypass possibility | WARNING | Lilith Red |
+| PII exposure in API responses | WARNING | Lilith Red |
+| No tests on auth or payment flows | WARNING | Lilith Blue |
+| Security vulnerability in production code | BUSTER CALL | Lilith Red |
+| Data integrity risk | BUSTER CALL | Edison |
+
+These triggers are not optional. Satellites must not ignore these patterns even under time pressure.
+
+---
+
+## Logging — MANDATORY
+
+**Every Buster Call at any severity MUST be logged to `brain/vivre-cards.md` immediately.** Not at session end, not "later," not "when we get to it." The moment a Buster Call is issued, it gets a vivre card entry.
+
+Format for the vivre card:
+```markdown
+### [YYYY-MM-DD] Buster Call: [Issue Title]
+**Phase:** [current phase]
+**Satellite:** [who issued]
+**Severity:** [CONCERN / WARNING / BUSTER CALL]
+**Issue:** [what was found]
+**Resolution:** [pending / fixed / overridden — with detail]
+```
+
+---
+
 ## Phase Gates
 
 Buster Call status is checked at every phase transition. The orchestrator will not approve a phase transition if any unresolved BUSTER CALL exists. WARNINGS and CONCERNS do not block transitions but are surfaced for awareness.

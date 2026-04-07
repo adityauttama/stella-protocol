@@ -70,6 +70,45 @@ When accumulated amendments represent more than ~30% new surface area beyond the
 
 ---
 
+## Automatic Trigger: New File Creation
+
+When any satellite creates a new file, route, page, endpoint, or component during BUILD that is NOT explicitly listed in the PRD, Cipher Pol MUST automatically issue at minimum an INTEL-level report:
+
+```
+🔍 CIPHER POL INTEL
+Drift: New [type] created — [path/name]
+PRD says: [relevant scope reference]
+Classification: [INTEL / ALERT / INTERCEPT]
+Action: Logged to vivre-cards.md
+```
+
+This applies to:
+- New pages/routes not in the PRD screen map
+- New API endpoints not in the PRD API contracts
+- New database tables/columns not in the PRD data model
+- New components that represent significant new functionality
+
+Minor implementation files (utilities, helpers, config) do not trigger Cipher Pol.
+
+---
+
+## Logging — MANDATORY
+
+**ALL scope additions — even approved ones — MUST be logged to `brain/vivre-cards.md`** with the prefix "Scope addition:" in the title. This creates an audit trail of how scope evolved during the project.
+
+Format:
+```markdown
+### [YYYY-MM-DD] Scope addition: [Description]
+**Phase:** BUILD
+**Satellite:** Cipher Pol
+**Severity:** [INTEL / ALERT / INTERCEPT]
+**Added:** [what was added]
+**PRD reference:** [what the PRD says about this area]
+**Decision:** [approved by Stella / rejected / PRD amended]
+```
+
+---
+
 ## When Cipher Pol Is Not Active
 
 - **IDEATE phase** — No PRD exists yet. Scope enforcement doesn't apply.

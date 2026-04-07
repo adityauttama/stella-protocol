@@ -17,7 +17,7 @@
       "name": "stella-protocol",
       "source": "./",
       "description": "PM-first AI development protocol with satellite agents, phase governance, and built-in scope/veto enforcement.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Aditya Uttama"
       },
