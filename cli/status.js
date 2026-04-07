@@ -1,3 +1,6 @@
+// Stella Protocol by Aditya Uttama
+// https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama
+
 const path = require('path');
 const fs = require('fs-extra');
 const chalk = require('chalk');

@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Contributing to The Stella Protocol
 
 Thank you for considering contributing to the Stella Protocol.

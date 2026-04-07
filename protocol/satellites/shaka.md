@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Shaka — Requirements & Scope
 
 > The aspect of good. Define what's right before building what's possible.

@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Edison — Implementation
 
 > The aspect of thinking. Turn plans into working code.

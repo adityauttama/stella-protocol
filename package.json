@@ -1,6 +1,6 @@
 {
   "name": "stella-protocol",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "PM-first AI development protocol. One mind, many satellites.",
   "bin": {
     "stella": "cli/index.js"
@@ -23,7 +23,8 @@
   ],
   "author": {
     "name": "Aditya Uttama",
-    "url": "https://github.com/adityauttama"
+    "url": "https://github.com/adityauttama",
+    "linkedin": "https://www.linkedin.com/in/adityauttama/"
   },
   "license": "MIT",
   "repository": {

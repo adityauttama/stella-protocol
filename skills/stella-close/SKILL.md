@@ -1,3 +1,4 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: stella-close
 description: >

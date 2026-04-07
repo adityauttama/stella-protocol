@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # ODA — UX Architecture & Design
 
 > The creator. Shape the experience before writing the code.

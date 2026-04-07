@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # East Blue — Lightweight Track
 
 > The calm starting sea. For work that needs speed over ceremony.

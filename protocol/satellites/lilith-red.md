@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Lilith Red — Adversarial Review
 
 > The aspect of evil, on offense. Find what's wrong before someone else does.

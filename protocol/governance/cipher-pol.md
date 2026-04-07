@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Cipher Pol — Scope Enforcement Protocol
 
 > Silent watchers that ensure no one drifts from the mission.

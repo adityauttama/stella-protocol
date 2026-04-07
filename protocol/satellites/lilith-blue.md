@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Lilith Blue — Quality Assurance
 
 > The aspect of evil, on defense. Prove the code works before it ships.

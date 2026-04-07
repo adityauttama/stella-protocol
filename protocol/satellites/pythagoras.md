@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Pythagoras — Architecture & Research
 
 > The aspect of wisdom. Understand the landscape before charting the course.

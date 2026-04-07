@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// Stella Protocol by Aditya Uttama
+// https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama
+
 
 const { Command } = require('commander');
 const { version } = require('../package.json');

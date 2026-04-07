@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # The Stella Protocol
 
 ![The Stella Protocol](assets/banner.png?v=2)
@@ -50,7 +52,7 @@ Satellites are specialized facets of your extended cognition. They activate from
 
 | Say This... | Satellite Activates | What It Does |
 |-------------|-------------------|--------------|
-| "I'm thinking about..." | **IMU** | Strategic vision, idea mapping, problem framing |
+| "I'm thinking about..." | **IMU** | Strategic vision, idea mapping (Express or Guided mode), mandatory track selection |
 | "Let's define the requirements" | **Shaka** | PRD creation (Express or Guided lens-by-lens), scope definition, acceptance criteria |
 | "Design the architecture" | **Pythagoras** | System design, tech decisions, data model |
 | "Map the UX" | **ODA** | User flows, wireframes, design specs |
@@ -128,3 +130,6 @@ MIT
 ## Author
 
 [Aditya Uttama](https://github.com/adityauttama) — Product Manager who builds 100% with AI.
+
+- [LinkedIn](https://www.linkedin.com/in/adityauttama/)
+- [GitHub](https://github.com/adityauttama)

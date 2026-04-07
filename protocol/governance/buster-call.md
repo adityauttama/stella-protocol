@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Buster Call — Veto Protocol
 
 > The power to stop everything when something is critically wrong.

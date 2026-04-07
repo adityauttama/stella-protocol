@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # Morgans — Launch & Go-to-Market
 
 > Big News. Tell the world what you built.

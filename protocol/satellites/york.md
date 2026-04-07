@@ -1,3 +1,5 @@
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
+
 # York — Documentation & Knowledge Capture
 
 > The aspect of greed. Capture everything worth knowing.
