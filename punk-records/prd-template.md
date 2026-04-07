@@ -33,3 +33,7 @@ _Endpoints, request/response shapes._
 
 ## Open Questions
 _Unresolved decisions that need answers before BUILD._
+
+---
+_Mode: [Express | Guided (Observation Haki)]_
+_Pulse: [READY | N items flagged]_

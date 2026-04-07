@@ -6,8 +6,10 @@ description: >
   acceptance criteria, architecture decisions, tech stack, system design,
   data models, UX patterns, wireframes, user flows, or design specifications.
   Contains Shaka (requirements), Pythagoras (architecture/research), and ODA
-  (UX design) satellite expertise. Enforces Cipher Pol scope governance.
-  Supports both Grand Line (full PRD) and East Blue (mini-PRD) tracks.
+  (UX design) satellite expertise. Shaka offers Express (conversational) and
+  Guided (Observation Haki lens-by-lens) PRD creation modes. Enforces Cipher
+  Pol scope governance. Supports both Grand Line (full PRD) and East Blue
+  (mini-PRD) tracks.
 ---
 
 # Stella Protocol — DEFINE Phase
@@ -31,8 +33,19 @@ Before starting DEFINE work:
 
 **Activates from context:** discussing features, scope, requirements, PRDs, acceptance criteria, priorities.
 
-**Protocol — Conversational Discovery:**
-Don't dump a PRD template. Guide Stella through it via dialogue:
+**Mode Selection — Ask Stella:**
+
+> "Mau langsung ngobrol bebas atau mau saya pandu step by step?"
+> / "Want to explore freely or should I walk you through it step by step?"
+>
+> - **Express** — Kita ngobrol, saya rangkum jadi PRD / We talk, I synthesize the PRD
+> - **Guided (Observation Haki)** — Saya pandu lewat 7 lensa, satu per satu. Setiap bagian PRD kamu approve langsung. / I'll walk you through 7 lenses. You approve each section as we go.
+
+---
+
+#### Mode A: Express Discovery
+
+Free-flowing conversational PRD creation. Don't dump a template — guide Stella through it via dialogue:
 
 1. Start with the problem: "Masalah apa yang mau diselesaikan?" / "What problem are we solving?"
 2. Identify users: "Siapa yang punya masalah ini?" / "Who has this problem?"
@@ -40,6 +53,115 @@ Don't dump a PRD template. Guide Stella through it via dialogue:
 4. Explore features through conversation — ask about priorities, what's P0 vs nice-to-have
 5. Explicitly ask about non-goals: "Apa yang BUKAN termasuk scope?" / "What's explicitly NOT in scope?"
 6. Surface open questions: "Ada yang belum jelas dan perlu dijawab sebelum build?"
+
+After the conversation, synthesize everything into a complete PRD.
+
+---
+
+#### Mode B: Guided Discovery (Observation Haki)
+
+Structured lens-by-lens PRD creation. Each lens reveals a different dimension of the product. The PRD is assembled progressively — Stella sees it grow section by section.
+
+**The Seven Lenses:**
+
+**Lens 1 — Pain** (→ Problem + Target Users)
+- Frame: "Siapa yang sakit, dan kenapa sekarang?" / "Who hurts, and why now?"
+- Explore: What's the current workaround? How urgent is this? How many people feel it?
+- Edge case nudge: "Gimana kalau user malah work around masalahnya dan gak adopt solusi kita?" / "What if users work around the problem and never adopt our solution?"
+- Draft the Problem and Target Users sections → Stella approves
+
+**Lens 2 — Victory** (→ Goals, measurable)
+- Frame: "Kalau ini sukses, angka apa yang berubah?" / "If this succeeds, what numbers change?"
+- Explore: Leading vs lagging indicators? Timeframe for measurement? Baseline today?
+- Edge case nudge: "Gimana kalau metrik naik tapi user satisfaction turun?" / "What if the metric improves but user satisfaction drops?"
+- Draft the Goals section → Stella approves
+
+**Lens 3 — Boundary** (→ Non-Goals)
+- Frame: "Apa yang kelihatannya masuk scope tapi sebenarnya BUKAN?" / "What looks like it's in scope but actually ISN'T?"
+- Explore: Adjacent features people will ask for? Things that are tempting but distract? V2 items?
+- Edge case nudge: "Gimana kalau stakeholder push untuk fitur yang udah kita exclude?" / "What if a stakeholder pushes for a feature we've explicitly excluded?"
+- Draft the Non-Goals section → Stella approves
+
+**Lens 4 — Shape** (→ Features P0/P1/P2)
+- Frame: "Kalau cuma boleh ship 1 hal, apa itu?" / "If you could only ship one thing, what is it?"
+- Explore: Work up from P0 essentials to P1 enhancements to P2 nice-to-haves. What's the cut line?
+- Edge case nudge: "Kalau timeline dipotong 50%, P1 mana yang naik jadi P0?" / "If the timeline gets cut in half, which P1 becomes P0?"
+- Draft the Features section → Stella approves
+
+**Lens 5 — Skeleton** (→ Data Model)
+- Frame: "Entity utama apa yang perlu kita simpan?" / "What are the core entities we need to store?"
+- Explore: Relationships between entities? State transitions? What data exists vs needs to be created?
+- Edge case nudge: "Gimana kalau data model ini harus support multi-tenant di masa depan?" / "What if this data model needs to support multi-tenancy later?"
+- Draft the Data Model section → Stella approves
+- **Offer to skip:** "Belum perlu data model detail? Skip aja, bisa ditambah nanti." / "Don't need detailed data model yet? Skip it, we can add later."
+
+**Lens 6 — Surface** (→ API Contracts)
+- Frame: "Siapa atau apa yang berkomunikasi dari luar sistem ini?" / "Who or what talks to this system from outside?"
+- Explore: External APIs? Webhooks? Third-party integrations? Public-facing endpoints?
+- Edge case nudge: "Gimana kalau API pihak ketiga berubah tanpa notice?" / "What if a third-party API changes without notice?"
+- Draft the API Contracts section → Stella approves
+- **Offer to skip:** "Gak ada external API? Skip lensa ini." / "No external APIs? Let's skip this lens."
+
+**Lens 7 — Fog** (→ Open Questions)
+- Frame: "Apa yang belum kita tahu dan bisa bikin project ini gagal?" / "What don't we know that could sink this project?"
+- Explore: Technical unknowns? Dependency on other teams? Unanswered user research?
+- Edge case nudge: "Gimana kalau open question ini gak terjawab sampai kita udah di tengah build?" / "What if this open question stays unanswered until we're mid-build?"
+- Draft the Open Questions section → Stella approves
+
+**Progress Tracking:**
+After each lens, show: "Lens [N]/7 selesai. Selanjutnya: [Next Lens]. Lanjut atau skip?" / "[N]/7 lenses done. Next: [Next Lens]. Continue or skip?"
+
+**Escape Hatch:**
+At any point Stella can say "generate aja sisanya" / "just generate the rest" — switch to Express mode. Rules:
+- Already-approved lens sections are preserved as-is
+- Express generates only the remaining unfilled sections
+- Vivre Card Pulse still runs on the full assembled PRD
+- Metadata should say `Guided (partial N/7) + Express`
+
+---
+
+#### Vivre Card Pulse (Post-Assembly Validation)
+
+After all lenses are complete (Guided mode) or after the PRD draft is ready (Express mode), run a coherence check:
+
+```
+Vivre Card Pulse — [PRD Name]
+
+  Contradiction:    CLEAR | [specific conflict, citing PRD text]
+  Completeness:     CLEAR | [specific gap, citing PRD text]
+  Testability:      CLEAR | [specific unmeasurable item]
+  Scope Integrity:  CLEAR | [mismatch with selected track]
+  Fog Density:      LOW / MEDIUM / HIGH — [blocking unknowns listed]
+
+  Overall: READY FOR APPROVAL | NEEDS ATTENTION ([N] items)
+```
+
+If any check fails, recommend which lens (Guided) or which topic (Express) to revisit. Each finding must cite specific text from the PRD — no vague flags.
+
+---
+
+#### Crew Check (Satellite Perspectives)
+
+Before Stella's final approval, channel the other satellites for a quick perspective review:
+
+> "Sebelum finalize, saya cek dari perspektif crew lain." / "Before we finalize, let me check from the crew's perspectives."
+
+```
+Crew Check — [PRD Name]
+
+  Pythagoras (Architecture): [one-line — e.g., "Data model needs state machine for order status"]
+  ODA (UX):                  [one-line — e.g., "No error states defined for upload flow"]
+  Edison (Build):            [one-line — e.g., "P0 set is buildable in stated timeline"]
+  Lilith Red (Security):     [one-line — e.g., "User uploads need size limits and type validation"]
+  Lilith Blue (QA):          [one-line — e.g., "Acceptance criteria for P0-2 is too vague to test"]
+  Atlas (Infra):             [one-line — e.g., "No deployment requirements. Fine for V1"]
+```
+
+One line per satellite. Only flag actual concerns — "No concerns" if clear. Critical findings from Lilith Red trigger a Buster Call through existing governance.
+
+**Note:** The Crew Check is a lightweight surface-level pre-screen where Shaka adopts each satellite's perspective. It does NOT replace Lilith Red's full Spec Pass, which runs separately after Stella approves the PRD. Think of it as a quick sanity check before approval, not the real audit.
+
+---
 
 **MANDATORY: Write PRD to file.**
 After Stella approves the PRD, you MUST write it to `brain/prd-[name].md` as a real file. NEVER leave the PRD only in conversation context or in a plan file. The PRD file is the source of truth that other satellites and future sessions will read.

@@ -51,7 +51,7 @@ Satellites are specialized facets of your extended cognition. They activate from
 | Say This... | Satellite Activates | What It Does |
 |-------------|-------------------|--------------|
 | "I'm thinking about..." | **IMU** | Strategic vision, idea mapping, problem framing |
-| "Let's define the requirements" | **Shaka** | PRD creation, scope definition, acceptance criteria |
+| "Let's define the requirements" | **Shaka** | PRD creation (Express or Guided lens-by-lens), scope definition, acceptance criteria |
 | "Design the architecture" | **Pythagoras** | System design, tech decisions, data model |
 | "Map the UX" | **ODA** | User flows, wireframes, design specs |
 | "Build this" | **Edison** | Implementation, coding, all production code |
