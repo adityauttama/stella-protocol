@@ -1,6 +1,6 @@
 # The Stella Protocol
 
-![The Stella Protocol](assets/banner.png)
+![The Stella Protocol](assets/banner.png?v=2)
 
 **PM-first AI development protocol. One mind, many satellites.**
 
