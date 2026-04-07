@@ -1,5 +1,7 @@
 # The Stella Protocol
 
+![The Stella Protocol](assets/banner.png)
+
 **PM-first AI development protocol. One mind, many satellites.**
 
 Stella is a structured methodology for Product Managers who build 100% with AI. Instead of calling independent AI agents, **you are Stella** — the original mind — and AI operates as specialized extensions of your thinking called **Satellites**.
