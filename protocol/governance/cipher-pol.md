@@ -84,13 +84,20 @@ Classification: [INTEL / ALERT / INTERCEPT]
 Action: Logged to scope-changes.md
 ```
 
-This applies to:
-- New pages/routes not in the PRD screen map
+**DOES trigger Cipher Pol:**
+- New pages/routes not in the PRD screen map or feature list
 - New API endpoints not in the PRD API contracts
 - New database tables/columns not in the PRD data model
-- New components that represent significant new functionality
+- New external service integrations not mentioned in PRD
+- New user-facing features or workflows not in PRD
 
-Minor implementation files (utilities, helpers, config) do not trigger Cipher Pol.
+**Does NOT trigger Cipher Pol:**
+- Component files that implement PRD-listed features (UI components, utilities, helpers)
+- Configuration and setup files
+- Test files and type definitions
+- Refactoring existing code
+
+**Rule of thumb:** If the file implements a feature that IS in the PRD, it is not drift. If the file introduces functionality or surface area NOT in the PRD, it is drift.
 
 ---
 

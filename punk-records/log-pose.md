@@ -2,6 +2,7 @@
 project: "{project-name}"
 phase: ideate
 track: pending
+quality-bar: production
 last-updated: YYYY-MM-DD
 ---
 

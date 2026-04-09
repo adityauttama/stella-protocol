@@ -4,17 +4,9 @@
 
 ![The Stella Protocol](assets/banner.png?v=2)
 
-**PM-first AI development protocol. One mind, many satellites.**
+**A structured way to build products with AI — from idea to launch.**
 
-Stella is a structured methodology for Product Managers who build 100% with AI. Instead of calling independent AI agents, **you are Stella** — the original mind — and AI operates as specialized extensions of your thinking called **Satellites**.
-
-## Why Stella?
-
-Most AI development frameworks are built for developers. Stella is built for **the PM who owns the product vision and uses AI to execute everything else** — architecture, code, tests, deployment, documentation.
-
-- **No commands to memorize.** Satellites activate from natural conversation, not slash commands.
-- **Built-in governance.** Scope enforcement and veto protocols are always on — not optional tools you remember to invoke.
-- **Persistent project brain.** A structured `brain/` directory tracks decisions, state, and scope — committed to git, reviewable in PRs.
+Stella Protocol gives your AI coding agent (Claude Code, Cursor, etc.) a set of phases, quality gates, and scope rules so you stay in control of what gets built. You make the decisions. The AI executes with guardrails.
 
 ## Quick Start
 
@@ -22,106 +14,119 @@ Most AI development frameworks are built for developers. Stella is built for **t
 npx stella-protocol install
 ```
 
-This will:
-1. Install 5 phase-based Agent Skills into your AI tool
-2. Initialize a `brain/` directory (Punk Records) in your project
-3. You're ready — start by telling your AI what you want to build
+That's it. This installs:
+- **5 Agent Skills** — phase-based instructions your AI agent follows automatically
+- **A `brain/` directory** — markdown files that track your project's decisions, scope, and state
 
-## The Protocol
+No config needed. Start talking to your AI agent about what you want to build.
+
+## Your First Project
+
+### Step 1: Brainstorm
+
+Tell your AI agent what you're thinking about:
+
+> "I'm thinking about building a community riddle platform"
+
+The **IMU satellite** activates automatically. It helps you explore the idea, identify risks, and decide whether to go lightweight (East Blue) or full process (Grand Line).
+
+### Step 2: Define (Grand Line) or Skip to Build (East Blue)
+
+- **Grand Line** — For bigger projects. Creates a full PRD with requirements, architecture, UX design. The **Shaka satellite** walks you through it.
+- **East Blue** — For small features. You get a Mini-PRD and jump straight to building.
+
+### Step 3: Build
+
+Tell your agent to start building. The **Edison satellite** writes the code, pauses for review after significant features, and tracks every decision. If something drifts from your approved scope, **Cipher Pol** flags it automatically.
+
+### Step 4: Review
+
+Before anything goes live, **Lilith Red** runs a security audit and **Lilith Blue** checks quality. Critical issues block deployment — you decide what to fix now vs. later.
+
+### Step 5: Close
+
+**York** syncs documentation with reality and **Morgans** helps craft your launch announcement.
+
+## How It Works
 
 ### Phases
 
 ```
-PHASE 0: IDEATE    →  Think about the problem space
-PHASE 1: DEFINE    →  Requirements, architecture, UX, PRD
-PHASE 2: BUILD     →  Implementation, deployment
-PHASE 2.5: ITERATE →  Post-launch feedback loop
-PHASE 3: CLOSE     →  Documentation, launch, go-to-market
+IDEATE  →  Brainstorm, explore, decide if it's worth building
+DEFINE  →  Requirements, architecture, UX, PRD
+BUILD   →  Implementation with scope monitoring and review checkpoints
+REVIEW  →  Security audit, QA, quality gates
+CLOSE   →  Documentation, launch, go-to-market
+```
+
+### Governance (Always On)
+
+**Cipher Pol** — Scope enforcement. Detects when AI adds features outside your approved spec. You decide to approve, reject, or amend.
+
+**Buster Call** — Quality veto. Any satellite can halt progress on critical security or quality issues. You decide how to resolve it.
+
+### Project Brain (`brain/` directory)
+
+Every decision, every scope change, every status update lives in `brain/` as plain markdown — committed to git, reviewable in PRs:
+
+```
+brain/
+├── log-pose.md        # Current phase, track, blockers, active work
+├── vivre-cards.md     # Append-only decision log
+├── scope-changes.md   # Scope drift audit trail
+├── architecture.md    # Tech decisions with rationale
+├── design-system.md   # Visual design tokens and rules
+├── ideas.md           # Idea backlog
+└── prd-*.md           # PRD documents (created as needed)
 ```
 
 ### Two Tracks
 
 | Track | When to Use | What Happens |
 |-------|-------------|--------------|
-| **Grand Line** (Full) | New projects, >1 week scope | All phases in order, full PRD |
-| **East Blue** (Lightweight) | Small features, <1 week | Idea Brief with Mini-PRD, skip to BUILD |
+| **Grand Line** | New projects, bigger scope | All phases in order, full PRD |
+| **East Blue** | Small features, quick fixes | Mini-PRD, skip to BUILD |
 
-### Satellites
+## Satellites
 
-Satellites are specialized facets of your extended cognition. They activate from conversational context:
+Satellites are specialized AI behaviors that activate from conversational context. You don't invoke them — you talk naturally and the right expertise surfaces:
 
-| Say This... | Satellite Activates | What It Does |
-|-------------|-------------------|--------------|
-| "I'm thinking about..." | **IMU** | Strategic vision, idea mapping (Express or Guided mode), mandatory track selection |
-| "Let's define the requirements" | **Shaka** | PRD creation (Express or Guided lens-by-lens), scope definition, acceptance criteria |
-| "Design the architecture" | **Pythagoras** | System design, tech decisions, data model |
-| "Map the UX" | **ODA** | User flows, wireframes, design specs |
-| "Build this" | **Edison** | Implementation, coding, all production code |
-| "Review for security issues" | **Lilith Red** | Adversarial review, security audit |
-| "Write tests" | **Lilith Blue** | QA, test suites, edge case coverage |
-| "Deploy this" | **Atlas** | Infrastructure, CI/CD, deployment |
-| "Document this" | **York** | Knowledge capture, changelogs |
-| "Announce this" | **Morgans** | Launch, blog posts, go-to-market |
-
-### Governance (Always On)
-
-**Buster Call** — Any satellite can halt progress when it identifies critical issues. Severity: CONCERN → WARNING → BUSTER CALL. At BUSTER CALL level, work stops until you resolve it.
-
-**Cipher Pol** — Continuous scope monitoring against the approved PRD. Severity: INTEL → ALERT → INTERCEPT. Drift is detected and flagged automatically. You decide whether to approve or reject.
-
-### Punk Records (Project Brain)
-
-Every project gets a `brain/` directory — git-committed, PR-reviewable:
-
-```
-brain/
-├── log-pose.md        # Where are we? Phase, track, blockers, active work
-├── architecture.md    # Tech decisions with rationale
-├── vivre-cards.md     # Append-only decision log
-├── ideas.md           # Unprocessed idea backlog
-└── prd-*.md           # PRD documents (created as needed)
-```
+| Satellite | What It Does | Activates When You Say... |
+|-----------|-------------|--------------------------|
+| **IMU** | Idea exploration, brainstorming | "I'm thinking about..." |
+| **Shaka** | Requirements, PRD creation | "Let's define what to build" |
+| **Pythagoras** | Architecture, tech decisions | "Design the architecture" |
+| **ODA** | UX flows, design system | "Map the user experience" |
+| **Edison** | Implementation, coding | "Build this" |
+| **Atlas** | Infrastructure, deployment | "Deploy this" |
+| **Lilith Red** | Security review, red teaming | "Review for security issues" |
+| **Lilith Blue** | QA, testing, edge cases | "Write tests" |
+| **York** | Documentation, changelogs | "Document this" |
+| **Morgans** | Launch content, go-to-market | "Announce this" |
 
 ## Agent Skills
 
-Stella packages satellites into 5 phase-based skills:
+Skills package satellites into 5 phase-based files:
 
-| Skill | Contains | Activates When |
-|-------|----------|----------------|
-| `stella-protocol` | Orchestrator + IMU | Starting a project, "what's next," phase routing |
-| `stella-define` | Shaka + Pythagoras + ODA | Requirements, architecture, UX, PRDs |
-| `stella-build` | Edison + Atlas | Coding, deploying, implementation |
-| `stella-review` | Lilith Red + Lilith Blue | Code review, security, QA |
-| `stella-close` | York + Morgans | Documentation, launch, go-to-market |
+| Skill | Satellites | Phase |
+|-------|-----------|-------|
+| `stella-protocol` | IMU | IDEATE |
+| `stella-define` | Shaka + Pythagoras + ODA | DEFINE |
+| `stella-build` | Edison + Atlas | BUILD |
+| `stella-review` | Lilith Red + Lilith Blue | REVIEW |
+| `stella-close` | York + Morgans | CLOSE |
 
 Compatible with Claude Code, Cursor, and any tool supporting the Agent Skills open standard.
+
+## Example
+
+See the [full walkthrough](examples/README.md) — building [House of Riddle](https://riddle.thepunkrecords.com), a community riddle platform, through the entire Stella cycle with populated `brain/` files.
 
 ## Philosophy
 
 > You are not "talking to an AI agent." You are thinking, and specialized facets of your extended cognition activate to help you execute.
 
-Stella inverts the typical framework model. You don't call agents — you think out loud, and the right expertise surfaces. The governance protocols aren't tools you invoke — they're constitutional rules that every satellite enforces.
-
-This is a protocol, not a product. The methodology in `protocol/` is human-readable markdown. You can apply it manually without any tooling. The `skills/` layer packages it for AI tools, but the protocol stands on its own.
-
-## Project Structure
-
-```
-stella-protocol/
-├── protocol/          # The methodology (human-readable markdown)
-│   ├── stella.md      # Master protocol
-│   ├── satellites/    # Satellite definitions
-│   ├── governance/    # Buster Call + Cipher Pol
-│   └── tracks/        # Grand Line + East Blue
-├── punk-records/      # Brain directory templates
-├── skills/            # Agent Skills (AI-consumable)
-├── cli/               # CLI installer
-└── docs/              # Documentation
-```
-
-## Example
-
-See the [full walkthrough](examples/README.md) — a real example building "House of Riddle" (a community riddle platform, live at [riddle.thepunkrecords.com](https://riddle.thepunkrecords.com)) through the entire Stella cycle, with populated `brain/` files showing what each phase produces.
+The governance protocols aren't tools you invoke — they're constitutional rules that every satellite enforces. The protocol in `protocol/` is human-readable markdown. You can apply it manually without any tooling.
 
 ## License
 
