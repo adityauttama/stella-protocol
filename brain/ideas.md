@@ -7,8 +7,8 @@ _Add ideas here as they come. Format: `- [date] [idea] — [one-line description
 
 ## In Progress (Idea Brief done, moving through phases)
 
-### 2026-04-09 — Governance Hardening v0.5.0
-**Track:** East Blue | **Phase:** BUILD
+### 2026-04-09 — Governance Hardening v0.5.0 ✅ SHIPPED v0.5.0
+**Track:** East Blue | **Phase:** CLOSED
 **Problem:** Agents skip protocol rules because enforcement is suggestion-based, not gate-based. Real-world usage revealed REVIEW phase skipped, Punk Records not incremental, Pre-Flight never generated, Cipher Pol too noisy.
 **Proposed Solution:** Add structural gates (Exit Gates, mandatory formatted outputs, scoped triggers) to all 5 skill files + README clarity rewrite.
 **Who It's For:** AI agents following the protocol + new users installing Stella.

@@ -38,8 +38,16 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 `log-pose.md`, `architecture.md`, `vivre-cards.md`, `ideas.md`, `scope-changes.md`, `design-system.md`
 
 ### Governance
-- **Cipher Pol** — scope drift logged to `scope-changes.md`, decisions to `vivre-cards.md`
+- **Cipher Pol** — scope drift logged to `scope-changes.md`, decisions to `vivre-cards.md`. Scoped triggers: only user-facing routes/endpoints/integrations/features trigger, not implementation files.
 - **Buster Call** — quality/security veto, 3 severities (CONCERN/WARNING/BUSTER CALL)
+- **EXIT GATES** — mandatory checklists at the end of stella-build, stella-define, stella-review that block phase transition until prerequisites are met
+- **Quality Track** — demo/production quality bar set once in stella-review, governs all findings
+- **Feature Completion Protocol** — mandatory Punk Records checkpoint + review pause after each significant feature in BUILD
+- **Vivre Cards Version Boundary** — version markers + archiving when >50 entries
+
+### Brain Files (6 templates + 1 generated)
+`log-pose.md`, `architecture.md`, `vivre-cards.md`, `ideas.md`, `scope-changes.md`, `design-system.md`
+Generated during BUILD: `preflight.md` (Atlas Pre-Flight checklist, mandatory before deploy)
 
 ## Key Decisions
 
@@ -51,3 +59,12 @@ Error handling wraps entire command body, not individual file operations. Suffic
 
 ### 2026-04-07 — Skills installed to both `skills/` (source) and `.claude/skills/` (installed copy)
 Both must be kept in sync. No automated sync mechanism yet — manual during development.
+
+### 2026-04-09 — Enforcement via formatted output blocks, not prose
+Agents comply with "output this format" instructions better than "remember to do X" prose. All enforcement gates (EXIT GATE, PUNK RECORDS CHECKPOINT, FEATURE COMPLETE) require visible formatted output that both agent and Stella can verify.
+
+### 2026-04-09 — Cipher Pol scoped to surface area, not files
+"Any new file" was too broad (15+ files per BUILD session = noise). Scoped to user-facing routes, API endpoints, DB tables, external integrations, and features NOT in PRD. Implementation files (components, utils, tests, configs) do not trigger.
+
+### 2026-04-09 — Quality Track set once per project, not per finding
+Demo vs production quality bar is set once when REVIEW first activates, recorded in log-pose.md frontmatter. Prevents per-finding "acceptable for demo" negotiation.

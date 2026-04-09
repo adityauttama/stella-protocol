@@ -63,3 +63,16 @@
 **Decision:** 2 High + 2 Medium findings, all fixed immediately. H1: EXIT GATE preflight conditional added. H2: EXIT GATES added to stella-review and stella-define. M1: Quality Track check-before-ask. M2: design-system.md added to README brain/ listing. No BUSTER CALL findings.
 **Rationale:** All findings were enforcement consistency issues — same pattern (missing gates, unconditional checks) that the sprint was designed to fix. Low effort, high value to fix now.
 **Alternatives:** Could have deferred M1/M2 but both were single-line fixes.
+
+### 2026-04-09 CLOSE: Governance Hardening v0.5.0
+**Phase:** CLOSE
+**Satellite:** York
+**Decision:** Version closed as 0.5.0. Architecture synced with new enforcement mechanisms, CHANGELOG updated, version bumped.
+**Rationale:** All feedback items addressed (10/10 + 2 bonus: npm security, README clarity). Review found 2H+2M, all fixed. Protocol now uses structural gates instead of agent discipline.
+**Alternatives:** None.
+
+---
+## === v0.5.0 — 2026-04-09 — Governance Hardening ===
+### Summary: Added EXIT GATES, scoped Cipher Pol, Quality Track, and structural enforcement across all skills
+### Decision count: 3 entries (track selection, review findings, close)
+---

@@ -1,6 +1,6 @@
 ---
 project: "stella-protocol"
-phase: build
+phase: closed
 track: east-blue
 quality-bar: production
 last-updated: 2026-04-09
@@ -9,14 +9,10 @@ last-updated: 2026-04-09
 # Log Pose
 
 ## Current Heading
-Governance Hardening sprint (v0.5.0) — East Blue track. Adding structural enforcement gates to all skill files based on real-world usage feedback.
+Governance Hardening sprint CLOSED as v0.5.0. All 12 feedback items shipped, reviewed, documented.
 
 ## Active Work
-- Hardening stella-build with Exit Gate, checkpoints, scoped Cipher Pol triggers
-- Adding Quality Track to stella-review
-- Bidirectional mode switch for stella-define
-- Vivre Cards archiving in stella-close
-- README clarity rewrite
+- None — sprint complete.
 
 ## Completed (v0.4.2)
 - 4 P0: Cipher Pol fix, version sync, error handling, skill validation

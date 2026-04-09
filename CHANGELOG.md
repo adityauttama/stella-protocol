@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.5.0] — 2026-04-09
+### Added
+- EXIT GATE mandatory checklists in stella-build, stella-review, and stella-define — blocks phase transition until prerequisites are met
+- Feature Completion Protocol in stella-build — mandatory Punk Records checkpoint + review pause after each significant feature
+- Atlas Pre-Flight gate — refuses to proceed with deployment until brain/preflight.md exists
+- Quality Track (demo/production) in stella-review — set once, governs all findings
+- Bidirectional Mode Switch in stella-define — Express↔Guided switching in either direction
+- Vivre Cards version boundaries and archiving protocol in stella-close
+- Design System Compliance check in Lilith Blue (stella-review)
+- npm audit check in Atlas Pre-Flight checklist
+- Prohibited Actions section at top of stella-build
+
+### Changed
+- Cipher Pol trigger scope narrowed — only user-facing routes, API endpoints, DB tables, external integrations, and features NOT in PRD trigger assessment. Implementation files (components, utils, tests) no longer trigger.
+- stella-define Gate Check now explicitly references `stella-protocol` for ideation
+- README.md rewritten for clarity — leads with Quick Start, adds Your First Project walkthrough
+- Quality Track check reads existing log-pose.md value before asking Stella
+
 ## [0.4.2] — 2026-04-07
 ### Fixed
 - Cipher Pol governance doc (`protocol/governance/cipher-pol.md`) now correctly references `brain/scope-changes.md` as primary drift log, aligned with skill files and CLAUDE.md
