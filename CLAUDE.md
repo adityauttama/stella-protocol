@@ -25,7 +25,7 @@ Suggested next: [concrete action based on current state]
 - `stella-protocol` (IDEATE) · `stella-define` (DEFINE) · `stella-build` (BUILD) · `stella-review` (REVIEW) · `stella-close` (CLOSE)
 
 **Edison atomic** (execution rigor, invoked during BUILD):
-- `edison-tdd` — RED-GREEN-REFACTOR cycle · `edison-verify` — automated build/lint/test gate
+- `edison-tdd` — RED-GREEN-REFACTOR cycle · `edison-verify` — automated build/lint/test gate · `edison-debug` — 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix)
 
 **Governance atomic** (cross-phase):
 - `cipher-pol` — scope drift monitoring · `buster-call` — quality/security veto · `punk-records` — brain file update protocol

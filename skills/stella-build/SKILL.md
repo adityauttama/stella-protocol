@@ -43,6 +43,46 @@ If no PRD exists: "Belum ada PRD di brain/ — mau define dulu sebelum build?" I
 
 Before implementing testable logic (business rules, pure functions, API handlers, state machines, validators, bug fixes), invoke `edison-tdd` for RED-GREEN-REFACTOR. Skip for pure UI rendering, exploratory spikes, one-off scripts — use `edison-verify` at the end instead.
 
+### Debug Invocation (on unexpected behavior)
+
+When a test that was passing now fails, a regression appears, a bug report lands, or runtime behavior surprises Edison, invoke `edison-debug` for the 4-phase flow (Reproduce → Isolate → Hypothesize → Verify Fix). **Iron Law:** no fix merged without reproducing the bug first. Skip only for trivial fixes (typo, obvious null check).
+
+### Subagent-per-Feature Dispatch (for long BUILDs)
+
+For multi-feature BUILDs, dispatch each significant feature to a **fresh subagent** via the `Agent` tool instead of implementing inline in the parent session. Keeps parent context clean (log-pose + scope-changes + PRD index only) and prevents context bloat across features.
+
+**Threshold (invoke subagent when any is true):**
+- Feature touches ≥3 new or modified files
+- Feature is ≥150 LOC expected
+- PRD has ≥5 features remaining and this is feature 3+ of the session
+
+**Parent retains:** `brain/log-pose.md`, `brain/scope-changes.md`, PRD path/index, Cipher Pol/Buster Call state, Feature Completion Protocol enforcement, Punk Records writes.
+
+**Subagent receives (self-contained brief — NOT full PRD):**
+
+```markdown
+## Feature Brief: [Feature Name]
+
+**Context:** [1-2 sentences — what this feature is and why it matters]
+**Acceptance Criteria:** [bulleted list from PRD, verbatim]
+**Files likely to touch:** [paths, based on architecture.md and codebase conventions]
+**Existing patterns to reuse:** [helpers/utils/components with paths]
+**Out of scope for this feature:** [explicit exclusions — prevents scope creep in the subagent]
+
+**Execution requirements:**
+- Invoke `edison-tdd` if logic is testable
+- Invoke `edison-verify` before returning
+- If unexpected behavior surfaces, invoke `edison-debug`
+- Invoke `cipher-pol` if about to create anything NOT in Acceptance Criteria
+- Return a summary: files changed, tests added, any waivers logged
+
+**Do NOT:** update brain/ files (parent handles that), suggest phase transitions, commit.
+```
+
+**After subagent returns,** parent runs the Feature Completion Protocol (Punk Records Checkpoint + Review Pause) with the returned summary. This is non-negotiable — subagent output is evidence, parent is accountable.
+
+**Skip subagent dispatch for:** trivial fixes, config/copy edits, single-file changes, exploratory spikes.
+
 ### Feature Completion Protocol
 
 After each significant feature, Edison MUST follow this sequence:

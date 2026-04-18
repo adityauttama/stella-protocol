@@ -15,7 +15,7 @@ npx stella-protocol install
 ```
 
 That's it. This installs:
-- **10 Agent Skills** — 5 phase orchestrators + 5 atomic skills (governance + execution rigor)
+- **11 Agent Skills** — 5 phase orchestrators + 6 atomic skills (governance + execution rigor)
 - **A `brain/` directory** — markdown files that track your project's decisions, scope, and state
 
 No config needed. Start talking to your AI agent about what you want to build.
@@ -120,10 +120,11 @@ Skills are organized in layers. Phase orchestrators handle user-facing flow; ato
 
 **Edison atomic (execution rigor, v0.6.0+):**
 
-| Skill | Purpose |
-|-------|---------|
-| `edison-tdd` | RED-GREEN-REFACTOR enforcement for testable logic |
-| `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE |
+| Skill | Purpose | Since |
+|-------|---------|-------|
+| `edison-tdd` | RED-GREEN-REFACTOR enforcement for testable logic | v0.6.0 |
+| `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE | v0.6.0 |
+| `edison-debug` | 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix) | v0.7.0 |
 
 **Governance atomic (cross-phase, v0.6.0+):**
 

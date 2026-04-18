@@ -41,6 +41,7 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 |-------|--------|
 | `edison-tdd` | RED-GREEN-REFACTOR cycle for testable logic |
 | `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE |
+| `edison-debug` | 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix); Iron Law reproduce-before-fix (v0.7.0+) |
 
 **Layer 3 — Governance Atomic (cross-phase, shared):**
 | Skill | Fungsi |
@@ -96,3 +97,9 @@ Previously the EXIT GATE was a checklist of brain file states ("log-pose current
 
 ### 2026-04-18 — edison-tdd opt-in, not enforced
 TDD is available as a first-class skill in v0.6.0 but orchestrators suggest rather than require. Enforcement defers to future version after baseline usage proves the ergonomics. Mirrors the "discipline via skill, not via global config" pattern from obra/superpowers.
+
+### 2026-04-18 — edison-debug added as Layer 2 atomic skill (v0.7.0)
+Introduced `edison-debug` for systematic root cause analysis — 4-phase flow (Reproduce → Isolate → Hypothesize → Verify Fix) with Iron Law: no fix merged without reproducing the bug first. Previously bug work fell through a gap — `edison-tdd` covers new testable logic, `edison-verify` confirms a fix didn't regress, but there was no canonical protocol between symptom and fix. Inspiration: `obra/superpowers/skills/systematic-debugging`.
+
+### 2026-04-18 — Subagent-per-feature dispatch pattern in stella-build (v0.7.0)
+For long multi-feature BUILDs, `stella-build` now dispatches each significant feature (≥3 files OR ≥150 LOC expected, OR feature 3+ in a session with ≥5 remaining) to a fresh `Agent` subagent. Parent retains `log-pose.md`, `scope-changes.md`, PRD index, governance state. Subagent receives a self-contained brief (spec + acceptance criteria + file pointers, NOT full PRD) and returns a summary. Parent runs Feature Completion Protocol (Punk Records + review pause) on the returned summary. Prevents context bloat across features — quality of feature 5 no longer degraded by accumulated feature 1–4 implementation details. Inspiration: `obra/superpowers/skills/subagent-driven-development`.

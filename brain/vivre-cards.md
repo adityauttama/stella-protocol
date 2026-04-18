@@ -117,3 +117,44 @@
 ### Summary: Pecah phase skills ke orchestrator + 5 atomic skills (3 governance + 2 Edison); edison-verify mandatory di BUILD EXIT GATE
 ### Decision count: 5 entries (track selection, PRD, build, review, close)
 ---
+
+### 2026-04-18 Track Selection: East Blue for v0.7.0 Execution Depth
+**Phase:** IDEATE → BUILD
+**Satellite:** IMU
+**Decision:** East Blue track selected for "v0.7.0 Execution Depth" sprint. Skip DEFINE — Mini-PRD sufficient karena scope tight (2 items: edison-debug atomic skill + subagent-per-feature dispatch pattern di stella-build).
+**Rationale:** P1/P2 backlog dari v0.6.0 idea brief well-defined. Tight scope (2 items, defer satellite atomic skills + writing-skills meta + lilith adversarial + project-context.md ke v0.7.1+) menahan godaan scope creep. Formal PRD akan add overhead tanpa value di scope sekecil ini.
+**Alternatives:** Grand Line (rejected — scope tidak justify formal PRD); all-P1-in-one-sprint (rejected — risk scope creep + burnout).
+
+### 2026-04-18 Mini-PRD Approved: v0.7.0 Execution Depth
+**Phase:** IDEATE (East Blue Mini-PRD)
+**Satellite:** IMU
+**Decision:** Mini-PRD locked. (1) `edison-debug` atomic skill — 4-phase methodology (Reproduce → Isolate → Hypothesize → Verify Fix), Iron Law reproduce-before-fix, auto-suggests edison-verify after fix. (2) Subagent-per-feature dispatch pattern di stella-build — threshold ≥3 files OR ≥150 LOC expected, self-contained brief template (feature spec + acceptance criteria + file pointers, NOT full PRD), parent retains log-pose + scope-changes state. Deferred ke v0.7.1+: satellite atomic skills (shaka-brief/shaka-prd/pythagoras-research/oda-design), writing-skills meta, lilith-red adversarial, lilith-blue checkpoint-preview, brain/project-context.md BMAD-style.
+**Rationale:** Two-item scope balances shipped value (edison-debug immediately useful untuk ongoing BUILDs) dengan architectural foundation (subagent pattern sets groundwork untuk long multi-feature BUILDs).
+**Alternatives:** Include satellite atomic skills (rejected — too broad for East Blue, would convert to Grand Line); only edison-debug (rejected — subagent pattern juga P0 per idea brief, small enough to ship together).
+
+### 2026-04-18 BUILD Complete: Execution Depth v0.7.0
+**Phase:** BUILD
+**Satellite:** Edison
+**Decision:** Both P0 items shipped. (1) `skills/edison-debug/SKILL.md` created with 4-phase format blocks (REPRODUCE / ISOLATE / HYPOTHESIZE / VERIFY FIX), Iron Law, anti-patterns, integration pointers to edison-verify + buster-call + punk-records + cipher-pol. (2) `skills/stella-build/SKILL.md` gained two new sections: "Debug Invocation (on unexpected behavior)" and "Subagent-per-Feature Dispatch (for long BUILDs)" with threshold criteria, parent retention list, and self-contained brief template. stella-build grew 167 → 207 LOC. Both source and `.claude/skills/` mirrors in sync. No scope drift — all items in Mini-PRD.
+**Rationale:** Tight scope executed clean. Brief template made explicit to reduce interpretation ambiguity (identified as biggest risk in Idea Brief).
+**Alternatives:** Enforce subagent dispatch as gate (rejected — opt-in matches Stella's "discipline via skill, not global config" pattern from v0.6.0).
+
+### 2026-04-18 REVIEW Complete: Execution Depth v0.7.0
+**Phase:** REVIEW
+**Satellite:** Lilith Red + Lilith Blue (self-review)
+**Decision:** All clear. No BUSTER CALL findings. stella-build LOC growth (167 → 207, +24%) accepted — two whole new protocol sections added, trimming would drop critical decision criteria (threshold rules, brief template). edison-debug format blocks follow same shape as edison-tdd (familiar to Stella). Mini-PRD deliverables 2/2 complete.
+**Rationale:** v0.6.0 REVIEW already set precedent for accepting LOC overages when core value is preserved. Both additions are structural protocols, not prose — trimming would harm execution fidelity.
+**Alternatives:** Split stella-build's new sections into separate atomic skills (rejected — subagent pattern belongs to BUILD orchestration, not a standalone atomic skill at this stage).
+
+### 2026-04-18 CLOSE: Execution Depth v0.7.0
+**Phase:** CLOSE
+**Satellite:** York
+**Decision:** Version closed as 0.7.0. `package.json` bumped 0.6.0 → 0.7.0. CHANGELOG.md updated with v0.7.0 entry (Added/Changed/Preserved/Deferred/Inspiration Credits). architecture.md — Layer 2 table adds edison-debug row; two new decision entries (edison-debug rationale + subagent-per-feature rationale). README.md — "11 Agent Skills" + Since column on Edison atomic table. CLAUDE.md — edison-debug appended to Edison atomic list. ideas.md — v0.7.0 moved to In Progress/BUILD, v0.6.0 marked SHIPPED.
+**Rationale:** All Mini-PRD items shipped, self-review clean, documentation aligned with reality. Inspiration credits documented: obra/superpowers (systematic-debugging, subagent-driven-development).
+**Alternatives:** None.
+
+---
+## === v0.7.0 — 2026-04-18 — Execution Depth ===
+### Summary: Added edison-debug (4-phase root cause) + subagent-per-feature dispatch pattern in stella-build. 11 skills total. Inspired by obra/superpowers systematic-debugging & subagent-driven-development.
+### Decision count: 5 entries (track selection, Mini-PRD, build complete, review complete, close)
+---
