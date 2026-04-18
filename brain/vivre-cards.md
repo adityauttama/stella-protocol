@@ -158,3 +158,37 @@
 ### Summary: Added edison-debug (4-phase root cause) + subagent-per-feature dispatch pattern in stella-build. 11 skills total. Inspired by obra/superpowers systematic-debugging & subagent-driven-development.
 ### Decision count: 5 entries (track selection, Mini-PRD, build complete, review complete, close)
 ---
+
+### 2026-04-18 Track Selection: East Blue for v0.7.1 Meta + Adversarial Quality
+**Phase:** IDEATE → BUILD
+**Satellite:** IMU
+**Decision:** East Blue track selected for "v0.7.1 Meta + Adversarial Quality" sprint. Three items from v0.7.0 deferred backlog: (1) `writing-skills` meta skill, (2) Lilith Red Adversarial Mode in stella-review, (3) Lilith Blue Checkpoint Preview in stella-review. All are well-defined extensions — no Grand Line PRD needed.
+**Rationale:** Three small-medium items that share a theme (quality of output). All inline extensions or new isolated meta skill — no architectural shifts. East Blue scope prevents burnout; all three can ship in one BUILD pass.
+**Alternatives:** Include satellite atomic skills (rejected — too large for East Blue, would require Grand Line); only writing-skills (rejected — all three are similar effort, coherent thematically).
+
+### 2026-04-18 BUILD Complete: Meta + Adversarial Quality v0.7.1
+**Phase:** BUILD
+**Satellite:** Edison
+**Decision:** All 3 items shipped. (1) `writing-skills/SKILL.md` created (121 LOC): RED-GREEN-REFACTOR cycle for skill authoring, Iron Law, anti-patterns, integration with punk-records + buster-call. (2) Lilith Red Adversarial Mode added to `stella-review` after Code Pass (36 LOC): threat model → top 3 targets → concrete attack → predict → minimal fix, structured output format. (3) Lilith Blue Checkpoint Preview added to `stella-review` after Test Suite (40 LOC): 4 concern buckets, per-bucket acknowledgment, security per-item. stella-review grew 154 → 210 LOC. Both source and `.claude/skills/` mirrors in sync. No scope drift.
+**Rationale:** Items are structurally independent (new file + two additive sections) — minimal merge risk. Adversarial Mode and Checkpoint Preview placed after existing sections to avoid disrupting current flows.
+**Alternatives:** Extract Adversarial Mode and Checkpoint Preview as separate atomic skills (rejected — they extend existing Lilith satellites, not standalone reusable patterns at this stage).
+
+### 2026-04-18 REVIEW Complete: Meta + Adversarial Quality v0.7.1
+**Phase:** REVIEW
+**Satellite:** Lilith Red + Lilith Blue (self-review)
+**Decision:** All clear. No BUSTER CALL findings. stella-review LOC growth (154 → 210, +36%) accepted — two full protocol modes added, each with format blocks that agents need verbatim. writing-skills at 121 LOC within target range (~80–100 LOC guideline slightly exceeded; extra 21 LOC is the meta-scope section explaining it applies to all 4 layers including itself — kept for self-reference value).
+**Rationale:** LOC overages accepted when the content is structural protocol, not filler prose. All 3 deliverables are complete per Mini-PRD criteria.
+**Alternatives:** None.
+
+### 2026-04-18 CLOSE: Meta + Adversarial Quality v0.7.1
+**Phase:** CLOSE
+**Satellite:** York
+**Decision:** Version closed as 0.7.1. `package.json` bumped 0.7.0 → 0.7.1. CHANGELOG.md updated with v0.7.1 entry (Added/Changed/Preserved/Deferred/Inspiration Credits). architecture.md — Layer 4 Meta table added, 3 new decision entries (writing-skills, adversarial mode, checkpoint preview). README.md — "12 Agent Skills" + Meta table. CLAUDE.md — Meta layer line added.
+**Rationale:** All Mini-PRD items shipped, self-review clean, documentation aligned with reality. 12 skills across 4 layers fully documented.
+**Alternatives:** None.
+
+---
+## === v0.7.1 — 2026-04-18 — Meta + Adversarial Quality ===
+### Summary: Added writing-skills (Layer 4 meta) + Lilith Red Adversarial Mode + Lilith Blue Checkpoint Preview. 12 skills total (5 phase + 3 Edison + 3 governance + 1 meta). Inspired by obra/superpowers writing-skills & requesting-code-review.
+### Decision count: 5 entries (track selection, build complete, review complete, close — Mini-PRD inline, no separate entry)
+---

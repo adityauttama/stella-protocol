@@ -9,10 +9,16 @@ last-updated: 2026-04-18
 # Log Pose
 
 ## Current Heading
-v0.7.0 Execution Depth — CLOSED (East Blue). Shipped: `edison-debug` atomic skill (4-phase root cause with reproduce-before-fix Iron Law) + subagent-per-feature dispatch pattern di stella-build. Deferred to v0.7.1+: satellite atomic skills, writing-skills meta, lilith adversarial modes, brain/project-context.md.
+v0.7.1 Meta + Adversarial Quality — CLOSED (East Blue). Shipped: `writing-skills` Layer 4 meta skill (RED-GREEN-REFACTOR for skill authoring) + Lilith Red Adversarial Mode in stella-review + Lilith Blue Checkpoint Preview in stella-review. 12 skills total.
 
 ## Active Work
-None — v0.7.0 shipped. Next cycle: IDEATE untuk v0.7.1 (deferred items from v0.7.0 scope) or a new direction.
+None — v0.7.1 shipped. Deferred to v0.8.0+: satellite atomic skills (shaka-brief/shaka-prd/pythagoras-research/oda-design), brain/project-context.md BMAD-style.
+
+## Completed (v0.7.1)
+- `writing-skills` Layer 4 meta skill — RED-GREEN-REFACTOR for SKILL.md authoring. Iron Law reproduce-before-change. Applies to all 4 layers including itself.
+- Lilith Red Adversarial Mode in `stella-review` — attacker-perspective audit; threat model → top 3 targets → concrete attack steps → minimal fix.
+- Lilith Blue Checkpoint Preview in `stella-review` — diff reorder by concern (Security → Correctness → Quality → Cosmetic); security per-item, cosmetic bulk-approve.
+- `stella-review` 154 → 210 LOC. 12 skills total (5 phase + 3 Edison + 3 governance + 1 meta).
 
 ## Completed (v0.7.0)
 - `edison-debug` atomic skill — 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix), Iron Law reproduce-before-fix. Fills gap between symptom and fix.
@@ -38,8 +44,7 @@ All clear.
 Clean. No scope drift during v0.6.0 BUILD — all shipped items listed in PRD (`brain/prd-atomic-skills.md`).
 
 ## Recent Vivre Cards
-- 2026-04-18: Track selection — East Blue for v0.7.0 Execution Depth sprint
-- 2026-04-18: Mini-PRD approved — edison-debug + subagent-per-feature (tight scope)
-- 2026-04-18: BUILD complete — edison-debug + subagent pattern shipped, no scope drift
+- 2026-04-18: Track selection — East Blue for v0.7.1 (writing-skills + lilith adversarial + checkpoint preview)
+- 2026-04-18: BUILD complete — 3 items shipped, no scope drift
 - 2026-04-18: REVIEW complete — self-review, no BUSTER CALL findings
-- 2026-04-18: CLOSE v0.7.0 — version closed, CHANGELOG/architecture/README synced
+- 2026-04-18: CLOSE v0.7.1 — version closed, 12 skills total

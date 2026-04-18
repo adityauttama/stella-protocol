@@ -30,6 +30,9 @@ Suggested next: [concrete action based on current state]
 **Governance atomic** (cross-phase):
 - `cipher-pol` — scope drift monitoring · `buster-call` — quality/security veto · `punk-records` — brain file update protocol
 
+**Meta** (skill authoring):
+- `writing-skills` — RED-GREEN-REFACTOR for writing and improving SKILL.md files
+
 See each skill's SKILL.md for full detail. Governance rules live in the atomic skills — invoke them directly rather than duplicating prose here.
 
 ## Governance Rules (Quick Reference)

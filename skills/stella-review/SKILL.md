@@ -83,7 +83,32 @@ Review implementation for: SQL injection, auth/authz bypass, PII exposure, unval
 
 Critical findings → BUSTER CALL → blocks deployment.
 
-## 📡 Lilith Blue — Quality Assurance
+### Adversarial Mode (on demand)
+
+**Trigger:** Stella requests "red team this" / "adversarial review" / "what would an attacker do" — or automatically before any release handling money, PII, or auth.
+
+**Posture:** Assume a malicious user with full knowledge of the implementation. Objective is exploitation, not breakage.
+
+1. **Threat model the surface** — list every entry point: routes, API endpoints, file uploads, webhooks, queues, env var reads, admin interfaces.
+2. **Pick top 3 highest-value targets** — what does the attacker want most? (admin access, PII dump, payment redirect, persistent backdoor, privilege escalation)
+3. **For each target, write the attack** — exact request/payload/sequence. Not "could be vulnerable to" — concrete exploit steps.
+4. **Predict system response** — does the attack succeed given the implementation? Where does it fail (what mitigates it)?
+5. **Propose the fix** — minimal change that breaks the attack without broader refactors.
+
+```markdown
+## Adversarial Audit: [Name] — YYYY-MM-DD
+
+### Target 1: [Goal, e.g., "Steal another user's data"]
+**Entry point:** [route/endpoint/mechanism]
+**Attack:** [exact steps / payload]
+**Predicted outcome:** [succeeds / blocked by X]
+**Fix:** [minimal code change]
+
+### Target 2: [Goal]
+...
+```
+
+Critical findings → BUSTER CALL → blocks deployment.
 
 ### Test Plan — MANDATORY OUTPUT
 
@@ -112,6 +137,37 @@ Lilith Blue MUST create `brain/test-plan.md` even if no automated tests are writ
 ### Test Suite (when appropriate)
 
 Happy path, edge cases (boundaries, empty states, max values), error states (invalid inputs, failures, permission denied), regression (existing features still work).
+
+### Checkpoint Preview (diff reorder by concern)
+
+**Trigger:** Stella asks for a checkpoint review of uncommitted changes, a feature diff, or "review this before I merge."
+
+Instead of presenting changes file-by-file, group hunks by risk level so high-concern changes surface first — reviewer fatigue doesn't bury critical findings at the bottom.
+
+1. **Group hunks into 4 buckets:**
+   - 🔴 **Security/Auth** — auth flow, permission checks, secret handling, input validation, SQL/injection surfaces
+   - 🟡 **Correctness** — business logic, data mutation, state transitions, error propagation
+   - 🟢 **Quality** — error handling, edge case coverage, performance, test additions
+   - ⚪ **Cosmetic** — naming, formatting, comments, copy, whitespace
+
+2. **Present in that order** with `file:line` references for each hunk.
+
+3. **Per bucket, ask:** "Approve, request change, or skip to next bucket?"
+   - Security bucket: must be acknowledged per item — no bulk approve
+   - Cosmetic bucket: can be acknowledged in bulk ("approve all cosmetic")
+
+4. If a bucket is empty, skip it silently.
+
+```
+CHECKPOINT PREVIEW — [Feature/Branch]
+🔴 Security/Auth (N items)
+  - file:line — [what changed and why it matters]
+🟡 Correctness (N items)
+  - file:line — [what changed and why it matters]
+🟢 Quality (N items)
+  - file:line — [what changed]
+⚪ Cosmetic (N items) — approve all? y/n
+```
 
 ### Coverage Assessment
 

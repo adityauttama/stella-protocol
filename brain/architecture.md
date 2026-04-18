@@ -50,6 +50,11 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 | `buster-call` | Quality/security veto format + logging |
 | `punk-records` | Brain file update protocol (log-pose, vivre-cards, architecture, versioning) |
 
+**Layer 4 — Meta (skill authoring, v0.7.1+):**
+| Skill | Fungsi |
+|-------|--------|
+| `writing-skills` | RED-GREEN-REFACTOR for writing/improving SKILL.md files. Iron Law: no skill change without a documented failing scenario. |
+
 Phase orchestrators reference atomic skills via prose pointer — they do NOT duplicate governance prose. Claude Code's skill auto-trigger handles activation based on each atomic skill's `description` field.
 
 ### Brain Files (6 templates)
@@ -103,3 +108,12 @@ Introduced `edison-debug` for systematic root cause analysis — 4-phase flow (R
 
 ### 2026-04-18 — Subagent-per-feature dispatch pattern in stella-build (v0.7.0)
 For long multi-feature BUILDs, `stella-build` now dispatches each significant feature (≥3 files OR ≥150 LOC expected, OR feature 3+ in a session with ≥5 remaining) to a fresh `Agent` subagent. Parent retains `log-pose.md`, `scope-changes.md`, PRD index, governance state. Subagent receives a self-contained brief (spec + acceptance criteria + file pointers, NOT full PRD) and returns a summary. Parent runs Feature Completion Protocol (Punk Records + review pause) on the returned summary. Prevents context bloat across features — quality of feature 5 no longer degraded by accumulated feature 1–4 implementation details. Inspiration: `obra/superpowers/skills/subagent-driven-development`.
+
+### 2026-04-18 — writing-skills meta skill added as Layer 4 (v0.7.1)
+Skills are prompts. Prompts have failure modes. Without a systematic improvement cycle, skill edits are guesswork — "it could be clearer" without a concrete failing scenario. `writing-skills` applies RED-GREEN-REFACTOR to SKILL.md authoring: document a concrete failure case first (trigger/output/over-trigger/gap), make the minimum fix, then refactor. Iron Law: no skill change without a documented failing scenario. Builds a regression log for skill evolution. Inspiration: `obra/superpowers/skills/writing-skills`.
+
+### 2026-04-18 — Lilith Red Adversarial Mode added to stella-review (v0.7.1)
+Spec Pass and Code Pass look for "what could break." Adversarial Mode looks for "what would I exploit." The posture shift — assume a malicious, informed attacker rather than an unlucky user — surfaces a different class of findings (intentional abuse vectors vs accidental bugs). Structured as: threat-model the surface → pick top 3 highest-value targets → write the concrete attack → predict system response → propose minimal fix. Opt-in (trigger: Stella requests "red team" or pre-release with money/PII/auth). Inspiration: BMAD adversarial review patterns + standard threat-modeling methodology.
+
+### 2026-04-18 — Lilith Blue Checkpoint Preview added to stella-review (v0.7.1)
+Multi-file diffs presented alphabetically by file path hide risk distribution — a critical auth change in `auth/middleware.ts` is visually equal to a cosmetic rename in `utils/helpers.ts`. Checkpoint Preview groups diff hunks into 4 concern buckets (Security/Auth → Correctness → Quality → Cosmetic) and presents them in that order. Security findings must be acknowledged per item; cosmetic can be bulk-approved. Reduces reviewer fatigue masking high-risk changes at the bottom. Inspiration: `obra/superpowers/skills/requesting-code-review`.

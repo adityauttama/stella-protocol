@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.7.1] — 2026-04-18
+### Added
+- **`writing-skills` meta skill (Layer 4)** — RED-GREEN-REFACTOR applied to SKILL.md authoring. Iron Law: no skill change merged without a documented failure scenario it fixes. Cycle: RED (concrete failing trigger/output/gap), GREEN (minimum fix), REFACTOR (cleanup without regressing prior RED scenarios). Builds a regression log for skill evolution. Inspired by `obra/superpowers/skills/writing-skills`.
+- **Lilith Red — Adversarial Mode** in `stella-review` — explicit attacker-perspective audit beyond Spec Pass + Code Pass. Posture: malicious user with full implementation knowledge. Flow: threat-model the surface → top 3 highest-value targets → concrete attack steps → predict system response → minimal fix. Structured `## Adversarial Audit` output. Trigger: Stella requests "red team" or pre-release with money/PII/auth.
+- **Lilith Blue — Checkpoint Preview** in `stella-review` — diff reorder by concern before presenting to reviewer. Groups hunks into 4 buckets (🔴 Security/Auth → 🟡 Correctness → 🟢 Quality → ⚪ Cosmetic), presents highest-risk first. Security bucket requires per-item acknowledgment; cosmetic can be bulk-approved. Reduces reviewer fatigue hiding critical changes at the bottom.
+
+### Changed
+- `stella-review` 154 → 210 LOC (+56) — two new mode sections added under Lilith Red (Adversarial Mode) and Lilith Blue (Checkpoint Preview). All existing gates (EXIT GATE, Quality Track, Buster Call routing) unchanged.
+- `CLAUDE.md` Skill Layers — added Meta layer entry for `writing-skills`.
+- `README.md` — "12 Agent Skills"; new Meta table after Governance atomic.
+- `brain/architecture.md` — Layer 4 Meta table added; 3 new decision entries (writing-skills, adversarial mode, checkpoint preview rationale).
+
+### Preserved (Non-Negotiable)
+- All existing Lilith Red/Blue flows intact — Spec Pass, Code Pass, Test Plan, Coverage Assessment, Design System Compliance.
+- All v0.7.0 additions (edison-debug, subagent-per-feature) unchanged.
+- One Piece metaphor, governance atomic, append-only vivre-cards, phase gates — untouched.
+
+### Deferred to v0.8.0+
+- Satellite atomic skills (shaka-brief, shaka-prd, pythagoras-research, oda-design) — Grand Line refactor
+- `brain/project-context.md` BMAD-style
+- Subagent-driven testing of skills via writing-skills meta
+
+### Inspiration Credits
+- `obra/superpowers` — writing-skills, requesting-code-review
+- BMAD adversarial review patterns — adversarial mode structure
+
 ## [0.7.0] — 2026-04-18
 ### Added
 - **`edison-debug` atomic skill** — 4-phase systematic root cause flow (Reproduce → Isolate → Hypothesize → Verify Fix). Iron Law: no fix merged without reproducing the bug first. Fills the gap between symptom and fix that neither `edison-tdd` (new logic) nor `edison-verify` (regression detection) covered. Inspired by `obra/superpowers/skills/systematic-debugging`.

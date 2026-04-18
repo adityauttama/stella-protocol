@@ -7,6 +7,16 @@ _Add ideas here as they come. Format: `- [date] [idea] — [one-line description
 
 ## In Progress (Idea Brief done, moving through phases)
 
+### 2026-04-18 — Meta + Adversarial Quality v0.7.1 ✅ SHIPPED v0.7.1
+**Track:** East Blue | **Phase:** CLOSED
+**Problem:** Two quality gaps: (1) skill authoring is undisciplined — changes made without concrete failure scenarios, no regression log; (2) stella-review has Spec/Code Pass but no attacker-perspective mode and no risk-ordered diff view.
+**Proposed Solution:** `writing-skills` meta skill (RED-GREEN-REFACTOR for prompts) + Lilith Red Adversarial Mode (threat-model + concrete exploit steps) + Lilith Blue Checkpoint Preview (diff reorder: Security → Correctness → Quality → Cosmetic).
+**Who It's For:** Stella when improving/extending Stella Protocol's own skills (writing-skills), and when doing pre-release security review or reviewing large diffs (adversarial + checkpoint).
+**Core Assumption:** Applying TDD discipline to skill authoring will reduce skill regressions over time (no more "I made it better but now it doesn't trigger").
+**Biggest Risk:** Adversarial Mode format too prescriptive for non-security contexts.
+**Adjacent Ideas:** writing-skills applied to BMAD skills/prompts; brain/project-context.md BMAD-style (deferred)
+**Source:** Deferred P1/P2 items from v0.7.0 sprint backlog
+
 ### 2026-04-18 — Execution Depth v0.7.0 ✅ SHIPPED v0.7.0
 **Track:** East Blue | **Phase:** CLOSED
 **Problem:** BUILD phase masih punya dua gap: (1) tidak ada systematic debugging methodology ketika Edison hits a bug — prone ke trial-and-error; (2) long BUILD sessions accumulate context dari semua feature sebelumnya → quality degradation di feature ke-5+.
