@@ -1,6 +1,6 @@
 {
   "name": "stella-protocol",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "description": "PM-first AI development protocol. One mind, many satellites.",
   "scripts": {
     "test": "echo \"No tests yet — see brain/test-plan.md for manual QA checklist\"",
