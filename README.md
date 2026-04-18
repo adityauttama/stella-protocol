@@ -15,7 +15,7 @@ npx stella-protocol install
 ```
 
 That's it. This installs:
-- **5 Agent Skills** — phase-based instructions your AI agent follows automatically
+- **10 Agent Skills** — 5 phase orchestrators + 5 atomic skills (governance + execution rigor)
 - **A `brain/` directory** — markdown files that track your project's decisions, scope, and state
 
 No config needed. Start talking to your AI agent about what you want to build.
@@ -106,7 +106,9 @@ Satellites are specialized AI behaviors that activate from conversational contex
 
 ## Agent Skills
 
-Skills package satellites into 5 phase-based files:
+Skills are organized in layers. Phase orchestrators handle user-facing flow; atomic skills handle governance and execution rigor — they activate when their trigger conditions match, keeping per-invocation token load low.
+
+**Phase orchestrators (5):**
 
 | Skill | Satellites | Phase |
 |-------|-----------|-------|
@@ -115,6 +117,21 @@ Skills package satellites into 5 phase-based files:
 | `stella-build` | Edison + Atlas | BUILD |
 | `stella-review` | Lilith Red + Lilith Blue | REVIEW |
 | `stella-close` | York + Morgans | CLOSE |
+
+**Edison atomic (execution rigor, v0.6.0+):**
+
+| Skill | Purpose |
+|-------|---------|
+| `edison-tdd` | RED-GREEN-REFACTOR enforcement for testable logic |
+| `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE |
+
+**Governance atomic (cross-phase, v0.6.0+):**
+
+| Skill | Purpose |
+|-------|---------|
+| `cipher-pol` | Scope drift classification + logging |
+| `buster-call` | Quality/security veto format + logging |
+| `punk-records` | Brain file update protocol and versioning |
 
 Compatible with Claude Code, Cursor, and any tool supporting the Agent Skills open standard.
 

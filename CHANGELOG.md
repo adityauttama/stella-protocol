@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.6.0] — 2026-04-18
+### Added
+- **Edison atomic skills** — `edison-tdd` (RED-GREEN-REFACTOR cycle for testable logic, Iron Law: no code without failing test first) and `edison-verify` (automated build/lint/test gate, mandatory at BUILD EXIT GATE). Inspired by `obra/superpowers`.
+- **Governance atomic skills** — `cipher-pol` (scope drift), `buster-call` (quality/security veto), `punk-records` (brain file update protocol). Extracted from duplicated prose across phase skills; now canonical source.
+- `edison-verify` PASS requirement in BUILD EXIT GATE — claims without automated verification are not evidence. Waivers must be logged to `brain/vivre-cards.md`.
+- Layered skill architecture documented in `brain/architecture.md`: Layer 1 phase orchestrators, Layer 2 Edison atomic, Layer 3 governance atomic.
+
+### Changed
+- **Phase skills slimmed to orchestrators** — ~41% LOC reduction across 5 phase skills:
+  - `stella-protocol` 171 → 106 LOC
+  - `stella-define` 298 → 160 LOC
+  - `stella-build` 299 → 167 LOC
+  - `stella-review` 231 → 154 LOC
+  - `stella-close` 139 → 84 LOC
+- Phase skills now reference atomic skills for governance rather than duplicating prose. Claude Code's skill auto-trigger (via each skill's `description` field) handles activation.
+- `CLAUDE.md` session hook simplified — governance rules delegated to atomic skills (quick-reference kept inline).
+- `README.md` skills inventory expanded to document 10 skills across 3 layers.
+
+### Preserved (Non-Negotiable)
+- IMU 5-lensa brainstorming, Shaka Express/Guided (7 lenses Observation Haki), Vivre Card Pulse, Crew Check — untouched.
+- One Piece metaphor: all satellite names, Cipher Pol, Buster Call, Punk Records, EXIT GATE, Vivre Card, Log Pose, Track names, phase names retained.
+- Append-only vivre-cards, version boundaries, archiving policy — still enforced via `punk-records`.
+- Phase gates — DEFINE → BUILD → REVIEW → CLOSE sequence cannot be skipped.
+
+### Inspiration Credits
+- `obra/superpowers` — TDD Iron Law, verification-before-completion, atomic skill composition
+- `bmad-code-org/BMAD-METHOD` — scale-adaptive agent layering, project-context-as-constitution
+
 ## [0.5.0] — 2026-04-09
 ### Added
 - EXIT GATE mandatory checklists in stella-build, stella-review, and stella-define — blocks phase transition until prerequisites are met

@@ -19,25 +19,22 @@ Suggested next: [concrete action based on current state]
 6. If the user's request conflicts with current phase, note it but don't block — Stella decides
 7. Respond in the language the user writes in (English or Bahasa Indonesia)
 
-## Governance Rules
+## Skill Layers
 
-### Cipher Pol (Scope Monitoring)
-When creating any new file, route, page, endpoint, or component during BUILD:
-- Check if it's listed in `brain/prd-*.md`
-- If NOT in PRD: log to `brain/scope-changes.md` with classification (INTEL/ALERT/INTERCEPT)
-- INTEL: log and continue
-- ALERT: log, inform user, continue
-- INTERCEPT: log, ask for explicit approval before proceeding
-- Rejected INTERCEPT items go to `brain/ideas.md` as Parked entries
+**Phase orchestrators** (user-facing slash commands):
+- `stella-protocol` (IDEATE) · `stella-define` (DEFINE) · `stella-build` (BUILD) · `stella-review` (REVIEW) · `stella-close` (CLOSE)
 
-### Buster Call (Quality/Security Veto)
-When encountering security vulnerabilities, data integrity risks, or critical quality issues:
-- Use the formatted block (⚠️ SEVERITY — SATELLITE NAME)
-- Log to `brain/vivre-cards.md` with Status: OPEN
-- Only BUSTER CALL severity blocks work. CONCERN and WARNING are advisory.
-- When fixed, add a new vivre card with Status: RESOLVED
+**Edison atomic** (execution rigor, invoked during BUILD):
+- `edison-tdd` — RED-GREEN-REFACTOR cycle · `edison-verify` — automated build/lint/test gate
 
-### Punk Records
-- Update `brain/log-pose.md` after each milestone (not every file change)
-- Decisions go to `brain/vivre-cards.md` (append-only, never edit past entries)
-- Keep brain/ files as human-readable markdown — no YAML schemas or machine formats
+**Governance atomic** (cross-phase):
+- `cipher-pol` — scope drift monitoring · `buster-call` — quality/security veto · `punk-records` — brain file update protocol
+
+See each skill's SKILL.md for full detail. Governance rules live in the atomic skills — invoke them directly rather than duplicating prose here.
+
+## Governance Rules (Quick Reference)
+
+- **Scope drift** (new page/route/endpoint/table/integration/feature not in PRD) → `cipher-pol` classifies (INTEL/ALERT/INTERCEPT), logs `brain/scope-changes.md`
+- **Quality/security issue** → `buster-call` formats and logs `brain/vivre-cards.md`. BUSTER CALL severity blocks phase transitions.
+- **Milestone reached** → `punk-records` updates `brain/log-pose.md`, `vivre-cards.md`, `architecture.md`. Vivre cards are append-only.
+- Keep `brain/` as human-readable markdown — no YAML schemas or machine formats

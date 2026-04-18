@@ -76,3 +76,44 @@
 ### Summary: Added EXIT GATES, scoped Cipher Pol, Quality Track, and structural enforcement across all skills
 ### Decision count: 3 entries (track selection, review findings, close)
 ---
+
+### 2026-04-18 Track Selection: Grand Line for v0.6.0 Atomic Skills
+**Phase:** IDEATE → DEFINE
+**Satellite:** IMU
+**Decision:** Grand Line track selected for "Atomic Skills & Execution Rigor" sprint. Scope: pecah monolithic phase skills jadi orchestrator + atomic skills, tambah TDD/verify enforcement, inspirasi dari obra/superpowers + bmad-code-org/BMAD-METHOD.
+**Rationale:** Dua gap teridentifikasi via benchmark terhadap superpowers dan BMAD: (1) token inefficiency — 5 phase skill monolitik 1,138 LOC loaded wholesale, governance prose diulang di banyak file; (2) BUILD rigor lemah — no TDD enforcement, no automated verify gate. Scope besar dan lintas-skill → butuh PRD proper (Grand Line).
+**Alternatives:** East Blue (rejected — scope multi-file, butuh arch decision untuk skill boundary); Reimagine/story-sharding BMAD (rejected — overkill, risk kehilangan Shaka/IMU strength).
+
+### 2026-04-18 PRD Approved: Atomic Skills Refactor
+**Phase:** DEFINE
+**Satellite:** Shaka (Express)
+**Decision:** PRD v1.0 approved. P0 scope locked: 3 governance atomic skills (cipher-pol, buster-call, punk-records), 2 edison atomic skills (edison-tdd, edison-verify), slim 5 phase skills ke orchestrator, update BUILD EXIT GATE. P1/P2 deferred ke subsprint berikutnya.
+**Rationale:** IDEATE output (`brain/idea-atomic-skills-v0.6.0.md`) sudah detail — scope, diagnostic, design architecture, verification plan. Express mode sufficient. Focus P0 dulu untuk shipped-value, P1/P2 bisa iterasi setelah P0 proven.
+**Alternatives:** Guided Observation Haki (skipped — scope well-defined); all-P012 in one sprint (rejected — risk scope creep).
+
+### 2026-04-18 BUILD Complete: Atomic Skills
+**Phase:** BUILD
+**Satellite:** Edison
+**Decision:** All P0 items shipped. 5 atomic skills created (cipher-pol, buster-call, punk-records, edison-tdd, edison-verify). 5 phase skills slimmed to orchestrators (~41% total LOC reduction across phase skills). stella-build EXIT GATE now requires edison-verify PASS or vivre-cards-logged waiver. All changes mirrored to `.claude/skills/`. No scope drift — Cipher Pol clean, all items listed in PRD.
+**Rationale:** Structural refactor with clear deliverables. Governance prose deduplicated via atomic skills. Claude Code skill auto-trigger (via each skill's `description` field) handles activation.
+**Alternatives:** Enforce TDD globally (rejected — kept edison-tdd opt-in per PRD P0, mirrors superpowers' "discipline via skill, not via global config" pattern).
+
+### 2026-04-18 REVIEW Complete: Atomic Skills
+**Phase:** REVIEW
+**Satellite:** Lilith Red + Lilith Blue
+**Decision:** Self-review pass. No BUSTER CALL findings. Core strengths preserved verbatim: IMU 5-lensa brainstorming, Shaka Express/Guided (7 lenses Observation Haki), Vivre Card Pulse, Crew Check, Feature Completion Protocol, Lilith Red/Blue audits. One Piece metaphor 100% intact (satellite names, Cipher Pol, Buster Call, Punk Records, EXIT GATE, Vivre Card, Log Pose, track names, phase names).
+**Rationale:** Refactor scope was structural (skill boundary extraction + slim); user-facing flows untouched. Minor LOC overages on some phase skills (stella-protocol 106 vs ≤100 target, stella-build 167 vs ≤150) accepted — 41% overall reduction was substantial and core value preserved.
+**Alternatives:** Aggressive further slimming (rejected — would strip preserved strengths like 7-lens Observation Haki and test-plan templates).
+
+### 2026-04-18 CLOSE: Atomic Skills v0.6.0
+**Phase:** CLOSE
+**Satellite:** York
+**Decision:** Version closed as 0.6.0. `package.json` bumped 0.5.0 → 0.6.0. CHANGELOG.md updated with v0.6.0 entry (Added/Changed/Preserved/Inspiration Credits). architecture.md synced with 3-layer skill model + 3 new decision entries. README.md updated to "10 Agent Skills" with 3-table skills inventory. CLAUDE.md rewritten to delegate governance to atomic skills with quick-reference retained inline.
+**Rationale:** All P0 PRD items shipped, self-review clean, documentation aligned with reality. Inspiration credits documented: obra/superpowers (TDD Iron Law, verification-before-completion, atomic skill composition) and bmad-code-org/BMAD-METHOD (scale-adaptive agent layering, project-context-as-constitution).
+**Alternatives:** None.
+
+---
+## === v0.6.0 — 2026-04-18 — Atomic Skills & Execution Rigor ===
+### Summary: Pecah phase skills ke orchestrator + 5 atomic skills (3 governance + 2 Edison); edison-verify mandatory di BUILD EXIT GATE
+### Decision count: 5 entries (track selection, PRD, build, review, close)
+---
