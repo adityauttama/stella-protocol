@@ -25,7 +25,9 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 | `stella init` | Initialize brain/ only (6 templates) |
 | `stella status` | Display project status from brain/log-pose.md |
 
-### Skill Files (5)
+### Skill Files (layered — v0.6.0)
+
+**Layer 1 — Phase Orchestrators (5, user-facing):**
 | Skill | Phase | Satellites |
 |-------|-------|------------|
 | `stella-protocol` | IDEATE | IMU |
@@ -33,6 +35,21 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 | `stella-build` | BUILD | Edison, Atlas, ODA |
 | `stella-review` | REVIEW | Lilith Red, Lilith Blue |
 | `stella-close` | CLOSE | York, Morgans |
+
+**Layer 2 — Edison Atomic (execution rigor, invoked during BUILD):**
+| Skill | Fungsi |
+|-------|--------|
+| `edison-tdd` | RED-GREEN-REFACTOR cycle for testable logic |
+| `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE |
+
+**Layer 3 — Governance Atomic (cross-phase, shared):**
+| Skill | Fungsi |
+|-------|--------|
+| `cipher-pol` | Scope drift classification + logging |
+| `buster-call` | Quality/security veto format + logging |
+| `punk-records` | Brain file update protocol (log-pose, vivre-cards, architecture, versioning) |
+
+Phase orchestrators reference atomic skills via prose pointer — they do NOT duplicate governance prose. Claude Code's skill auto-trigger handles activation based on each atomic skill's `description` field.
 
 ### Brain Files (6 templates)
 `log-pose.md`, `architecture.md`, `vivre-cards.md`, `ideas.md`, `scope-changes.md`, `design-system.md`
@@ -68,3 +85,14 @@ Agents comply with "output this format" instructions better than "remember to do
 
 ### 2026-04-09 — Quality Track set once per project, not per finding
 Demo vs production quality bar is set once when REVIEW first activates, recorded in log-pose.md frontmatter. Prevents per-finding "acceptable for demo" negotiation.
+
+### 2026-04-18 — Layered skill architecture (v0.6.0)
+Phase skills reduced from monolithic (139-299 LOC, governance prose duplicated 3+ times) to orchestrators (84-167 LOC) that reference atomic skills. Three governance atomic skills (cipher-pol, buster-call, punk-records) hold the canonical format and logging rules, invoked via Claude Code's skill auto-trigger. Two Edison atomic skills (edison-tdd, edison-verify) introduce TDD enforcement and automated verification — edison-verify is mandatory at BUILD EXIT GATE. Inspiration: obra/superpowers (atomic skills + TDD Iron Law + verification-before-completion) and bmad-code-org/BMAD-METHOD (scale-adaptive agent layering, project-context-as-constitution).
+
+Trade-offs: total LOC across all skill files is ~1,116 (vs 1,138 before) — similar footprint but better distribution. Per-session load improves significantly because atomic skills only materialize when their trigger conditions match. Governance prose deduplicated.
+
+### 2026-04-18 — edison-verify mandatory at BUILD EXIT GATE
+Previously the EXIT GATE was a checklist of brain file states ("log-pose current, vivre-cards has entries, preflight exists"). Now it additionally requires `edison-verify` to PASS (build + lint + test) or a documented waiver in vivre-cards.md. Claims without automated verification are not evidence.
+
+### 2026-04-18 — edison-tdd opt-in, not enforced
+TDD is available as a first-class skill in v0.6.0 but orchestrators suggest rather than require. Enforcement defers to future version after baseline usage proves the ergonomics. Mirrors the "discipline via skill, not via global config" pattern from obra/superpowers.
