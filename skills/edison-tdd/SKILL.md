@@ -1,17 +1,10 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: edison-tdd
-description: >
-  Edison's test-driven development protocol. Activates when Edison is about to
-  implement a testable feature — business logic, pure functions, API handlers,
-  data transformations, state machines, validators. Enforces RED-GREEN-REFACTOR
-  cycle: failing test first, minimal code to pass, then refactor. Use before
-  writing implementation code, not after.
+description: Edison TDD protocol. Use before implementing business logic, API handlers, validators, or any testable feature. Enforces RED-GREEN-REFACTOR: failing test first, minimal code, then refactor.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Edison TDD — Red-Green-Refactor
-
-Inspired by `obra/superpowers/skills/test-driven-development`. Adapted for Stella Protocol's Edison satellite.
 
 ## The Iron Law
 

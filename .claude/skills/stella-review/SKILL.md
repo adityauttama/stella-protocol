@@ -1,15 +1,8 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: stella-review
-description: >
-  Stella Protocol REVIEW capabilities. Activates when reviewing code, running
-  security audits, stress-testing implementations, writing tests, QA
-  verification, edge case analysis, adversarial review, red teaming, checking
-  for vulnerabilities, or when Edison suggests a review checkpoint after a
-  feature. Contains Lilith Red (adversarial/security) and Lilith Blue
-  (QA/testing) satellites. Findings routed through buster-call; unresolved
-  BUSTER CALL blocks deployment.
+description: Stella Protocol REVIEW phase. Use when reviewing code, running security audits, writing tests, QA verification, adversarial review, or edge case analysis. Lilith Red + Lilith Blue satellites.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Stella Protocol — REVIEW
 
@@ -193,17 +186,20 @@ If `brain/design-system.md` exists: spot-check 3-5 UI components. Flag component
 
 ## EXIT GATE — MANDATORY
 
-```
-EXIT GATE — stella-review
-[ ] All Critical findings resolved
-[ ] All High findings resolved or explicitly acknowledged by Stella
-[ ] brain/vivre-cards.md has entries for all findings and resolutions
-[ ] brain/test-plan.md exists (Lilith Blue output)
-[ ] Stella has approved moving forward
-```
+**❌ REFUSE TO PROCEED if any hard condition is unmet. State the condition. Do NOT suggest next phase.**
 
-**Any unchecked:** state what's missing. Do NOT suggest next phase.
-**All checked:** output checklist, then: "REVIEW complete. Selanjutnya: jalankan `stella-close`."
+Hard conditions (must be met or waived):
+- Critical finding exists that is not resolved → REFUSE
+- `brain/test-plan.md` does not exist → REFUSE
+
+Waiver path: log reason to `brain/vivre-cards.md`, then wait for Stella to confirm "proceed with waiver."
+
+Soft reminders (do not block, just state):
+- All High findings resolved or explicitly acknowledged by Stella
+- brain/vivre-cards.md has entries for all findings and resolutions
+- Stella has approved moving forward
+
+**All hard conditions met:** "REVIEW complete. Selanjutnya: jalankan `stella-close`."
 
 ## Communication
 

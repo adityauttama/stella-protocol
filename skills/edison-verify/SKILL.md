@@ -1,17 +1,12 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: edison-verify
-description: >
-  Edison's automated verification gate. Activates before a feature is declared
-  complete and at the BUILD EXIT GATE. Detects and runs the project's build,
-  lint, and test commands, then emits a structured pass/fail report. Blocks
-  EXIT GATE until all configured checks pass (or Stella logs a waiver). Use
-  instead of claiming "it works" without evidence.
+description: Edison verification gate. Use before declaring a feature complete or at the BUILD EXIT GATE. Runs build, lint, and test commands, emits pass/fail report. Claims without evidence are not valid.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Edison Verify — Automated Verification
 
-Inspired by `obra/superpowers/skills/verification-before-completion`. Claims without verification are not evidence.
+Claims without verification are not evidence.
 
 ## When Edison Verify Activates
 

@@ -1,18 +1,30 @@
 ---
 project: "stella-protocol"
 phase: closed
-track: east-blue
+track: grand-line
 quality-bar: production
-last-updated: 2026-04-18
+last-updated: 2026-04-20
 ---
 
 # Log Pose
 
 ## Current Heading
-v0.7.1 Meta + Adversarial Quality — CLOSED (East Blue). Shipped: `writing-skills` Layer 4 meta skill (RED-GREEN-REFACTOR for skill authoring) + Lilith Red Adversarial Mode in stella-review + Lilith Blue Checkpoint Preview in stella-review. 12 skills total.
+v0.10.0 Structural Governance — CLOSED (Grand Line).
 
 ## Active Work
-None — v0.7.1 shipped. Deferred to v0.8.0+: satellite atomic skills (shaka-brief/shaka-prd/pythagoras-research/oda-design), brain/project-context.md BMAD-style.
+None. v0.10.0 closed.
+
+## Completed (v0.10.0)
+Structural Governance — CLOSED (Grand Line). Shipped: hard-block EXIT GATES (REFUSE pattern) in stella-define + stella-build + stella-review. brain/project-context.md added as 7th init template + CLAUDE.md session hook. P1: stella-protocol project-context.md filled. 18 skills total (unchanged count).
+
+## Completed (v0.9.0)
+Superpowers Adoption — CLOSED (Grand Line). Shipped: `atlas-taskplan` (BUILD satellite, ~68 LOC) + `stella-parallel` (BUILD satellite, ~75 LOC) + stella-build Entry Gate (~10 LOC). Superpowers attribution removed from 8 skill files + CHANGELOG. 18 skills total (5 phase + 4 DEFINE/IDEATE satellite + 2 BUILD satellite + 3 Edison + 3 governance + 1 meta).
+
+## Completed (v0.8.1)
+Token Efficiency — CLOSED (East Blue). Fixed HTML frontmatter bug (all 16 skills were loading with HTML comment as description, not `description:` field). Trimmed all 16 skill descriptions to <250 chars. Archived vivre-cards v0.4.2–v0.7.1 (~5K token reduction per session). Moved 3 shipped PRDs to brain/archive/.
+
+## Completed (v0.8.0)
+Satellite Atomic Skills — CLOSED (East Blue). Shipped: shaka-brief + shaka-prd + pythagoras-research + oda-design as standalone atomic skills. stella-protocol 106→36 LOC, stella-define 160→51 LOC. 16 skills total.
 
 ## Completed (v0.7.1)
 - `writing-skills` Layer 4 meta skill — RED-GREEN-REFACTOR for SKILL.md authoring. Iron Law reproduce-before-change. Applies to all 4 layers including itself.
@@ -41,10 +53,10 @@ None — v0.7.1 shipped. Deferred to v0.8.0+: satellite atomic skills (shaka-bri
 All clear.
 
 ## Cipher Pol Report
-Clean. No scope drift during v0.6.0 BUILD — all shipped items listed in PRD (`brain/prd-atomic-skills.md`).
+Clean. No scope drift during v0.10.0 BUILD — all items listed in approved PRD. Slim orchestrators deferred per explicit decision (not scope drift).
 
 ## Recent Vivre Cards
-- 2026-04-18: Track selection — East Blue for v0.7.1 (writing-skills + lilith adversarial + checkpoint preview)
-- 2026-04-18: BUILD complete — 3 items shipped, no scope drift
-- 2026-04-18: REVIEW complete — self-review, no BUSTER CALL findings
-- 2026-04-18: CLOSE v0.7.1 — version closed, 12 skills total
+- 2026-04-20: CLOSE v0.10.0 — hard-block EXIT GATES + project-context.md shipped, 18 skills unchanged
+- 2026-04-20: REVIEW complete v0.10.0 — all clear, no BUSTER CALL, 2 Medium accepted
+- 2026-04-20: BUILD complete v0.10.0 — EXIT GATE REFUSE pattern in 3 skills, project-context.md template + CLI + CLAUDE.md
+- 2026-04-20: CLOSE v0.9.0 — atlas-taskplan + stella-parallel shipped, superpowers refs removed, 18 skills

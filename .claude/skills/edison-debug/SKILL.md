@@ -1,18 +1,10 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: edison-debug
-description: >
-  Edison's systematic debugging protocol. Activates when Edison hits unexpected
-  behavior, a failing test that shouldn't fail, a regression, a production
-  incident, or a bug report — anything that needs root-cause analysis instead
-  of trial-and-error fixes. Enforces 4-phase flow: Reproduce → Isolate →
-  Hypothesize → Verify Fix. Iron Law: no fix merged without reproducing the
-  bug first.
+description: Edison debug protocol. Use when hitting unexpected behavior, regressions, or bugs requiring root-cause analysis. Enforces 4-phase flow: Reproduce → Isolate → Hypothesize → Verify Fix.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Edison Debug — Systematic Root Cause
-
-Inspired by `obra/superpowers/skills/systematic-debugging`. Adapted for Stella Protocol's Edison satellite.
 
 ## The Iron Law
 

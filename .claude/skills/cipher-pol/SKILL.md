@@ -1,13 +1,8 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: cipher-pol
-description: >
-  Stella Protocol scope drift monitoring. Activates when agents are about to
-  create a new page, route, API endpoint, database table, external integration,
-  or user-facing feature during BUILD — especially anything not listed in the
-  approved PRD. Classifies drift (INTEL / ALERT / INTERCEPT) and logs to
-  brain/scope-changes.md. Use before silently expanding scope.
+description: Cipher Pol — scope drift monitor. Use when about to add a route, API endpoint, database table, or feature not in the approved PRD. Classifies drift (INTEL/ALERT/INTERCEPT), logs to brain/scope-changes.md.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Cipher Pol — Scope Drift Monitoring
 

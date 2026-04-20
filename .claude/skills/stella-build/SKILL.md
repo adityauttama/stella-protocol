@@ -1,19 +1,20 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: stella-build
-description: >
-  Stella Protocol BUILD phase. Activates when writing code, implementing
-  features, building functionality, fixing bugs, creating APIs, database work,
-  deployment prep, CI/CD setup, hosting configuration, or any implementation
-  task. Contains Edison (implementation) and Atlas (infrastructure/deployment)
-  satellites. Uses edison-tdd for test-first development and edison-verify at
-  the EXIT GATE. Delegates scope and quality governance to cipher-pol and
-  buster-call.
+description: Stella Protocol BUILD phase. Use when writing code, implementing features, fixing bugs, creating APIs, database work, or deployment. Uses Edison (TDD, debug, verify) and Atlas satellites.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Stella Protocol — BUILD
 
 Operating BUILD. User is **Stella**. Two satellites: Edison (implementation), Atlas (infrastructure). Respond in the language Stella uses.
+
+## Entry Gate — MANDATORY
+
+Before starting BUILD:
+
+1. Check `brain/prd-[name].md` exists — if not, redirect: "PRD tidak ditemukan. Jalankan `stella-define` dulu."
+2. Check `brain/log-pose.md` phase — if not `build-ready` or `in-progress`, ask: "PRD sudah di-approve? Kalau belum, selesaikan DEFINE dulu."
+3. If ≥2 features: suggest `atlas-taskplan` — "Mau buat task breakdown dulu sebelum mulai code?"
 
 ## First Action
 
@@ -82,6 +83,8 @@ For multi-feature BUILDs, dispatch each significant feature to a **fresh subagen
 **After subagent returns,** parent runs the Feature Completion Protocol (Punk Records Checkpoint + Review Pause) with the returned summary. This is non-negotiable — subagent output is evidence, parent is accountable.
 
 **Skip subagent dispatch for:** trivial fixes, config/copy edits, single-file changes, exploratory spikes.
+
+**For concurrent dispatch of truly independent features** (≥2 features with no shared files and no sequential deps), invoke `stella-parallel` instead.
 
 ### Feature Completion Protocol
 
@@ -184,21 +187,22 @@ When building UI with `brain/design-system.md` present: read the system before w
 
 **You CANNOT suggest deployment, launch, going live, or CLOSE until this gate is cleared.**
 
-```
-EXIT GATE — stella-build
-[ ] All P0 features from brain/prd-*.md are implemented
-[ ] edison-verify PASSED (build + lint + test), or waiver logged in brain/vivre-cards.md
-[ ] brain/log-pose.md is current (not stale from session start)
-[ ] brain/vivre-cards.md has entries for key decisions made during BUILD
-[ ] No OPEN Buster Calls at WARNING or BUSTER CALL severity
-[ ] brain/preflight.md exists (if deployment is planned)
-[ ] Stella has been asked: "Ready for review?"
-```
+**❌ REFUSE TO PROCEED if any hard condition is unmet. State the condition. Do NOT suggest next phase.**
 
-**Any unchecked:** state what is missing. Do NOT suggest next phase.
-**All checked:** output checklist, then:
+Hard conditions (must be met or waived):
+- Not all P0 features from `brain/prd-*.md` are implemented → REFUSE
+- `edison-verify` returned FAIL and no waiver logged in `brain/vivre-cards.md` → REFUSE
+- OPEN Buster Call at WARNING or BUSTER CALL severity exists → REFUSE
 
-"BUILD phase complete. Selanjutnya: jalankan `stella-review` untuk review checkpoint. Ini WAJIB sebelum deploy."
+Waiver path: log reason to `brain/vivre-cards.md`, then wait for Stella to confirm "proceed with waiver."
+
+Soft reminders (do not block, just state):
+- brain/log-pose.md is current
+- brain/vivre-cards.md has entries for key decisions
+- brain/preflight.md exists (if deployment planned)
+- Stella has been asked: "Ready for review?"
+
+**All hard conditions met:** "BUILD phase complete. Selanjutnya: jalankan `stella-review` untuk review checkpoint. Ini WAJIB sebelum deploy."
 
 **NEVER suggest deploying directly from BUILD. Path is always BUILD → REVIEW → CLOSE → deploy.**
 

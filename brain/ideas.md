@@ -7,6 +7,34 @@ _Add ideas here as they come. Format: `- [date] [idea] — [one-line description
 
 ## In Progress (Idea Brief done, moving through phases)
 
+### 2026-04-20 — Structural Governance v0.10.0
+**Track:** Grand Line | **Phase:** DEFINE
+**Problem:** EXIT GATES bisa di-skip tanpa agent benar-benar berhenti — enforcement suggestion-based, bukan structural. Tidak ada single source of truth untuk project context per session.
+**Proposed Solution:** (1) Hard-block EXIT GATES — REFUSE pattern di stella-define, stella-build, stella-review. (2) brain/project-context.md template — auto-loaded di CLAUDE.md session hook.
+**Who It's For:** Stella + siapa saja yang install Stella Protocol — protocol yang benar-benar gates, bukan cuma suggest.
+**Core Assumption:** "Output REFUSE jika X" > "[ ] verify X" — karena yang pertama requires visible output.
+**Biggest Risk:** Terlalu rigid jika tidak ada waiver path. Mitigasi: Stella bisa override dengan explicit vivre-card entry.
+**Source:** P3 dari structural governance roadmap
+
+### 2026-04-20 — Superpowers Adoption v0.9.0 ✅ SHIPPED v0.9.0
+**Track:** Grand Line | **Phase:** CLOSED
+**Problem:** Stella Protocol masih punya 3 gap vs obra/superpowers: tidak ada task decomposition sebelum BUILD, tidak ada concurrent agent dispatch, dan BUILD bisa diinvoke tanpa PRD approved.
+**Proposed Solution:** 3 skill baru + 1 gate: `atlas-taskplan` (bite-sized task decomposition sebelum BUILD), `stella-parallel` (concurrent dispatch ≥2 independent features), design-approval gate di stella-build entry, `stella-foundation` (session hook sebagai invocable skill).
+**Who It's For:** Stella ketika mengerjakan multi-feature project yang butuh structured execution.
+**Core Assumption:** Task decomposition + parallel dispatch reduce context bloat lebih efektif dari subagent-per-feature pattern yang ada.
+**Biggest Risk:** Scope creep — 4 items, tiap skill butuh clean boundary agar tidak overlap dengan yang sudah ada.
+**Source:** P2 dari token efficiency + superpowers adoption roadmap
+
+### 2026-04-20 — Satellite Atomic Skills v0.8.0 ✅ SHIPPED v0.8.0
+**Track:** East Blue | **Phase:** CLOSED
+**Problem:** stella-define (160 LOC) dan stella-protocol (106 LOC) load seluruh satellite logic inline — setiap invoke membawa Shaka + Pythagoras + ODA + IMU sekaligus meski hanya satu yang dibutuhkan.
+**Proposed Solution:** Extract 4 satellite atomic skills (shaka-brief, shaka-prd, pythagoras-research, oda-design); slim orchestrators ke thin routers. On-demand loading per satellite.
+**Who It's For:** Stella dan any PM menggunakan Stella Protocol — per-session token footprint lebih rendah untuk focused sessions.
+**Core Assumption:** Sessions focused on satu satellite (PRD only, atau architecture only) lebih umum dari sessions yang butuh semua tiga.
+**Biggest Risk:** Total LOC meningkat jika semua satellites dibutuhkan dalam satu session.
+**Adjacent Ideas:** Slim stella-review + stella-build (v0.9.0), brain/project-context.md BMAD-style
+**Source:** Deferred P1 dari v0.6.0 idea brief
+
 ### 2026-04-18 — Meta + Adversarial Quality v0.7.1 ✅ SHIPPED v0.7.1
 **Track:** East Blue | **Phase:** CLOSED
 **Problem:** Two quality gaps: (1) skill authoring is undisciplined — changes made without concrete failure scenarios, no regression log; (2) stella-review has Spec/Code Pass but no attacker-perspective mode and no risk-ordered diff view.
@@ -59,6 +87,13 @@ _Add ideas here as they come. Format: `- [date] [idea] — [one-line description
 
 ## Parked (good but not now)
 _Ideas worth revisiting later. Include why parked and what would change that._
+
+### 2026-04-20 — README Clarity Rewrite
+**Track:** East Blue (when prioritized)
+**Problem:** README.md reportedly hard to understand — installation steps and usage flow unclear for new users.
+**Proposed Solution:** Rewrite README with simpler language + clearer quick-start flow. Keep all One Piece naming intact. Show how to install and how to start a first project.
+**Why Parked:** Low priority. Framework functionality not affected. Revisit when onboarding new users becomes a pain point.
+**Source:** Feedback in `brain/archive/improvement-2026-04-09.md`
 
 ## Killed (and why)
 _Ideas that were evaluated and rejected. Include specific reason._

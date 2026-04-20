@@ -1,18 +1,10 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: writing-skills
-description: >
-  Stella Protocol meta skill for authoring and improving AI skills. Activates
-  when writing a new SKILL.md, editing an existing skill's description or body,
-  debugging a skill that isn't triggering correctly, or improving how a skill
-  handles edge cases. Applies RED-GREEN-REFACTOR to skill authoring: identify
-  a concrete failure scenario first, make the minimal fix, then clean up.
-  Iron Law: no skill change merged without a documented failure scenario it fixes.
+description: Writing-skills meta — TDD for SKILL.md authoring. Use when writing or editing skills, or fixing trigger issues. RED-GREEN-REFACTOR: concrete failure scenario first, minimal fix, then clean up.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Writing Skills — TDD for Stella Skills
-
-Inspired by `obra/superpowers/skills/writing-skills`. Adapted for Stella Protocol's skill layer.
 
 ## The Iron Law
 

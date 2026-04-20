@@ -15,7 +15,7 @@ npx stella-protocol install
 ```
 
 That's it. This installs:
-- **12 Agent Skills** — 5 phase orchestrators + 6 atomic skills (governance + execution rigor) + 1 meta skill
+- **18 Agent Skills** — 5 phase orchestrators + 4 DEFINE/IDEATE satellite atomics + 2 BUILD satellite atomics + 6 atomic skills (governance + execution rigor) + 1 meta skill
 - **A `brain/` directory** — markdown files that track your project's decisions, scope, and state
 
 No config needed. Start talking to your AI agent about what you want to build.
@@ -110,13 +110,29 @@ Skills are organized in layers. Phase orchestrators handle user-facing flow; ato
 
 **Phase orchestrators (5):**
 
-| Skill | Satellites | Phase |
+| Skill | Routes to | Phase |
 |-------|-----------|-------|
-| `stella-protocol` | IMU | IDEATE |
-| `stella-define` | Shaka + Pythagoras + ODA | DEFINE |
-| `stella-build` | Edison + Atlas | BUILD |
-| `stella-review` | Lilith Red + Lilith Blue | REVIEW |
-| `stella-close` | York + Morgans | CLOSE |
+| `stella-protocol` | `shaka-brief` | IDEATE |
+| `stella-define` | `shaka-prd`, `pythagoras-research`, `oda-design` | DEFINE |
+| `stella-build` | Edison + Atlas (inline) | BUILD |
+| `stella-review` | Lilith Red + Lilith Blue (inline) | REVIEW |
+| `stella-close` | York + Morgans (inline) | CLOSE |
+
+**DEFINE/IDEATE satellite atomic (v0.8.0+):**
+
+| Skill | Satellite | Purpose |
+|-------|-----------|---------|
+| `shaka-brief` | IMU | 5-lensa ideation, Idea Brief, Track Selection Gate |
+| `shaka-prd` | Shaka | Express/Guided PRD (7 Observation Haki lenses), Vivre Card Pulse, Crew Check |
+| `pythagoras-research` | Pythagoras | Architecture decisions, Research Brief, stack selection |
+| `oda-design` | ODA | UX flows, screen maps, design system |
+
+**BUILD satellite atomic (v0.9.0+):**
+
+| Skill | Purpose |
+|-------|---------|
+| `atlas-taskplan` | Bite-sized task decomposition before BUILD — breaks features into 2–5 min tasks with file paths and acceptance criteria; writes `brain/taskplan-[name].md` |
+| `stella-parallel` | Concurrent agent dispatch for ≥2 independent features — independence check, parallel briefs, concurrent dispatch, aggregated results |
 
 **Edison atomic (execution rigor, v0.6.0+):**
 

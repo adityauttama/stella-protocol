@@ -3,9 +3,10 @@
 At the start of every conversation in this project:
 
 1. Read `brain/log-pose.md` (if exists)
-2. Read `brain/scope-changes.md` (if exists)
-3. Check `brain/vivre-cards.md` for unresolved BUSTER CALL findings (Status: OPEN)
-4. Output a status block (max 5 lines):
+2. Read `brain/project-context.md` (if exists) — note tech stack + critical constraints
+3. Read `brain/scope-changes.md` (if exists)
+4. Check `brain/vivre-cards.md` for unresolved BUSTER CALL findings (Status: OPEN)
+5. Output a status block (max 5 lines):
 
 ```
 **[Project Name]** | Phase: [phase] | Track: [track]
@@ -15,14 +16,20 @@ Scope changes: [N unreviewed / all reviewed]
 Suggested next: [concrete action based on current state]
 ```
 
-5. If there are OPEN BUSTER CALL blockers with CRITICAL/HIGH severity, flag them BEFORE doing anything else
-6. If the user's request conflicts with current phase, note it but don't block — Stella decides
-7. Respond in the language the user writes in (English or Bahasa Indonesia)
+6. If there are OPEN BUSTER CALL blockers with CRITICAL/HIGH severity, flag them BEFORE doing anything else
+7. If the user's request conflicts with current phase, note it but don't block — Stella decides
+8. Respond in the language the user writes in (English or Bahasa Indonesia)
 
 ## Skill Layers
 
 **Phase orchestrators** (user-facing slash commands):
 - `stella-protocol` (IDEATE) · `stella-define` (DEFINE) · `stella-build` (BUILD) · `stella-review` (REVIEW) · `stella-close` (CLOSE)
+
+**DEFINE/IDEATE satellite atomic** (invoked on-demand from orchestrators):
+- `shaka-brief` — IMU 5-lensa ideation + Track Selection Gate · `shaka-prd` — Shaka PRD generation (Express/Guided) · `pythagoras-research` — architecture + research · `oda-design` — UX flows + design system
+
+**BUILD satellite atomic** (invoked before/during BUILD):
+- `atlas-taskplan` — bite-sized task decomposition before BUILD, writes `brain/taskplan-[name].md` · `stella-parallel` — concurrent agent dispatch for ≥2 independent features
 
 **Edison atomic** (execution rigor, invoked during BUILD):
 - `edison-tdd` — RED-GREEN-REFACTOR cycle · `edison-verify` — automated build/lint/test gate · `edison-debug` — 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix)

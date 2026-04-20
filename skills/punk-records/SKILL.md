@@ -1,14 +1,8 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: punk-records
-description: >
-  Stella Protocol brain file update protocol. Activates after completing a
-  feature, making a decision, closing a version, or at any milestone that
-  should be recorded. Updates brain/log-pose.md, brain/vivre-cards.md
-  (append-only), brain/architecture.md, and manages version boundaries when
-  closing. Use before moving between features or phases so the record stays
-  current.
+description: Punk Records — brain file update protocol. Use after completing a feature, making a key decision, or closing a version. Updates log-pose.md, vivre-cards.md (append-only), and architecture.md.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Punk Records — Brain File Update Protocol
 

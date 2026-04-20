@@ -1,14 +1,8 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: stella-close
-description: >
-  Stella Protocol CLOSE phase. Activates when documenting features, writing
-  changelogs, creating READMEs, setting up monitoring, analytics, error
-  tracking, writing blog posts, launch announcements, go-to-market content,
-  LinkedIn posts, or post-ship documentation and communication. Contains
-  York (documentation/observability) and Morgans (launch/GTM) satellites.
-  Delegates Vivre Card version boundary and archiving to punk-records.
+description: Stella Protocol CLOSE phase. Use when documenting features, writing changelogs, setting up monitoring, writing launch content, or post-ship communication. York (docs) + Morgans (GTM) satellites.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Stella Protocol — CLOSE
 

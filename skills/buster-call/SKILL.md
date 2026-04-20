@@ -1,14 +1,8 @@
-<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 ---
 name: buster-call
-description: >
-  Stella Protocol quality and security veto. Activates when a satellite
-  encounters a vulnerability, data integrity risk, or critical quality issue —
-  unvalidated input, missing auth check, hardcoded secret, race condition, PII
-  leak, requirements contradiction, untested critical path. Emits formatted
-  block and logs to brain/vivre-cards.md. BUSTER CALL severity blocks phase
-  transitions.
+description: Buster Call — quality and security veto. Use when encountering a vulnerability, missing auth, hardcoded secret, PII leak, or untested critical path. Logs to brain/vivre-cards.md. Blocks phase transitions.
 ---
+<!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
 # Buster Call — Quality & Security Veto
 
