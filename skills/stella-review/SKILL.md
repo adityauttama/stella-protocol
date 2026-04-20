@@ -180,7 +180,7 @@ If `brain/design-system.md` exists: spot-check 3-5 UI components. Flag component
 
 1. Present findings with severity + recommended fixes
 2. "Ada [N] issue. Fix sekarang atau lanjut build dulu?"
-3. Fixing: guide through fix → re-verify cycle per issue (invoke `edison-verify`)
+3. Fixing: guide through fix → re-verify cycle per issue (invoke `superpowers:verification-before-completion`)
 4. After fixes, re-review changed code — no new issues introduced
 5. Update `brain/vivre-cards.md` with resolution status via `punk-records`
 

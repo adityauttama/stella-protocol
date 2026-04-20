@@ -4,9 +4,28 @@
 
 ![The Stella Protocol](assets/banner.png?v=2)
 
-**A structured way to build products with AI — from idea to launch.**
+**Ship products with AI — from idea to launch, with guardrails.**
 
-Stella Protocol gives your AI coding agent (Claude Code, Cursor, etc.) a set of phases, quality gates, and scope rules so you stay in control of what gets built. You make the decisions. The AI executes with guardrails.
+Stella is a playbook for Product Managers who build with AI coding agents. It turns ad-hoc "vibe coding" into a structured flow: you explore an idea, approve what gets built, catch scope drift before it ships, gate on quality before you deploy, and close with real docs and a launch. Your AI executes. You stay in control of *what* gets built and *why*.
+
+## Why Stella Exists
+
+AI coding agents are fast but forgetful. They happily add features you didn't ask for, skip quality checks you assumed they'd run, and lose the thread of *why* you made a decision three weeks ago. You end up debugging your agent instead of shipping your product.
+
+Stella solves this with three things:
+
+- **Phases** — so progress is visible and sequential
+- **Gates** — so the agent doesn't leap ahead without your sign-off
+- **A paper trail** — so every decision, scope change, and quality call is logged in plain markdown you can read, review, and revisit later
+
+## What You Get
+
+- **A 5-phase process** from idea to launch, with approval checkpoints between each
+- **Automatic scope enforcement** — when the AI wants to add something outside your approved plan, you're told first
+- **Quality gates** — critical security or quality issues halt progress until you decide
+- **An append-only decision log** — every scope change, every quality call, every choice, all in plain markdown committed to your repo
+- **A fast path for small changes** — hotfixes and one-off features skip the full ceremony
+- **No lock-in** — everything is plain markdown. Delete Stella tomorrow, your project state is still readable.
 
 ## Quick Start
 
@@ -14,163 +33,182 @@ Stella Protocol gives your AI coding agent (Claude Code, Cursor, etc.) a set of 
 npx stella-protocol install
 ```
 
-That's it. This installs:
-- **18 Agent Skills** — 5 phase orchestrators + 4 DEFINE/IDEATE satellite atomics + 2 BUILD satellite atomics + 6 atomic skills (governance + execution rigor) + 1 meta skill
-- **A `brain/` directory** — markdown files that track your project's decisions, scope, and state
+Then just talk to your AI agent. Stella activates from context — there's nothing to memorize.
 
-No config needed. Start talking to your AI agent about what you want to build.
-
-## Your First Project
-
-### Step 1: Brainstorm
-
-Tell your AI agent what you're thinking about:
-
-> "I'm thinking about building a community riddle platform"
-
-The **IMU satellite** activates automatically. It helps you explore the idea, identify risks, and decide whether to go lightweight (East Blue) or full process (Grand Line).
-
-### Step 2: Define (Grand Line) or Skip to Build (East Blue)
-
-- **Grand Line** — For bigger projects. Creates a full PRD with requirements, architecture, UX design. The **Shaka satellite** walks you through it.
-- **East Blue** — For small features. You get a Mini-PRD and jump straight to building.
-
-### Step 3: Build
-
-Tell your agent to start building. The **Edison satellite** writes the code, pauses for review after significant features, and tracks every decision. If something drifts from your approved scope, **Cipher Pol** flags it automatically.
-
-### Step 4: Review
-
-Before anything goes live, **Lilith Red** runs a security audit and **Lilith Blue** checks quality. Critical issues block deployment — you decide what to fix now vs. later.
-
-### Step 5: Close
-
-**York** syncs documentation with reality and **Morgans** helps craft your launch announcement.
+> **Also install [obra/superpowers](https://github.com/obra/superpowers).** This is Stella's execution engine (TDD, verification, debugging, planning). Stella handles the *product and governance* layer; superpowers handles the *engineering* layer.
+>
+> ```bash
+> /plugin install superpowers@claude-plugins-official
+> ```
 
 ## How It Works
 
-### Phases
+Five phases. Each phase has an approval gate at the end. The AI can't skip ahead without your sign-off.
 
 ```
-IDEATE  →  Brainstorm, explore, decide if it's worth building
-DEFINE  →  Requirements, architecture, UX, PRD
-BUILD   →  Implementation with scope monitoring and review checkpoints
-REVIEW  →  Security audit, QA, quality gates
-CLOSE   →  Documentation, launch, go-to-market
+IDEATE   →  Explore an idea. Decide if it's worth building.
+DEFINE   →  Write a PRD. Pick architecture. Design UX.
+BUILD    →  Implementation with scope monitoring + review checkpoints.
+REVIEW   →  Security audit. QA. Adversarial testing.
+CLOSE    →  Documentation. Launch announcement. Go-to-market.
 ```
 
-### Governance (Always On)
+### Two speeds
 
-**Cipher Pol** — Scope enforcement. Detects when AI adds features outside your approved spec. You decide to approve, reject, or amend.
+| Track | When to use | What you skip |
+|-------|-------------|----------------|
+| **Grand Line** | New products, significant features, multi-week work | Nothing — full PRD, architecture, UX, review |
+| **East Blue** | Small features, bug fixes, quick wins | Full DEFINE; jump to BUILD with a mini-PRD |
 
-**Buster Call** — Quality veto. Any satellite can halt progress on critical security or quality issues. You decide how to resolve it.
+You pick once at the IDEATE stage. Stella adapts the rest of the flow.
 
-### Project Brain (`brain/` directory)
+### Governance runs in the background
 
-Every decision, every scope change, every status update lives in `brain/` as plain markdown — committed to git, reviewable in PRs:
+Two guardrails are always on:
+
+- **Scope enforcement** (codename: *Cipher Pol*) — if the AI wants to add a feature, route, endpoint, or table that isn't in your approved plan, it stops and flags you. You approve, reject, or amend.
+- **Quality veto** (codename: *Buster Call*) — any critical security or quality issue (auth bypass, hardcoded secret, PII leak, untested payment flow) halts progress until resolved or explicitly waived.
+
+Both get logged to `brain/` with timestamp, rationale, and your decision. Complete audit trail, zero effort.
+
+### Your project's memory: the `brain/` directory
 
 ```
 brain/
-├── log-pose.md        # Current phase, track, blockers, active work
-├── vivre-cards.md     # Append-only decision log
-├── scope-changes.md   # Scope drift audit trail
-├── architecture.md    # Tech decisions with rationale
-├── design-system.md   # Visual design tokens and rules
-├── ideas.md           # Idea backlog
-└── prd-*.md           # PRD documents (created as needed)
+├── log-pose.md         — current phase, active work, blockers
+├── vivre-cards.md      — append-only decision log
+├── scope-changes.md    — audit trail of scope additions
+├── project-context.md  — tech stack, constraints, non-negotiables
+├── architecture.md     — tech decisions with rationale
+├── design-system.md    — visual tokens and UI rules
+├── ideas.md            — idea backlog
+└── prd-*.md            — your PRDs, one per feature
 ```
 
-### Two Tracks
+Plain markdown. Human-readable. Committed to git. Reviewable in PRs. Six months from now, when someone asks "why did we ship X?" — the answer is in `vivre-cards.md`.
 
-| Track | When to Use | What Happens |
-|-------|-------------|--------------|
-| **Grand Line** | New projects, bigger scope | All phases in order, full PRD |
-| **East Blue** | Small features, quick fixes | Mini-PRD, skip to BUILD |
+## What Makes Stella Different
 
-## Satellites
+Most AI coding workflows stop at "code written, tests pass, merge." Stella goes further:
 
-Satellites are specialized AI behaviors that activate from conversational context. You don't invoke them — you talk naturally and the right expertise surfaces:
+1. **Product-first structure** — PRDs, architecture decisions, and UX are first-class outputs. Your PM work becomes the *input* to the build, not documentation written after the fact.
+2. **Audit trail by default** — you don't have to remember to log decisions; the protocol does it.
+3. **A Close phase** — docs and launch content are part of the workflow, not skipped with "we'll write it later."
+4. **Graceful degradation** — small changes don't pay the full-process tax.
 
-| Satellite | What It Does | Activates When You Say... |
-|-----------|-------------|--------------------------|
-| **IMU** | Idea exploration, brainstorming | "I'm thinking about..." |
-| **Shaka** | Requirements, PRD creation | "Let's define what to build" |
-| **Pythagoras** | Architecture, tech decisions | "Design the architecture" |
-| **ODA** | UX flows, design system | "Map the user experience" |
-| **Edison** | Implementation, coding | "Build this" |
-| **Atlas** | Infrastructure, deployment | "Deploy this" |
-| **Lilith Red** | Security review, red teaming | "Review for security issues" |
-| **Lilith Blue** | QA, testing, edge cases | "Write tests" |
-| **York** | Documentation, changelogs | "Document this" |
-| **Morgans** | Launch content, go-to-market | "Announce this" |
+What Stella does NOT try to do: reinvent engineering discipline. TDD, verification, debugging, task planning — that's what [obra/superpowers](https://github.com/obra/superpowers) does, and it does it well. Stella delegates.
 
-## Agent Skills
+## Your First Project — End to End
 
-Skills are organized in layers. Phase orchestrators handle user-facing flow; atomic skills handle governance and execution rigor — they activate when their trigger conditions match, keeping per-invocation token load low.
+### 1. Start with an idea
 
-**Phase orchestrators (5):**
+> "I'm thinking about building a community riddle platform."
 
-| Skill | Routes to | Phase |
-|-------|-----------|-------|
-| `stella-protocol` | `shaka-brief` | IDEATE |
-| `stella-define` | `shaka-prd`, `pythagoras-research`, `oda-design` | DEFINE |
-| `stella-build` | Edison + Atlas (inline) | BUILD |
-| `stella-review` | Lilith Red + Lilith Blue (inline) | REVIEW |
-| `stella-close` | York + Morgans (inline) | CLOSE |
+Stella walks you through five lenses (problem, audience, differentiation, risks, why-now), then asks: go full process (**Grand Line**), lightweight (**East Blue**), park it, or kill it?
 
-**DEFINE/IDEATE satellite atomic (v0.8.0+):**
+### 2. Define what you're building (Grand Line only)
 
-| Skill | Satellite | Purpose |
-|-------|-----------|---------|
-| `shaka-brief` | IMU | 5-lensa ideation, Idea Brief, Track Selection Gate |
-| `shaka-prd` | Shaka | Express/Guided PRD (7 Observation Haki lenses), Vivre Card Pulse, Crew Check |
-| `pythagoras-research` | Pythagoras | Architecture decisions, Research Brief, stack selection |
-| `oda-design` | ODA | UX flows, screen maps, design system |
+Stella helps you produce:
 
-**BUILD satellite atomic (v0.9.0+):**
+- A **PRD** — features, acceptance criteria, constraints, what's out of scope
+- **Architecture decisions** — stack, data model, API shape — each with its rationale
+- **UX design** — user flows, screen maps, visual system
 
-| Skill | Purpose |
-|-------|---------|
-| `atlas-taskplan` | Bite-sized task decomposition before BUILD — breaks features into 2–5 min tasks with file paths and acceptance criteria; writes `brain/taskplan-[name].md` |
-| `stella-parallel` | Concurrent agent dispatch for ≥2 independent features — independence check, parallel briefs, concurrent dispatch, aggregated results |
+Everything lands in `brain/`. You can stop at any point and come back later — Stella reads state from `brain/` on the next session and picks up where you left off.
 
-**Edison atomic (execution rigor, v0.6.0+):**
+### 3. Build it
 
-| Skill | Purpose | Since |
-|-------|---------|-------|
-| `edison-tdd` | RED-GREEN-REFACTOR enforcement for testable logic | v0.6.0 |
-| `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE | v0.6.0 |
-| `edison-debug` | 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix) | v0.7.0 |
+You say "start building." Stella orchestrates execution via superpowers (TDD, verification, debugging) and monitors scope + quality in the background.
 
-**Governance atomic (cross-phase, v0.6.0+):**
+After each significant feature, you get a pause:
 
-| Skill | Purpose |
-|-------|---------|
-| `cipher-pol` | Scope drift classification + logging |
-| `buster-call` | Quality/security veto format + logging |
-| `punk-records` | Brain file update protocol and versioning |
+```
+FEATURE COMPLETE — User Authentication
+Files changed: 8 | Verify: PASS
 
-**Meta (skill authoring, v0.7.1+):**
+Review now (recommended) or continue?
+```
 
-| Skill | Purpose |
-|-------|---------|
-| `writing-skills` | RED-GREEN-REFACTOR for writing and improving SKILL.md files; Iron Law reproduce-before-change |
+If the AI hits a scope decision ("should I also add a password reset flow?"), you're asked — not told after it ships.
 
-Compatible with Claude Code, Cursor, and any tool supporting the Agent Skills open standard.
+### 4. Review
 
-## Example
+Before launch, two review passes:
 
-See the [full walkthrough](examples/README.md) — building [House of Riddle](https://riddle.thepunkrecords.com), a community riddle platform, through the entire Stella cycle with populated `brain/` files.
+- **Adversarial / security** — what would an attacker actually try? Concrete exploits, not checklists.
+- **Quality / QA** — are critical paths tested? Coverage gaps? Design-system violations?
+
+Critical findings block deployment until resolved or explicitly waived.
+
+### 5. Close
+
+Stella helps you:
+
+- Sync docs and `CHANGELOG.md` with the reality of what was shipped
+- Draft a launch announcement, a tweet thread, a blog post, a changelog entry
+
+Then you deploy. Stella doesn't touch deployment itself — that's your call, your infrastructure.
+
+## Skills Reference
+
+For the curious. You never invoke these directly — Stella routes automatically from conversation context.
+
+**5 phase conversations:** `stella-protocol` · `stella-define` · `stella-build` · `stella-review` · `stella-close`
+
+**4 specialist behaviors:**
+- `shaka-brief` — idea exploration (5-lens + track selection)
+- `shaka-prd` — PRD generation
+- `pythagoras-research` — architecture and tech decisions
+- `oda-design` — UX flows and design system
+
+**3 governance behaviors:**
+- `cipher-pol` — scope-drift monitor
+- `buster-call` — quality/security veto
+- `punk-records` — decision-log updater
+
+**6 execution behaviors (via [obra/superpowers](https://github.com/obra/superpowers)):**
+`test-driven-development` · `verification-before-completion` · `systematic-debugging` · `writing-plans` · `dispatching-parallel-agents` · `writing-skills`
+
+> **A note on the names.** Cipher Pol, Buster Call, Shaka, Pythagoras, Vivre Card, Log Pose, Grand Line, East Blue — all One Piece references. It's flavor, not a learning curve. You never need to know the lore. The skill descriptions trigger the right behavior from plain-English conversation.
+
+## Example Project
+
+See the [full walkthrough](examples/README.md) — building [House of Riddle](https://riddle.thepunkrecords.com), a community riddle platform, through the entire Stella cycle with all `brain/` files populated.
+
+## Common Questions
+
+**Do I need to be a developer to use Stella?**
+No. Stella is built for PMs. You describe what you want; the AI writes the code. Stella keeps both in sync and keeps the audit trail.
+
+**Does Stella write code?**
+No. Stella is a process and governance layer. Your AI agent (Claude Code, Cursor, etc.) writes the code. Stella directs the flow: which phase, what's in scope, when to pause for your approval.
+
+**What if I want to ignore Stella's suggestions?**
+You can. Stella flags scope drift and quality issues — you decide what to do about them. Nothing is forced. Governance is for your benefit, not a cage.
+
+**Why the One Piece naming?**
+Author's taste, kept because it's memorable. You never have to decode it — the skill descriptions work in plain English. Think of the codenames as flavor labels.
+
+**How much setup is there?**
+`npx stella-protocol install` + install superpowers. Then start talking. No config files, no YAML schemas, no learning curve.
+
+**What happens when superpowers changes?**
+Stella pins to a minimum superpowers version via the BUILD phase skill references. Execution-layer improvements come to you for free via superpowers releases. Stella focuses only on the PM/governance layer, so most superpowers updates don't affect Stella workflows.
+
+## Tested On
+
+- **Claude Code** — primary target, actively used.
+- Works in theory on any tool that supports the Agent Skills open standard (Cursor, Copilot CLI, etc.). Multi-harness coverage is a work in progress; PRs welcome if you try it elsewhere and hit bumps.
 
 ## Philosophy
 
-> You are not "talking to an AI agent." You are thinking, and specialized facets of your extended cognition activate to help you execute.
+> You are not "talking to an AI agent." You are thinking, and specialized parts of your process activate to help you execute.
 
-The governance protocols aren't tools you invoke — they're constitutional rules that every satellite enforces. The protocol in `protocol/` is human-readable markdown. You can apply it manually without any tooling.
+The protocols aren't tools you invoke — they're rules the AI follows so you can focus on product decisions, not AI management. Everything is plain markdown in `protocol/`: you can apply Stella's principles manually, without any tooling.
 
 ## License
 
-MIT
+MIT.
 
 ## Author
 

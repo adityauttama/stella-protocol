@@ -1,6 +1,6 @@
 ---
 name: stella-build
-description: Stella Protocol BUILD phase. Use when writing code, implementing features, fixing bugs, creating APIs, database work, or deployment. Uses Edison (TDD, debug, verify) and Atlas satellites.
+description: Stella Protocol BUILD phase. Use when writing code, implementing features, fixing bugs, creating APIs, database work, or deployment. Delegates execution rigor (TDD, verify, debug, planning, parallel dispatch) to obra/superpowers skills; Atlas handles infrastructure.
 ---
 <!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 
@@ -14,7 +14,7 @@ Before starting BUILD:
 
 1. Check `brain/prd-[name].md` exists — if not, redirect: "PRD tidak ditemukan. Jalankan `stella-define` dulu."
 2. Check `brain/log-pose.md` phase — if not `build-ready` or `in-progress`, ask: "PRD sudah di-approve? Kalau belum, selesaikan DEFINE dulu."
-3. If ≥2 features: suggest `atlas-taskplan` — "Mau buat task breakdown dulu sebelum mulai code?"
+3. If ≥2 features: suggest `superpowers:writing-plans` — "Mau buat task breakdown dulu sebelum mulai code?"
 
 ## First Action
 
@@ -42,11 +42,11 @@ If no PRD exists: "Belum ada PRD di brain/ — mau define dulu sebelum build?" I
 
 ### TDD Invocation (recommended)
 
-Before implementing testable logic (business rules, pure functions, API handlers, state machines, validators, bug fixes), invoke `edison-tdd` for RED-GREEN-REFACTOR. Skip for pure UI rendering, exploratory spikes, one-off scripts — use `edison-verify` at the end instead.
+Before implementing testable logic (business rules, pure functions, API handlers, state machines, validators, bug fixes), invoke `superpowers:test-driven-development` for RED-GREEN-REFACTOR. Skip for pure UI rendering, exploratory spikes, one-off scripts — use `superpowers:verification-before-completion` at the end instead.
 
 ### Debug Invocation (on unexpected behavior)
 
-When a test that was passing now fails, a regression appears, a bug report lands, or runtime behavior surprises Edison, invoke `edison-debug` for the 4-phase flow (Reproduce → Isolate → Hypothesize → Verify Fix). **Iron Law:** no fix merged without reproducing the bug first. Skip only for trivial fixes (typo, obvious null check).
+When a test that was passing now fails, a regression appears, a bug report lands, or runtime behavior surprises Edison, invoke `superpowers:systematic-debugging` for the 4-phase flow (Reproduce → Isolate → Hypothesize → Verify Fix). **Iron Law:** no fix merged without reproducing the bug first. Skip only for trivial fixes (typo, obvious null check).
 
 ### Subagent-per-Feature Dispatch (for long BUILDs)
 
@@ -71,9 +71,9 @@ For multi-feature BUILDs, dispatch each significant feature to a **fresh subagen
 **Out of scope for this feature:** [explicit exclusions — prevents scope creep in the subagent]
 
 **Execution requirements:**
-- Invoke `edison-tdd` if logic is testable
-- Invoke `edison-verify` before returning
-- If unexpected behavior surfaces, invoke `edison-debug`
+- Invoke `superpowers:test-driven-development` if logic is testable
+- Invoke `superpowers:verification-before-completion` before returning
+- If unexpected behavior surfaces, invoke `superpowers:systematic-debugging`
 - Invoke `cipher-pol` if about to create anything NOT in Acceptance Criteria
 - Return a summary: files changed, tests added, any waivers logged
 
@@ -84,7 +84,7 @@ For multi-feature BUILDs, dispatch each significant feature to a **fresh subagen
 
 **Skip subagent dispatch for:** trivial fixes, config/copy edits, single-file changes, exploratory spikes.
 
-**For concurrent dispatch of truly independent features** (≥2 features with no shared files and no sequential deps), invoke `stella-parallel` instead.
+**For concurrent dispatch of truly independent features** (≥2 features with no shared files and no sequential deps), invoke `superpowers:dispatching-parallel-agents` instead.
 
 ### Feature Completion Protocol
 
@@ -101,7 +101,7 @@ Updated: brain/architecture.md — [yes/no, what changed]
 
 If about to start a new feature without outputting this checkpoint for the previous one, **STOP and do the checkpoint first.**
 
-**Step 2 — Run `edison-verify`** on changed code. If FAIL, fix or log waiver before proceeding.
+**Step 2 — Run `superpowers:verification-before-completion`** on changed code. If FAIL, fix or log waiver before proceeding.
 
 **Step 3 — Review Pause** — output this block and WAIT for Stella:
 
@@ -150,7 +150,7 @@ A → guide to `stella-review`. B → log skip via `punk-records`; EXIT GATE sti
 - [ ] `npm audit` shows 0 vulnerabilities
 - [ ] No unnecessary dependencies added
 ## Verification
-- [ ] `edison-verify` PASS (build + lint + test)
+- [ ] `superpowers:verification-before-completion` PASS (build + lint + test)
 - [ ] Can sign up / sign in
 - [ ] Core feature works end-to-end
 ```
@@ -191,7 +191,7 @@ When building UI with `brain/design-system.md` present: read the system before w
 
 Hard conditions (must be met or waived):
 - Not all P0 features from `brain/prd-*.md` are implemented → REFUSE
-- `edison-verify` returned FAIL and no waiver logged in `brain/vivre-cards.md` → REFUSE
+- `superpowers:verification-before-completion` returned FAIL and no waiver logged in `brain/vivre-cards.md` → REFUSE
 - OPEN Buster Call at WARNING or BUSTER CALL severity exists → REFUSE
 
 Waiver path: log reason to `brain/vivre-cards.md`, then wait for Stella to confirm "proceed with waiver."

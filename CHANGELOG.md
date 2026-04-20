@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.11.0] — 2026-04-20
+
+### BREAKING
+
+Execution skills removed from Stella. BUILD phase now requires [obra/superpowers](https://github.com/obra/superpowers) as a dependency. Install: `/plugin install superpowers@claude-plugins-official`.
+
+### Removed
+- **`edison-tdd`** — delegate to `superpowers:test-driven-development`.
+- **`edison-verify`** — delegate to `superpowers:verification-before-completion`.
+- **`edison-debug`** — delegate to `superpowers:systematic-debugging`.
+- **`atlas-taskplan`** — delegate to `superpowers:writing-plans`.
+- **`stella-parallel`** — delegate to `superpowers:dispatching-parallel-agents`.
+- **`writing-skills`** (Stella) — delegate to `superpowers:writing-skills` (resolves name collision).
+
+Skill count: 18 → 12.
+
+### Changed
+- `skills/stella-build/SKILL.md` — all edison/atlas/stella-parallel invocations replaced with `superpowers:*` equivalents; frontmatter description updated.
+- `skills/stella-review/SKILL.md` — `edison-verify` replaced with `superpowers:verification-before-completion` in bug-fix workflow.
+- `CLAUDE.md` — Skill Layers section reorganized; execution layer marked as delegated.
+- `README.md` — skill count line updated (18 → 12); "Requires" callout added for superpowers; skill inventory tables restructured; new Execution (delegated) table added with `Replaces` column mapping old → new.
+- `package.json` — version bumped to 0.11.0.
+- `.claude-plugin/marketplace.json` — version bumped from 0.5.0 to 0.11.0 (resolves long-standing mismatch with package.json flagged in 2026-04-07 self-review).
+
+### Rationale
+
+The removed skills were 1:1 ports of superpowers equivalents (acknowledged in v0.8–v0.10 as "superpowers adoption") but with less maturity (v0.x vs v5.x, single-author vs community-tested) and a name collision on `writing-skills`. Maintaining parallel ports added overhead without differentiating value. Stella now focuses on its unique layers: PM/product-design (`shaka-prd`, `pythagoras-research`, `oda-design`), governance audit trail (`cipher-pol`, `buster-call`, `punk-records`), and Close phase. Execution rigor is delegated to battle-tested superpowers skills.
+
+Session-start token overhead reduced ~600–1k tokens (smaller skill description list).
+
+### Resolved from v0.10.0 "Deferred"
+- ✅ Slim `stella-build` (Edison dispatch extraction) — done via delegation.
+
+### Deferred to v0.12.0+
+- Slim `stella-review` (Lilith Red/Blue extraction)
+- Auto-archiving hook settings.json (P3.2)
+- punk-records checkpoint timing (P3.3)
+- Thin CLAUDE.md session-hook (only read `log-pose.md` always-on, rest on demand — token savings)
+- Multi-harness testing (Cursor, Codex) — substantiate README compatibility claim
+
 ## [0.10.0] — 2026-04-20
 ### Added
 - **Hard-block EXIT GATES** — stella-define, stella-build, stella-review EXIT GATEs changed from soft checklist to `❌ REFUSE TO PROCEED` pattern. Hard conditions: stella-define refuses if PRD file missing or not approved; stella-build refuses if P0 features missing, `edison-verify` FAIL without waiver, or OPEN Buster Call at WARNING+; stella-review refuses if Critical finding unresolved or `brain/test-plan.md` missing. Waiver path preserved: log to `brain/vivre-cards.md` + Stella confirms "proceed with waiver." Soft conditions demoted to reminders only (no REFUSE).

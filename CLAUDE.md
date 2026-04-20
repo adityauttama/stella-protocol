@@ -28,19 +28,20 @@ Suggested next: [concrete action based on current state]
 **DEFINE/IDEATE satellite atomic** (invoked on-demand from orchestrators):
 - `shaka-brief` — IMU 5-lensa ideation + Track Selection Gate · `shaka-prd` — Shaka PRD generation (Express/Guided) · `pythagoras-research` — architecture + research · `oda-design` — UX flows + design system
 
-**BUILD satellite atomic** (invoked before/during BUILD):
-- `atlas-taskplan` — bite-sized task decomposition before BUILD, writes `brain/taskplan-[name].md` · `stella-parallel` — concurrent agent dispatch for ≥2 independent features
-
-**Edison atomic** (execution rigor, invoked during BUILD):
-- `edison-tdd` — RED-GREEN-REFACTOR cycle · `edison-verify` — automated build/lint/test gate · `edison-debug` — 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix)
-
 **Governance atomic** (cross-phase):
 - `cipher-pol` — scope drift monitoring · `buster-call` — quality/security veto · `punk-records` — brain file update protocol
 
-**Meta** (skill authoring):
-- `writing-skills` — RED-GREEN-REFACTOR for writing and improving SKILL.md files
+**Execution — delegated to [obra/superpowers](https://github.com/obra/superpowers)** (required dependency since v0.11.0):
+- `superpowers:test-driven-development` — RED-GREEN-REFACTOR (replaces edison-tdd)
+- `superpowers:verification-before-completion` — build/lint/test gate (replaces edison-verify)
+- `superpowers:systematic-debugging` — 4-phase root-cause debugging (replaces edison-debug)
+- `superpowers:writing-plans` — bite-sized task decomposition (replaces atlas-taskplan)
+- `superpowers:dispatching-parallel-agents` — concurrent agent dispatch (replaces stella-parallel)
+- `superpowers:writing-skills` — RED-GREEN-REFACTOR for SKILL.md authoring (replaces Stella's writing-skills)
 
-See each skill's SKILL.md for full detail. Governance rules live in the atomic skills — invoke them directly rather than duplicating prose here.
+Install superpowers: `/plugin install superpowers@claude-plugins-official`.
+
+See each Stella skill's SKILL.md for full detail. Governance rules live in the atomic skills — invoke them directly rather than duplicating prose here.
 
 ## Governance Rules (Quick Reference)
 
