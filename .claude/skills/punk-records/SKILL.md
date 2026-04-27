@@ -30,7 +30,7 @@ Updated: brain/architecture.md — [yes/no, what changed if yes]
 
 **At phase transitions** — update `log-pose.md` `phase` field.
 
-**At CLOSE** — insert version boundary in `vivre-cards.md`, sync `architecture.md` to reality.
+**At CLOSE** — insert version boundary in `vivre-cards.md`, sync `architecture.md` to reality, archive closed version entries (see Archiving below).
 
 ## Vivre Card Format (append-only)
 
@@ -60,12 +60,14 @@ When a prior decision was reversed:
 ---
 ```
 
-## Archiving
+## Archiving (triggered at every CLOSE)
 
-If `vivre-cards.md` has >50 total entries:
-1. Move entries from closed versions (below older boundaries) to `brain/vivre-cards-archive.md`
-2. Keep only current version entries in main file
-3. Add at top of main file: `**Archive:** See vivre-cards-archive.md for previous versions.`
+After inserting the version boundary, move the just-closed version's block to `brain/vivre-cards-archive.md`:
+1. Cut all entries from the closed version — including its version boundary marker — and append to `vivre-cards-archive.md`
+2. **Exception:** any entry with `**Status:** OPEN` stays in `vivre-cards.md` regardless of version — active buster calls are never archived
+3. Result: `vivre-cards.md` stays lean (current sprint only + unresolved buster calls). `vivre-cards-archive.md` is the permanent audit trail — never delete it.
+
+If `vivre-cards-archive.md` doesn't exist yet, create it with the same header as the main file.
 
 ## log-pose.md Frontmatter Contract
 

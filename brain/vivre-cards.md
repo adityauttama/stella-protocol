@@ -164,3 +164,29 @@
 **Decision:** Version closed as 0.9.0. package.json bumped 0.8.2 → 0.9.0. brain/log-pose.md → v0.9.0 COMPLETE heading. vivre-cards.md v0.9.0 BUILD+CLOSE entries appended. CHANGELOG.md v0.9.0 entry added. 18 skills total: 5 phase + 4 DEFINE/IDEATE satellite + 2 BUILD satellite + 3 Edison + 3 governance + 1 meta.
 **Rationale:** All PRD items shipped, documentation aligned, superpowers refs cleaned from public files. Zero functional regressions to existing 16 skills.
 **Alternatives:** None.
+
+---
+## === v0.11.0 — 2026-04-20 — Delegate Execution + Dogfooding Sync ===
+### Summary: Removed 6 execution skills (Edison trio + writing-skills + atlas-taskplan + stella-parallel), delegated to obra/superpowers. 12 skills total (5 phase + 4 DEFINE/IDEATE satellite + 3 governance). Local workspace synced from v0.7.1 → v0.11.0 on 2026-04-27.
+### Decision count: 1 entry (dogfooding sync)
+---
+
+---
+## === v0.12.0 — 2026-04-27 — Token Archive ===
+### Summary: punk-records vivre-card archival formalized — triggered at every CLOSE, exception for Status: OPEN buster calls. Source + mirror synced.
+### Decision count: 1 entry (build complete)
+---
+
+### 2026-04-27 BUILD Complete: Token Archive v0.12.0
+**Phase:** BUILD
+**Satellite:** Edison
+**Decision:** `punk-records` Archiving section rewritten — from reactive (>50 entries threshold) to proactive (every CLOSE). Rule: cut closed version block → append to vivre-cards-archive.md. Exception: `**Status:** OPEN` entries stay in main file regardless of version. "At CLOSE" bullet updated to include archive step. Source (`skills/punk-records/SKILL.md`) and mirror (`.claude/skills/punk-records/SKILL.md`) identical. No scope drift — change is within punk-records boundary.
+**Rationale:** Vivre-cards.md is the only session-start file that grows unbounded. Per-CLOSE archival keeps it to current sprint only, saving 600–2,400 tokens/session for mature projects. Previous rule was arbitrary (>50) and reactive; new rule is structural and automatic.
+**Alternatives:** New dedicated archive skill (rejected — CLOSE concern belongs in punk-records, not a new skill); keep >50 threshold (rejected — reactive, inconsistent across projects).
+
+### 2026-04-27 Dogfooding Sync: Local v0.7.1 → v0.11.0
+**Phase:** CLOSED (operational sync)
+**Satellite:** York
+**Decision:** Pulled origin/main (932284c → 34650da) to sync local workspace with published v0.11.0. Accepts BREAKING changes: `edison-tdd`, `edison-verify`, `edison-debug`, `writing-skills`, `atlas-taskplan`, `stella-parallel` removed — delegated to `obra/superpowers`. New satellite skills adopted: `shaka-brief`, `shaka-prd`, `pythagoras-research`, `oda-design`. Hard-block EXIT GATES active. `brain/project-context.md` now required at session start (populated by pull). Old PRDs moved to `brain/archive/` by pull. Skill count: 12 (same number, different composition).
+**Rationale:** Dogfooding session — using Stella Protocol to build Stella Protocol. Local workspace was behind 4 versions. v0.11.0 execution delegation is the right architectural call: superpowers skills are more mature (v5.x vs v0.x) and maintained independently. Note: v0.11.0 was shipped without completing punk-records CLOSE step for log-pose.md — corrected in this sync.
+**Alternatives:** Stay at v0.7.1 (rejected — local fork would diverge from public protocol, defeating dogfooding purpose).

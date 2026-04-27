@@ -3,16 +3,19 @@ project: "stella-protocol"
 phase: closed
 track: grand-line
 quality-bar: production
-last-updated: 2026-04-20
+last-updated: 2026-04-27
 ---
 
 # Log Pose
 
 ## Current Heading
-v0.10.0 Structural Governance — CLOSED (Grand Line).
+v0.11.0 Delegate Execution — CLOSED (Grand Line). Dogfooding workspace synced from v0.7.1 → v0.11.0 on 2026-04-27.
 
 ## Active Work
-None. v0.10.0 closed.
+v0.12.0 Token Archive — BUILD complete. punk-records vivre-card archival rule formalized (triggered at every CLOSE, exception for OPEN buster calls). Awaiting CLOSE.
+
+## Completed (v0.11.0)
+Delegate Execution to Superpowers — BREAKING. Removed 6 execution skills: `edison-tdd`, `edison-verify`, `edison-debug`, `atlas-taskplan`, `stella-parallel`, `writing-skills`. All delegated to `obra/superpowers`. README rewritten for PM audience. Skill count: 18 → 12 (5 phase + 4 DEFINE/IDEATE satellite + 3 governance). Session-start overhead reduced ~600–1,000 tokens.
 
 ## Completed (v0.10.0)
 Structural Governance — CLOSED (Grand Line). Shipped: hard-block EXIT GATES (REFUSE pattern) in stella-define + stella-build + stella-review. brain/project-context.md added as 7th init template + CLAUDE.md session hook. P1: stella-protocol project-context.md filled. 18 skills total (unchanged count).
