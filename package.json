@@ -1,6 +1,6 @@
 {
   "name": "stella-protocol",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "PM-first AI development protocol. One mind, many satellites.",
   "scripts": {
     "test": "node scripts/sync.js --check && node scripts/smoke-install.js",

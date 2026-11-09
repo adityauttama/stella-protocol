@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.12.1] — 2026-11-09
+
+### Fixed
+- **`stella install` installed only 5 of 12 skills** (since 0.8.0). The 4 satellite skills (`shaka-brief`, `shaka-prd`, `pythagoras-research`, `oda-design`) and 3 governance skills (`cipher-pol`, `buster-call`, `punk-records`) were never copied, so IDEATE and DEFINE had nothing to route to. All 12 are installed now.
+- `stella install` skipped `brain/project-context.md` (only `stella init` created it).
+- The CLAUDE.md session hook written by the installer was the pre-0.10.0 version. It now reads `project-context.md` and lists the current skill layers.
+- `.claude-plugin/marketplace.json` listed 5 skills and was stuck at version 0.11.0. It now lists all 12 and follows `package.json`.
+- A project folder name containing `$'` or `$&` corrupted the brain templates.
+
+### Added
+- `cli/manifest.js` — single owner of the skill list (read from `skills/`), the brain templates and the session hook.
+- `scripts/sync.js` — regenerates `.claude/skills/`, `marketplace.json` and `CLAUDE.md`. `--check` fails on drift and lints skill frontmatter, description length (≤250) and links that leave a skill folder. Files with no source are deleted only with `--prune`.
+- `npm test` (sync check + installer smoke test), `prepublishOnly` guard, GitHub Actions CI.
+
+### Changed
+- `stella-build` description shortened from 266 to 235 chars. The "Use when…" trigger phrases are unchanged.
+- This repo's `CLAUDE.md` is now generated from `punk-records/stella-claude-md.md`.
+
+### Upgrading
+Re-run `npx stella-protocol@latest install` to get the missing skills. If your `CLAUDE.md` already has a Stella section, the installer keeps it. To get the new hook, replace that section with the contents of `punk-records/stella-claude-md.md` (from `## Stella Protocol` on).
+
+### Deferred to v0.13.0+
+From `brain/research-rea-benchmark.md`: `stella doctor` + `install --dry-run` + backups, multi-harness via `.agents/skills` + `AGENTS.md`, behavioral evals (`claude -p` / `codex exec`), evidence labels in REVIEW, slim `stella-review` via `references/` + thin session hook.
+
+## [0.12.0] — 2026-04-27
+
+### Changed
+- `punk-records` — vivre-card archiving now runs at every CLOSE (previously only when there were more than 50 entries). The closed version's block moves to `brain/vivre-cards-archive.md`. Entries with `**Status:** OPEN` stay in `vivre-cards.md`.
+
 ## [0.11.0] — 2026-04-20
 
 ### BREAKING

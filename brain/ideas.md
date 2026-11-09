@@ -4,7 +4,8 @@
 
 ## Inbox (raw, unvalidated)
 _Add ideas here as they come. Format: `- [date] [idea] — [one-line description]`_
-- [2026-11-09] Sync script + `npm test --check` — generate skill list, mirror, and manifest version from `skills/`; CI fails on drift (rea A1, `brain/research-rea-benchmark.md`)
+- [2026-11-09] ~~Sync script + `npm test --check`~~ — ✅ SHIPPED v0.12.1
+- [2026-11-09] punk-records archive rule: define "OPEN" as "no later RESOLVED card" and handle cards that hold several findings — the literal rule would keep resolved Buster Calls in the main file forever (found at the v0.12.1 CLOSE)
 - [2026-11-09] `stella doctor` + `install --dry-run` + backups — verify installed skills/version/hook, show plan before writing (rea A2)
 - [2026-11-09] Multi-harness via `.agents/skills` + AGENTS.md hook — replace unused `.ai-skills` fallback; `--client` flag (rea A3)
 - [2026-11-09] Behavioral evals — fixture `brain/` + prompt + expected markers, run with `claude -p` / `codex exec` (rea A4)
@@ -16,6 +17,12 @@ _Add ideas here as they come. Format: `- [date] [idea] — [one-line description
 - [2026-11-09] Optional REA feature-teardown brief in Pythagoras Research Mode, with IP guardrail (rea A10)
 
 ## In Progress (Idea Brief done, moving through phases)
+
+### 2026-11-09 — Distribution Hotfix v0.12.1 ✅ SHIPPED v0.12.1
+**Track:** East Blue | **Phase:** CLOSED
+**Problem:** `stella install` shipped 5 of 12 skills plus a stale hook. The cause was hand-maintained copies of the same facts.
+**Proposed Solution:** `cli/manifest.js` single owner + `scripts/sync.js --check` + smoke test + CI + `prepublishOnly`.
+**Source:** BUSTER CALL found during the morluto/rea benchmark (`brain/research-rea-benchmark.md` A1)
 
 ### 2026-04-20 — Structural Governance v0.10.0
 **Track:** Grand Line | **Phase:** DEFINE

@@ -35,6 +35,8 @@ npx stella-protocol install
 
 Then just talk to your AI agent. Stella activates from context — there's nothing to memorize.
 
+> **Installed before 0.12.1?** Run `npx stella-protocol@latest install` again. Earlier versions installed only 5 of the 12 skills. See the [CHANGELOG](CHANGELOG.md#0121--2026-11-09) for the CLAUDE.md hook update.
+
 > **Also install [obra/superpowers](https://github.com/obra/superpowers).** This is Stella's execution engine (TDD, verification, debugging, planning). Stella handles the *product and governance* layer; superpowers handles the *engineering* layer.
 >
 > ```bash

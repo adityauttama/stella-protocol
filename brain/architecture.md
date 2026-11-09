@@ -26,7 +26,7 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 | `stella status` | Display project status from brain/log-pose.md |
 
 ### Distribution (v0.12.1+)
-`cli/manifest.js` is the single owner of distribution facts: the skill list (derived from `skills/*/SKILL.md`), the brain template list + placeholder filling, and the CLAUDE.md hook section (from `punk-records/stella-claude-md.md`). `install.js` and `init.js` both read from it. `scripts/sync.js` regenerates `.claude/skills/` (mirror), `.claude-plugin/marketplace.json` (version + skills) and `CLAUDE.md`; `npm test` runs `sync --check` + `scripts/smoke-install.js` and CI runs it on every push/PR.
+`cli/manifest.js` is the single owner of distribution facts: the skill list (derived from `skills/*/SKILL.md`), the brain template list + placeholder filling, and the CLAUDE.md hook section (from `punk-records/stella-claude-md.md`). `install.js` and `init.js` both read from it. `scripts/sync.js` regenerates `.claude/skills/` (mirror), `.claude-plugin/marketplace.json` (version + skills) and `CLAUDE.md`. Files in the mirror with no source are reported and deleted only with `--prune`. `npm test` runs `sync --check` + `scripts/smoke-install.js`. It runs in CI on every push/PR and via `prepublishOnly` before every `npm publish`. Release step: bump version → `npm run sync` → `npm test`.
 
 ### Skill Files (12 — v0.11.0+)
 

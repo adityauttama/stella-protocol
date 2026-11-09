@@ -1,6 +1,6 @@
 ---
 project: "stella-protocol"
-phase: review
+phase: closed
 track: east-blue
 quality-bar: production
 last-updated: 2026-11-09
@@ -9,14 +9,18 @@ last-updated: 2026-11-09
 # Log Pose
 
 ## Current Heading
-v0.12.1 Distribution Hotfix — REVIEW complete (East Blue), next: CLOSE. Mini-PRD: `brain/prd-hotfix-distribution.md`. v0.12.0 is already published on npm (latest) with the installer bug, so the fix ships as 0.12.1.
+v0.12.1 Distribution Hotfix — CLOSED (East Blue), 2026-11-09. Branch `claude/optimistic-ramanujan-7tjvod`: not yet merged or published.
 
 ## Active Work
-v0.12.1 Distribution Hotfix — REVIEW complete (0 Critical; H1 + M1 + L1–L3 fixed; M2 = manual plugin-install test for Stella). Next, CLOSE: bump package.json to 0.12.1, run `npm run sync` (updates the marketplace version), add CHANGELOG entries for 0.12.0 + 0.12.1, archive vivre cards, and Stella publishes to npm.
+Human steps for Stella: (1) merge the branch to `main`; (2) `npm publish` (`prepublishOnly` runs `npm test` first); (3) optionally `git tag v0.12.1 && git push origin v0.12.1`; (4) M2 manual test — Claude Code `/plugin install` lists 12 skills (OPEN carry-over card in `vivre-cards.md`).
 
-v0.12.0 Token Archive (published to npm 0.12.0) — its CLOSE paperwork (CHANGELOG entry, vivre-card archive) has not been done yet. Fold it into the v0.12.1 CLOSE.
+Next cycle candidates (from `brain/research-rea-benchmark.md`, Inbox in `brain/ideas.md`): P1 — evidence labels + proportionality in REVIEW, York "inventory before prose", slim `stella-review` + thin session hook. P2 — v0.13.0 "Distribution & Proof": `stella doctor`, multi-harness, evals. Start with `stella-protocol` (IMU).
 
-2026-11-09: Benchmark vs morluto/rea — see `brain/research-rea-benchmark.md`. P0 is done in this hotfix. P1/P2 are in the `brain/ideas.md` Inbox.
+## Completed (v0.12.1)
+Distribution Hotfix — `stella install` now ships all 12 skills + 7 brain templates + the current hook (before: 5 skills, 6 templates, pre-0.10.0 hook). `cli/manifest.js` single owner; `scripts/sync.js --check/--prune`; `npm test` = sync check + smoke test; CI; `prepublishOnly`. REVIEW: 0 Critical, 5 findings fixed. CHANGELOG 0.12.0 + 0.12.1. First per-CLOSE vivre-card archive (v0.8.0–v0.12.1).
+
+## Completed (v0.12.0)
+Token Archive — punk-records vivre-card archiving moved to every CLOSE (published to npm 2026-04-27; CLOSE paperwork completed at the v0.12.1 CLOSE).
 
 ## Completed (v0.11.0)
 Delegate Execution to Superpowers — BREAKING. Removed 6 execution skills: `edison-tdd`, `edison-verify`, `edison-debug`, `atlas-taskplan`, `stella-parallel`, `writing-skills`. All delegated to `obra/superpowers`. README rewritten for PM audience. Skill count: 18 → 12 (5 phase + 4 DEFINE/IDEATE satellite + 3 governance). Session-start overhead reduced ~600–1,000 tokens.
@@ -57,17 +61,13 @@ Satellite Atomic Skills — CLOSED (East Blue). Shipped: shaka-brief + shaka-prd
 - Governance Hardening: EXIT GATES, scoped Cipher Pol, Quality Track, structural enforcement.
 
 ## Buster Call Status
-All clear. The 2026-11-09 BUSTER CALL (installer 5/12 skills) and WARNING (distribution drift) were RESOLVED in source the same day. They ship to users with npm 0.12.1.
+All clear. 1 CONCERN carried over (M2 — manual plugin-install test), not a blocker.
 
 ## Cipher Pol Report
-Clean. 1 INTEL (stella-build description trim) acknowledged by Stella in REVIEW 2026-11-09.
+Clean. 1 INTEL in v0.12.1 (stella-build description trim) — reviewed.
 
 ## Recent Vivre Cards
-- 2026-11-09: REVIEW complete v0.12.1 — 0 Critical, 1 High + 4 fixed, M2 manual test open
-- 2026-11-09: BUILD complete v0.12.1 — manifest.js + sync --check + smoke test + CI; BUSTER CALL + WARNING RESOLVED
-- 2026-11-09: Track Selection — East Blue for v0.12.1 Distribution Hotfix
-- 2026-11-09: BUSTER CALL — installer ships 5 of 12 skills; WARNING — distribution drift (both now RESOLVED)
-- 2026-04-20: CLOSE v0.10.0 — hard-block EXIT GATES + project-context.md shipped, 18 skills unchanged
-- 2026-04-20: REVIEW complete v0.10.0 — all clear, no BUSTER CALL, 2 Medium accepted
-- 2026-04-20: BUILD complete v0.10.0 — EXIT GATE REFUSE pattern in 3 skills, project-context.md template + CLI + CLAUDE.md
-- 2026-04-20: CLOSE v0.9.0 — atlas-taskplan + stella-parallel shipped, superpowers refs removed, 18 skills
+- 2026-11-09: CLOSE v0.12.1 — CHANGELOG 0.12.0 + 0.12.1, architecture synced, v0.8.0–v0.12.1 archived
+- 2026-11-09: REVIEW complete v0.12.1 — 0 Critical; H1, M1, L1–L3 fixed; M2 carried over
+- 2026-11-09: BUILD complete v0.12.1 — manifest.js + sync --check + smoke test + CI
+- 2026-11-09: BUSTER CALL — installer ships 5 of 12 skills (RESOLVED)
