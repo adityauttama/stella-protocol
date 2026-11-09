@@ -3,7 +3,7 @@ project: "stella-protocol"
 phase: closed
 track: grand-line
 quality-bar: production
-last-updated: 2026-04-27
+last-updated: 2026-11-09
 ---
 
 # Log Pose
@@ -12,7 +12,9 @@ last-updated: 2026-04-27
 v0.11.0 Delegate Execution — CLOSED (Grand Line). Dogfooding workspace synced from v0.7.1 → v0.11.0 on 2026-04-27.
 
 ## Active Work
-v0.12.0 Token Archive — BUILD complete. punk-records vivre-card archival rule formalized (triggered at every CLOSE, exception for OPEN buster calls). Awaiting CLOSE.
+v0.12.0 Token Archive — BUILD complete. punk-records vivre-card archival rule formalized (triggered at every CLOSE, exception for OPEN buster calls). Awaiting CLOSE — **blocked by OPEN BUSTER CALL (installer ships 5 of 12 skills)**.
+
+2026-11-09: Benchmark vs morluto/rea done — see `brain/research-rea-benchmark.md`. Recommended P0: fix installer/manifest drift + add sync script with `--check` before CLOSE v0.12.0.
 
 ## Completed (v0.11.0)
 Delegate Execution to Superpowers — BREAKING. Removed 6 execution skills: `edison-tdd`, `edison-verify`, `edison-debug`, `atlas-taskplan`, `stella-parallel`, `writing-skills`. All delegated to `obra/superpowers`. README rewritten for PM audience. Skill count: 18 → 12 (5 phase + 4 DEFINE/IDEATE satellite + 3 governance). Session-start overhead reduced ~600–1,000 tokens.
@@ -53,12 +55,14 @@ Satellite Atomic Skills — CLOSED (East Blue). Shipped: shaka-brief + shaka-prd
 - Governance Hardening: EXIT GATES, scoped Cipher Pol, Quality Track, structural enforcement.
 
 ## Buster Call Status
-All clear.
+- **OPEN — BUSTER CALL (MUST-FIX):** `cli/install.js` + `.claude-plugin/marketplace.json` ship only 5 of 12 skills; satellites + governance missing in user installs. Logged 2026-11-09.
+- **OPEN — WARNING:** distribution drift (install.js missing project-context template, stale CLAUDE.md hook template, stella-close mirror drift, stale architecture.md API Surface). Logged 2026-11-09.
 
 ## Cipher Pol Report
 Clean. No scope drift during v0.10.0 BUILD — all items listed in approved PRD. Slim orchestrators deferred per explicit decision (not scope drift).
 
 ## Recent Vivre Cards
+- 2026-11-09: BUSTER CALL — installer ships 5 of 12 skills (OPEN); WARNING — distribution drift (OPEN)
 - 2026-04-20: CLOSE v0.10.0 — hard-block EXIT GATES + project-context.md shipped, 18 skills unchanged
 - 2026-04-20: REVIEW complete v0.10.0 — all clear, no BUSTER CALL, 2 Medium accepted
 - 2026-04-20: BUILD complete v0.10.0 — EXIT GATE REFUSE pattern in 3 skills, project-context.md template + CLI + CLAUDE.md

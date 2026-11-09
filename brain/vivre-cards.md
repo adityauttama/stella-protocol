@@ -190,3 +190,21 @@
 **Decision:** Pulled origin/main (932284c → 34650da) to sync local workspace with published v0.11.0. Accepts BREAKING changes: `edison-tdd`, `edison-verify`, `edison-debug`, `writing-skills`, `atlas-taskplan`, `stella-parallel` removed — delegated to `obra/superpowers`. New satellite skills adopted: `shaka-brief`, `shaka-prd`, `pythagoras-research`, `oda-design`. Hard-block EXIT GATES active. `brain/project-context.md` now required at session start (populated by pull). Old PRDs moved to `brain/archive/` by pull. Skill count: 12 (same number, different composition).
 **Rationale:** Dogfooding session — using Stella Protocol to build Stella Protocol. Local workspace was behind 4 versions. v0.11.0 execution delegation is the right architectural call: superpowers skills are more mature (v5.x vs v0.x) and maintained independently. Note: v0.11.0 was shipped without completing punk-records CLOSE step for log-pose.md — corrected in this sync.
 **Alternatives:** Stay at v0.7.1 (rejected — local fork would diverge from public protocol, defeating dogfooding purpose).
+
+### 2026-11-09 BUSTER CALL: Installer ships 5 of 12 skills
+**Phase:** BUILD complete v0.12.0 (pre-CLOSE)
+**Satellite:** Pythagoras (found during morluto/rea benchmark) → Lilith Blue
+**Severity:** BUSTER CALL — MUST-FIX
+**Decision:** `cli/install.js` hard-codes `SKILLS` to the 5 phase orchestrators (lines 9–15). The 4 DEFINE/IDEATE satellites (`shaka-brief`, `shaka-prd`, `pythagoras-research`, `oda-design`) and 3 governance skills (`cipher-pol`, `buster-call`, `punk-records`) are never copied to user projects. `stella-protocol` and `stella-define` are thin routers that only invoke those satellites, so IDEATE and DEFINE are hollow after `npx stella-protocol install`. `.claude-plugin/marketplace.json` has the same 5-skill list and is still at version 0.11.0 (package.json 0.12.0). Evidence: Observed (file read + `diff`), 2026-11-09.
+**Rationale:** Failure mode is certain for every npm install since v0.8.0 (satellites) / v0.6.0 (governance) — not speculative. The product's core differentiation (5-lensa, PRD, governance skills) silently degrades. Must be fixed before v0.12.0 CLOSE/publish. Root cause is shared with the WARNING below: facts maintained by hand in several places. Full analysis: `brain/research-rea-benchmark.md` §2.
+**Alternatives:** Patch the array only (rejected as sole fix — drift has recurred 3× since 2026-04-07; pair with a generated list + `--check`, see research brief A1).
+**Status:** OPEN
+
+### 2026-11-09 WARNING: Distribution drift (same root cause as installer BUSTER CALL)
+**Phase:** BUILD complete v0.12.0 (pre-CLOSE)
+**Satellite:** Lilith Blue
+**Severity:** WARNING
+**Decision:** Grouped by root cause (hand-maintained copies): (1) `cli/install.js:125` omits `project-context.md` while `cli/init.js:30` includes it; (2) `punk-records/stella-claude-md.md` — the hook installed into user CLAUDE.md — predates v0.10.0 (no `project-context.md` step, no Skill Layers/superpowers); (3) `.claude/skills/stella-close/SKILL.md` has an extra `---` line vs source (violates "mirror identical"); (4) `brain/architecture.md` API Surface still lists removed `edison-*`, `atlas-taskplan`, `stella-parallel`, and "Install 5 skills". Evidence: Observed, 2026-11-09.
+**Rationale:** Each item is small, but together they mean user installs diverge from the dogfooded repo. Fix together with the BUSTER CALL and add a sync/check script so CI catches the next drift.
+**Alternatives:** Fix individually by hand (rejected — that is how the drift happened).
+**Status:** OPEN

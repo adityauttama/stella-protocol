@@ -4,6 +4,16 @@
 
 ## Inbox (raw, unvalidated)
 _Add ideas here as they come. Format: `- [date] [idea] — [one-line description]`_
+- [2026-11-09] Sync script + `npm test --check` — generate skill list, mirror, and manifest version from `skills/`; CI fails on drift (rea A1, `brain/research-rea-benchmark.md`)
+- [2026-11-09] `stella doctor` + `install --dry-run` + backups — verify installed skills/version/hook, show plan before writing (rea A2)
+- [2026-11-09] Multi-harness via `.agents/skills` + AGENTS.md hook — replace unused `.ai-skills` fallback; `--client` flag (rea A3)
+- [2026-11-09] Behavioral evals — fixture `brain/` + prompt + expected markers, run with `claude -p` / `codex exec` (rea A4)
+- [2026-11-09] Evidence labels in REVIEW — Observed/Inferred/Unknown + file:line in Buster Call & Lilith findings; checklist revisit at EXIT GATE (rea A5)
+- [2026-11-09] Proportionality + root-cause grouping rule for Buster Call/Lilith (rea A6)
+- [2026-11-09] Slim stella-review via `references/` + thin session hook (rea A7; already Deferred v0.12.0+)
+- [2026-11-09] "Skip when…" negative triggers in skill descriptions (rea A8)
+- [2026-11-09] York "inventory before prose" — git log/tag inventory before writing CHANGELOG (rea A9)
+- [2026-11-09] Optional REA feature-teardown brief in Pythagoras Research Mode, with IP guardrail (rea A10)
 
 ## In Progress (Idea Brief done, moving through phases)
 
