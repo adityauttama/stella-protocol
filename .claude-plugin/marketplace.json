@@ -17,16 +17,23 @@
       "name": "stella-protocol",
       "source": "./",
       "description": "PM-first AI development protocol with satellite agents, phase governance, and built-in scope/veto enforcement.",
-      "version": "0.11.0",
+      "version": "0.12.0",
       "author": {
         "name": "Aditya Uttama"
       },
       "skills": [
-        "./skills/stella-protocol",
-        "./skills/stella-define",
+        "./skills/buster-call",
+        "./skills/cipher-pol",
+        "./skills/oda-design",
+        "./skills/punk-records",
+        "./skills/pythagoras-research",
+        "./skills/shaka-brief",
+        "./skills/shaka-prd",
         "./skills/stella-build",
-        "./skills/stella-review",
-        "./skills/stella-close"
+        "./skills/stella-close",
+        "./skills/stella-define",
+        "./skills/stella-protocol",
+        "./skills/stella-review"
       ]
     }
   ]

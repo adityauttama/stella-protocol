@@ -1,6 +1,6 @@
 ---
 name: stella-build
-description: Stella Protocol BUILD phase. Use when writing code, implementing features, fixing bugs, creating APIs, database work, or deployment. Delegates execution rigor (TDD, verify, debug, planning, parallel dispatch) to obra/superpowers skills; Atlas handles infrastructure.
+description: Stella Protocol BUILD phase. Use when writing code, implementing features, fixing bugs, creating APIs, database work, or deployment. Delegates TDD, verify, debug, planning and parallel dispatch to obra/superpowers; Atlas handles infra.
 ---
 <!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
 

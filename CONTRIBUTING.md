@@ -29,7 +29,8 @@ Thank you for considering contributing to the Stella Protocol.
 - Keep PRs focused on a single change
 - Follow existing code style
 - Update documentation if behavior changes
-- Test the CLI installer before submitting
+- Run `npm test` before submitting — it checks that `.claude/skills/`, `.claude-plugin/marketplace.json` and `CLAUDE.md` match their sources and smoke-tests the installer. If it reports drift, run `npm run sync`.
+- Edit skills in `skills/` and the session hook in `punk-records/stella-claude-md.md`; never edit the generated copies by hand
 
 ## Community Satellites (Grand Fleet)
 

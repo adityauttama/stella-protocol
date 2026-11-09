@@ -1,7 +1,7 @@
 ---
 project: "stella-protocol"
-phase: closed
-track: grand-line
+phase: build
+track: east-blue
 quality-bar: production
 last-updated: 2026-11-09
 ---
@@ -9,12 +9,14 @@ last-updated: 2026-11-09
 # Log Pose
 
 ## Current Heading
-v0.11.0 Delegate Execution — CLOSED (Grand Line). Dogfooding workspace synced from v0.7.1 → v0.11.0 on 2026-04-27.
+v0.12.1 Distribution Hotfix — BUILD complete (East Blue), awaiting REVIEW. Mini-PRD: `brain/prd-hotfix-distribution.md`. v0.12.0 is already published on npm (latest) with the installer bug, so the fix ships as 0.12.1.
 
 ## Active Work
-v0.12.0 Token Archive — BUILD complete. punk-records vivre-card archival rule formalized (triggered at every CLOSE, exception for OPEN buster calls). Awaiting CLOSE — **blocked by OPEN BUSTER CALL (installer ships 5 of 12 skills)**.
+v0.12.1 Distribution Hotfix — BUILD complete; next step is `stella-review`. Then CLOSE: bump package.json to 0.12.1, run `npm run sync` (updates the marketplace version), add CHANGELOG entries for 0.12.0 + 0.12.1, archive vivre cards, and Stella publishes to npm.
 
-2026-11-09: Benchmark vs morluto/rea done — see `brain/research-rea-benchmark.md`. Recommended P0: fix installer/manifest drift + add sync script with `--check` before CLOSE v0.12.0.
+v0.12.0 Token Archive (published to npm 0.12.0) — its CLOSE paperwork (CHANGELOG entry, vivre-card archive) has not been done yet. Fold it into the v0.12.1 CLOSE.
+
+2026-11-09: Benchmark vs morluto/rea — see `brain/research-rea-benchmark.md`. P0 is done in this hotfix. P1/P2 are in the `brain/ideas.md` Inbox.
 
 ## Completed (v0.11.0)
 Delegate Execution to Superpowers — BREAKING. Removed 6 execution skills: `edison-tdd`, `edison-verify`, `edison-debug`, `atlas-taskplan`, `stella-parallel`, `writing-skills`. All delegated to `obra/superpowers`. README rewritten for PM audience. Skill count: 18 → 12 (5 phase + 4 DEFINE/IDEATE satellite + 3 governance). Session-start overhead reduced ~600–1,000 tokens.
@@ -55,14 +57,15 @@ Satellite Atomic Skills — CLOSED (East Blue). Shipped: shaka-brief + shaka-prd
 - Governance Hardening: EXIT GATES, scoped Cipher Pol, Quality Track, structural enforcement.
 
 ## Buster Call Status
-- **OPEN — BUSTER CALL (MUST-FIX):** `cli/install.js` + `.claude-plugin/marketplace.json` ship only 5 of 12 skills; satellites + governance missing in user installs. Logged 2026-11-09.
-- **OPEN — WARNING:** distribution drift (install.js missing project-context template, stale CLAUDE.md hook template, stella-close mirror drift, stale architecture.md API Surface). Logged 2026-11-09.
+All clear. The 2026-11-09 BUSTER CALL (installer 5/12 skills) and WARNING (distribution drift) were RESOLVED in source the same day. They ship to users with npm 0.12.1.
 
 ## Cipher Pol Report
-Clean. No scope drift during v0.10.0 BUILD — all items listed in approved PRD. Slim orchestrators deferred per explicit decision (not scope drift).
+1 INTEL (2026-11-09): stella-build description trimmed to meet the ≤250-char lint rule. Trigger phrases unchanged. Unreviewed.
 
 ## Recent Vivre Cards
-- 2026-11-09: BUSTER CALL — installer ships 5 of 12 skills (OPEN); WARNING — distribution drift (OPEN)
+- 2026-11-09: BUILD complete v0.12.1 — manifest.js + sync --check + smoke test + CI; BUSTER CALL + WARNING RESOLVED
+- 2026-11-09: Track Selection — East Blue for v0.12.1 Distribution Hotfix
+- 2026-11-09: BUSTER CALL — installer ships 5 of 12 skills; WARNING — distribution drift (both now RESOLVED)
 - 2026-04-20: CLOSE v0.10.0 — hard-block EXIT GATES + project-context.md shipped, 18 skills unchanged
 - 2026-04-20: REVIEW complete v0.10.0 — all clear, no BUSTER CALL, 2 Medium accepted
 - 2026-04-20: BUILD complete v0.10.0 — EXIT GATE REFUSE pattern in 3 skills, project-context.md template + CLI + CLAUDE.md

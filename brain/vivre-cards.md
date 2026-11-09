@@ -208,3 +208,33 @@
 **Rationale:** Each item is small, but together they mean user installs diverge from the dogfooded repo. Fix together with the BUSTER CALL and add a sync/check script so CI catches the next drift.
 **Alternatives:** Fix individually by hand (rejected — that is how the drift happened).
 **Status:** OPEN
+
+### 2026-11-09 Track Selection: East Blue for v0.12.1 Distribution Hotfix
+**Phase:** IDEATE → BUILD
+**Satellite:** IMU
+**Decision:** East Blue track, mini-PRD `brain/prd-hotfix-distribution.md` approved by Stella ("gas"). Ships as 0.12.1 because 0.12.0 is already `latest` on npm (Observed: `npm view stella-protocol dist-tags`; the published tarball's `cli/install.js` has the 5-skill array). The plan was revisited against the Obsidian vault (`projects/stella-protocol-recap.md`, `projects/poneglyph-exploration.md`, `projects/amal-najib/`) and stays the same: the planned Threads launch / productize path makes a working install more urgent, not less.
+**Rationale:** The scope is mechanical and well-defined (installer + sync check). It resolves the OPEN BUSTER CALL and WARNING.
+**Alternatives:** Fold into v0.12.0 (rejected — already published); Grand Line with doctor/multi-harness (rejected — those are P2 and would delay the fix).
+
+### 2026-11-09 BUILD Complete: Distribution Hotfix v0.12.1
+**Phase:** BUILD
+**Satellite:** Edison + Atlas
+**Decision:** All P0/P1 items in `brain/prd-hotfix-distribution.md` shipped. (1) `cli/manifest.js` is the single owner of the skill list (derived from `skills/`), the brain templates and the hook section. (2) `install.js` installs 12 skills + 7 brain templates and writes the current hook. `init.js` reuses the same code. (3) `punk-records/stella-claude-md.md` updated to the current hook. (4) `scripts/sync.js` (write + `--check`, zero deps). (5) `npm test` = sync check + `scripts/smoke-install.js`. (6) `.github/workflows/ci.yml`. (7) `brain/architecture.md` API Surface + decision entry. Also fixed: `.claude/skills/stella-close` mirror drift, marketplace 0.11.0 → 0.12.0 with all 12 skills.
+**Rationale:** Verification (Observed, 2026-11-09): `npm test` PASS. Seven deliberate drift injections (mirror edit, version bump, hook edit, long description, escaping link, name mismatch, orphan mirror file) each make `--check` exit 1. Real `stella init` → 7 files. Real interactive `stella install` via pseudo-TTY → 12 skills, 7 brain files, hook containing the project-context step. `npm pack --dry-run` includes `cli/manifest.js`. `superpowers:verification-before-completion` is not installed in this cloud session, so the checks above were run directly instead (no waiver needed — nothing FAILED).
+**Alternatives:** Generate `marketplace.json` with a `"skills": "./skills"` folder pointer like REA (rejected for now — Claude Code's auto-discovery behavior for this entry is Unknown; an explicit generated array is the safe choice).
+
+### 2026-11-09 RESOLVED: Installer ships 5 of 12 skills
+**Phase:** BUILD
+**Satellite:** Edison
+**Decision:** The BUSTER CALL from 2026-11-09 ("Installer ships 5 of 12 skills") is resolved in source on branch `claude/optimistic-ramanujan-7tjvod`. Users get the fix once 0.12.1 is published to npm (CLOSE + publish — a human step).
+**Rationale:** The skill list is now derived from `skills/`, and the smoke test fails if any skill folder is not installed.
+**Alternatives:** None.
+**Status:** RESOLVED
+
+### 2026-11-09 RESOLVED: Distribution drift (WARNING)
+**Phase:** BUILD
+**Satellite:** Edison
+**Decision:** The WARNING from 2026-11-09 is resolved: install now copies `project-context.md`, the hook template is current, the stella-close mirror is identical, and the architecture.md API Surface is current. `npm test` + CI now catch future drift.
+**Rationale:** Structural fix (generated copies + check), not per-file patches.
+**Alternatives:** None.
+**Status:** RESOLVED

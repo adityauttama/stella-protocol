@@ -5,14 +5,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const { intro, outro, select, confirm, spinner, note } = require('@clack/prompts');
 const chalk = require('chalk');
-
-const SKILLS = [
-  'stella-protocol',
-  'stella-define',
-  'stella-build',
-  'stella-review',
-  'stella-close',
-];
+const { SKILLS_DIR, listSkills, writeBrainTemplates, readHookSection } = require('./manifest');
 
 function detectAITool() {
   const cwd = process.cwd();
@@ -49,6 +42,36 @@ function getSkillsDir(tool, scope) {
 
   // Generic fallback
   return path.join(cwd, '.ai-skills');
+}
+
+// Copies every shipped skill folder (including any references/) into skillsTarget.
+// Returns the names of the skills installed.
+async function installSkills(skillsTarget) {
+  const skills = listSkills();
+  await fs.ensureDir(skillsTarget);
+  for (const skill of skills) {
+    await fs.copy(path.join(SKILLS_DIR, skill), path.join(skillsTarget, skill), { overwrite: true });
+  }
+  return skills;
+}
+
+// Appends the Stella session hook to projectDir/CLAUDE.md unless one is already there.
+// Returns 'created' | 'appended' | 'skipped'.
+async function addSessionHook(projectDir) {
+  const hook = readHookSection();
+  const claudeMdPath = path.join(projectDir, 'CLAUDE.md');
+
+  if (!fs.existsSync(claudeMdPath)) {
+    await fs.writeFile(claudeMdPath, hook);
+    return 'created';
+  }
+
+  const existing = await fs.readFile(claudeMdPath, 'utf-8');
+  if (existing.includes('Stella Protocol')) {
+    return 'skipped';
+  }
+  await fs.appendFile(claudeMdPath, '\n\n' + hook);
+  return 'appended';
 }
 
 async function install() {
@@ -94,51 +117,22 @@ async function install() {
   const s = spinner();
   s.start('Installing skills...');
 
-  const packageDir = path.resolve(__dirname, '..');
-  const skillsSource = path.join(packageDir, 'skills');
   const skillsTarget = getSkillsDir(tool, scope);
+  const installed = await installSkills(skillsTarget);
 
-  await fs.ensureDir(skillsTarget);
-
-  for (const skill of SKILLS) {
-    const src = path.join(skillsSource, skill);
-    const dest = path.join(skillsTarget, skill);
-    if (!fs.existsSync(src)) {
-      console.warn(chalk.yellow(`  ⚠ Skill "${skill}" not found at ${src} — skipped`));
-      continue;
-    }
-    await fs.copy(src, dest, { overwrite: true });
-  }
-
-  s.stop(`${SKILLS.length} skills installed to ${chalk.dim(skillsTarget)}`);
+  s.stop(`${installed.length} skills installed to ${chalk.dim(skillsTarget)}`);
 
   // Initialize Punk Records
   if (initBrain) {
     const brainS = spinner();
     brainS.start('Initializing Punk Records...');
 
-    const brainSource = path.join(packageDir, 'punk-records');
     const brainTarget = path.join(process.cwd(), 'brain');
+    const written = writeBrainTemplates(brainTarget, path.basename(process.cwd()));
 
-    await fs.ensureDir(brainTarget);
-
-    const templates = ['log-pose.md', 'architecture.md', 'vivre-cards.md', 'ideas.md', 'scope-changes.md', 'design-system.md'];
-    for (const template of templates) {
-      const src = path.join(brainSource, template);
-      const dest = path.join(brainTarget, template);
-      if (!fs.existsSync(dest)) {
-        await fs.copy(src, dest);
-      }
-    }
-
-    // Replace project name placeholder in log-pose
-    const logPosePath = path.join(brainTarget, 'log-pose.md');
-    const logPose = await fs.readFile(logPosePath, 'utf-8');
-    const projectName = path.basename(process.cwd());
-    const today = new Date().toISOString().split('T')[0];
-    await fs.writeFile(logPosePath, logPose.replace('{project-name}', projectName).replace('YYYY-MM-DD', today));
-
-    brainS.stop(`Punk Records initialized at ${chalk.dim(brainTarget)}`);
+    brainS.stop(written.length > 0
+      ? `Punk Records initialized at ${chalk.dim(brainTarget)} (${written.length} files)`
+      : `Punk Records already present at ${chalk.dim(brainTarget)} — existing files kept`);
   }
 
   // Offer to add session hook to CLAUDE.md
@@ -151,26 +145,13 @@ async function install() {
     const hookS = spinner();
     hookS.start('Adding session hook...');
 
-    const hookSource = path.join(packageDir, 'punk-records', 'stella-claude-md.md');
-    const claudeMdPath = path.join(process.cwd(), 'CLAUDE.md');
-
-    const hookContent = await fs.readFile(hookSource, 'utf-8');
-    // Extract just the session hook section (skip the template header)
-    const hookSection = hookContent.split('## Stella Protocol')[1];
-    const cleanHook = '## Stella Protocol' + hookSection;
-
-    if (fs.existsSync(claudeMdPath)) {
-      const existing = await fs.readFile(claudeMdPath, 'utf-8');
-      if (!existing.includes('Stella Protocol')) {
-        await fs.appendFile(claudeMdPath, '\n\n' + cleanHook);
-        hookS.stop('Session hook appended to existing CLAUDE.md');
-      } else {
-        hookS.stop('CLAUDE.md already has Stella Protocol section — skipped');
-      }
-    } else {
-      await fs.writeFile(claudeMdPath, cleanHook);
-      hookS.stop('CLAUDE.md created with session hook');
-    }
+    const result = await addSessionHook(process.cwd());
+    const messages = {
+      created: 'CLAUDE.md created with session hook',
+      appended: 'Session hook appended to existing CLAUDE.md',
+      skipped: 'CLAUDE.md already has Stella Protocol section — skipped',
+    };
+    hookS.stop(messages[result]);
   }
 
   outro(chalk.green('Ready.') + ' Start by telling your AI what you want to build.');
@@ -179,4 +160,4 @@ async function install() {
   }
 }
 
-module.exports = { install };
+module.exports = { install, installSkills, addSessionHook };

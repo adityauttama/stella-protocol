@@ -21,18 +21,21 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 ### CLI Commands
 | Command | Description |
 |---------|-------------|
-| `stella install` | Install 5 skills + init brain/ + add CLAUDE.md hook |
-| `stella init` | Initialize brain/ only (6 templates) |
+| `stella install` | Install all skills in `skills/` (12) + init brain/ (7 templates) + add CLAUDE.md hook |
+| `stella init` | Initialize brain/ only (7 templates) |
 | `stella status` | Display project status from brain/log-pose.md |
 
-### Skill Files (layered — v0.6.0)
+### Distribution (v0.12.1+)
+`cli/manifest.js` is the single owner of distribution facts: the skill list (derived from `skills/*/SKILL.md`), the brain template list + placeholder filling, and the CLAUDE.md hook section (from `punk-records/stella-claude-md.md`). `install.js` and `init.js` both read from it. `scripts/sync.js` regenerates `.claude/skills/` (mirror), `.claude-plugin/marketplace.json` (version + skills) and `CLAUDE.md`; `npm test` runs `sync --check` + `scripts/smoke-install.js` and CI runs it on every push/PR.
+
+### Skill Files (12 — v0.11.0+)
 
 **Layer 1 — Phase Orchestrators (5, user-facing):**
 | Skill | Phase | Routes to |
 |-------|-------|-----------|
 | `stella-protocol` | IDEATE | `shaka-brief` |
 | `stella-define` | DEFINE | `shaka-prd`, `pythagoras-research`, `oda-design` |
-| `stella-build` | BUILD | Edison, Atlas, ODA (inline) |
+| `stella-build` | BUILD | Edison, Atlas, ODA (inline); execution rigor → `superpowers:*` |
 | `stella-review` | REVIEW | Lilith Red, Lilith Blue (inline) |
 | `stella-close` | CLOSE | York, Morgans (inline) |
 
@@ -44,19 +47,6 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 | `pythagoras-research` | Pythagoras | Architecture decisions, Research Brief, stack selection |
 | `oda-design` | ODA | UX flows, screen maps, design system |
 
-**Layer 2 — BUILD Satellite Atomic (invoked before/during BUILD, v0.9.0+):**
-| Skill | Satellite | Fungsi |
-|-------|-----------|--------|
-| `atlas-taskplan` | Atlas | Bite-sized task decomposition before BUILD; writes `brain/taskplan-[name].md` |
-| `stella-parallel` | — | Concurrent agent dispatch for ≥2 independent features |
-
-**Layer 2 — Edison Atomic (execution rigor, invoked during BUILD):**
-| Skill | Fungsi |
-|-------|--------|
-| `edison-tdd` | RED-GREEN-REFACTOR cycle for testable logic |
-| `edison-verify` | Automated build/lint/test gate; mandatory at BUILD EXIT GATE |
-| `edison-debug` | 4-phase systematic root cause (Reproduce → Isolate → Hypothesize → Verify Fix); Iron Law reproduce-before-fix (v0.7.0+) |
-
 **Layer 3 — Governance Atomic (cross-phase, shared):**
 | Skill | Fungsi |
 |-------|--------|
@@ -64,10 +54,15 @@ N/A — stella-protocol is a CLI + skill files framework. No database or persist
 | `buster-call` | Quality/security veto format + logging |
 | `punk-records` | Brain file update protocol (log-pose, vivre-cards, architecture, versioning) |
 
-**Layer 4 — Meta (skill authoring, v0.7.1+):**
-| Skill | Fungsi |
+**Execution — delegated to obra/superpowers (v0.11.0+, not shipped by Stella):**
+| Superpowers skill | Replaces (removed in v0.11.0) |
 |-------|--------|
-| `writing-skills` | RED-GREEN-REFACTOR for writing/improving SKILL.md files. Iron Law: no skill change without a documented failing scenario. |
+| `superpowers:test-driven-development` | `edison-tdd` |
+| `superpowers:verification-before-completion` | `edison-verify` |
+| `superpowers:systematic-debugging` | `edison-debug` |
+| `superpowers:writing-plans` | `atlas-taskplan` |
+| `superpowers:dispatching-parallel-agents` | `stella-parallel` |
+| `superpowers:writing-skills` | `writing-skills` |
 
 Phase orchestrators reference atomic skills via prose pointer — they do NOT duplicate governance prose. Claude Code's skill auto-trigger handles activation based on each atomic skill's `description` field.
 
@@ -160,3 +155,6 @@ Trade-offs: Hard REFUSE is stricter but waiver path ensures Stella retains overr
 
 ### 2026-04-18 — Lilith Blue Checkpoint Preview added to stella-review (v0.7.1)
 Multi-file diffs presented alphabetically by file path hide risk distribution — a critical auth change in `auth/middleware.ts` is visually equal to a cosmetic rename in `utils/helpers.ts`. Checkpoint Preview groups diff hunks into 4 concern buckets (Security/Auth → Correctness → Quality → Cosmetic) and presents them in that order. Security findings must be acknowledged per item; cosmetic can be bulk-approved. Reduces reviewer fatigue masking high-risk changes at the bottom. Inspiration: `obra/superpowers/skills/requesting-code-review`.
+
+### 2026-11-09 — Single owner for distribution facts + sync check (v0.12.1)
+The installer shipped 5 of 12 skills from v0.8.0 until 0.12.0 because the skill list, plugin manifest, mirror, hook template and brain template list were each maintained by hand. Drift had recurred 3 times. Fix: `cli/manifest.js` derives the skill list from `skills/` and owns brain templates + hook extraction; `scripts/sync.js` regenerates the copies and `--check` fails CI on drift (pattern adopted from morluto/rea's generated-skill check — see `brain/research-rea-benchmark.md` A1). Trade-off: `CLAUDE.md` in this repo is now generated from `punk-records/stella-claude-md.md` — edit the template, then `npm run sync`.

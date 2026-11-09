@@ -3,7 +3,6 @@ name: stella-close
 description: Stella Protocol CLOSE phase. Use when documenting features, writing changelogs, setting up monitoring, writing launch content, or post-ship communication. York (docs) + Morgans (GTM) satellites.
 ---
 <!-- Stella Protocol by Aditya Uttama | https://www.linkedin.com/in/adityauttama/ | https://github.com/adityauttama -->
----
 
 # Stella Protocol — CLOSE
 

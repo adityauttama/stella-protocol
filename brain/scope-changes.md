@@ -16,4 +16,9 @@
 
 ---
 
-_No scope changes yet. Entries will be logged automatically during BUILD._
+### 2026-11-09 stella-build description trimmed (266 → 235 chars)
+- **File:** `skills/stella-build/SKILL.md` (+ mirror)
+- **Classification:** INTEL
+- **Reason:** The new `sync --check` lint enforces the ≤250-char description rule from v0.8.1. stella-build had grown to 266 in v0.11.0. Only the tail was shortened; the "Use when…" trigger phrases are unchanged. Not listed in mini-PRD `prd-hotfix-distribution.md`.
+- **Requested by:** Agent
+- **Reviewed:** no
