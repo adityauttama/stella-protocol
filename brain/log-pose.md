@@ -1,6 +1,6 @@
 ---
 project: "stella-protocol"
-phase: build
+phase: review
 track: east-blue
 quality-bar: production
 last-updated: 2026-11-09
@@ -9,10 +9,10 @@ last-updated: 2026-11-09
 # Log Pose
 
 ## Current Heading
-v0.12.1 Distribution Hotfix — BUILD complete (East Blue), awaiting REVIEW. Mini-PRD: `brain/prd-hotfix-distribution.md`. v0.12.0 is already published on npm (latest) with the installer bug, so the fix ships as 0.12.1.
+v0.12.1 Distribution Hotfix — REVIEW complete (East Blue), next: CLOSE. Mini-PRD: `brain/prd-hotfix-distribution.md`. v0.12.0 is already published on npm (latest) with the installer bug, so the fix ships as 0.12.1.
 
 ## Active Work
-v0.12.1 Distribution Hotfix — BUILD complete; next step is `stella-review`. Then CLOSE: bump package.json to 0.12.1, run `npm run sync` (updates the marketplace version), add CHANGELOG entries for 0.12.0 + 0.12.1, archive vivre cards, and Stella publishes to npm.
+v0.12.1 Distribution Hotfix — REVIEW complete (0 Critical; H1 + M1 + L1–L3 fixed; M2 = manual plugin-install test for Stella). Next, CLOSE: bump package.json to 0.12.1, run `npm run sync` (updates the marketplace version), add CHANGELOG entries for 0.12.0 + 0.12.1, archive vivre cards, and Stella publishes to npm.
 
 v0.12.0 Token Archive (published to npm 0.12.0) — its CLOSE paperwork (CHANGELOG entry, vivre-card archive) has not been done yet. Fold it into the v0.12.1 CLOSE.
 
@@ -60,9 +60,10 @@ Satellite Atomic Skills — CLOSED (East Blue). Shipped: shaka-brief + shaka-prd
 All clear. The 2026-11-09 BUSTER CALL (installer 5/12 skills) and WARNING (distribution drift) were RESOLVED in source the same day. They ship to users with npm 0.12.1.
 
 ## Cipher Pol Report
-1 INTEL (2026-11-09): stella-build description trimmed to meet the ≤250-char lint rule. Trigger phrases unchanged. Unreviewed.
+Clean. 1 INTEL (stella-build description trim) acknowledged by Stella in REVIEW 2026-11-09.
 
 ## Recent Vivre Cards
+- 2026-11-09: REVIEW complete v0.12.1 — 0 Critical, 1 High + 4 fixed, M2 manual test open
 - 2026-11-09: BUILD complete v0.12.1 — manifest.js + sync --check + smoke test + CI; BUSTER CALL + WARNING RESOLVED
 - 2026-11-09: Track Selection — East Blue for v0.12.1 Distribution Hotfix
 - 2026-11-09: BUSTER CALL — installer ships 5 of 12 skills; WARNING — distribution drift (both now RESOLVED)

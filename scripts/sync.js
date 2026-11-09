@@ -10,6 +10,7 @@
 //
 //   node scripts/sync.js          write generated files
 //   node scripts/sync.js --check  fail (exit 1) if anything drifted; writes nothing
+//   node scripts/sync.js --prune  also delete files in .claude/skills/ that have no source
 
 const path = require('path');
 const fs = require('fs');
@@ -24,12 +25,13 @@ const {
 
 const args = process.argv.slice(2);
 for (const arg of args) {
-  if (arg !== '--check') {
+  if (arg !== '--check' && arg !== '--prune') {
     console.error(`Unknown option: ${arg}`);
     process.exit(2);
   }
 }
 const check = args.includes('--check');
+const prune = args.includes('--prune') && !check;
 
 const MIRROR_DIR = path.join(ROOT, '.claude', 'skills');
 const MARKETPLACE = path.join(ROOT, '.claude-plugin', 'marketplace.json');
@@ -67,7 +69,8 @@ function ensureFile(file, expected) {
 
 function lintSkill(skill) {
   const skillDir = path.join(SKILLS_DIR, skill);
-  const skillMd = fs.readFileSync(path.join(skillDir, 'SKILL.md'), 'utf-8');
+  // Normalize CRLF so Windows checkouts (core.autocrlf) lint the same as CI.
+  const skillMd = fs.readFileSync(path.join(skillDir, 'SKILL.md'), 'utf-8').replace(/\r\n/g, '\n');
   const frontmatter = skillMd.match(/^---\n([\s\S]*?)\n---\n/);
   if (!frontmatter) {
     issues.push(`skills/${skill}/SKILL.md: missing YAML frontmatter at top of file`);
@@ -121,16 +124,18 @@ for (const skill of skills) {
     ensureFile(path.join(MIRROR_DIR, relative), fs.readFileSync(path.join(SKILLS_DIR, relative), 'utf-8'));
   }
 }
+// Files without a source are never deleted silently: they may be a contributor's
+// own local skill. Report them; delete only with --prune.
 for (const relative of listFiles(MIRROR_DIR)) {
   if (expectedMirror.has(relative)) continue;
-  if (check) {
-    issues.push(`.claude/skills/${relative} has no source in skills/`);
-  } else {
+  if (prune) {
     fs.rmSync(path.join(MIRROR_DIR, relative));
     console.log(`removed .claude/skills/${relative}`);
+  } else {
+    issues.push(`.claude/skills/${relative} has no source in skills/ — move it to ~/.claude/skills, or run \`node scripts/sync.js --prune\` to delete it`);
   }
 }
-if (!check) {
+if (prune) {
   // Drop directories left empty by removals.
   for (const entry of fs.existsSync(MIRROR_DIR) ? fs.readdirSync(MIRROR_DIR) : []) {
     const dir = path.join(MIRROR_DIR, entry);

@@ -41,6 +41,13 @@ async function main() {
     assert.deepEqual(writeBrainTemplates(brain, 'smoke-project'), [], 'second run must write nothing');
     assert.equal(fs.readFileSync(path.join(brain, 'ideas.md'), 'utf-8'), 'user edit', 'existing brain file was overwritten');
 
+    // A folder name containing String.replace patterns is inserted literally.
+    const odd = path.join(project, 'odd-brain');
+    writeBrainTemplates(odd, "acme$'x$&", '2026-01-01');
+    const oddContext = fs.readFileSync(path.join(odd, 'project-context.md'), 'utf-8');
+    const template = fs.readFileSync(path.join(__dirname, '..', 'punk-records', 'project-context.md'), 'utf-8');
+    assert.equal(oddContext, template.replace('{project-name}', () => "acme$'x$&"), 'project name must be inserted literally');
+
     // Hook: created with the current session hook, then skipped on re-run.
     assert.equal(await addSessionHook(project), 'created');
     const claudeMd = fs.readFileSync(path.join(project, 'CLAUDE.md'), 'utf-8');

@@ -35,11 +35,13 @@ function listSkills(skillsDir = SKILLS_DIR) {
 }
 
 function fillPlaceholders(template, content, projectName, today) {
+  // Function replacers: a folder name like "acme$'x" must be inserted literally,
+  // not interpreted as a String.replace special pattern.
   if (template === 'log-pose.md') {
-    return content.replace('{project-name}', projectName).replace('YYYY-MM-DD', today);
+    return content.replace('{project-name}', () => projectName).replace('YYYY-MM-DD', () => today);
   }
   if (template === 'project-context.md') {
-    return content.replace('{project-name}', projectName);
+    return content.replace('{project-name}', () => projectName);
   }
   return content;
 }

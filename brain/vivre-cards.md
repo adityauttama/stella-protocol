@@ -238,3 +238,33 @@
 **Rationale:** Structural fix (generated copies + check), not per-file patches.
 **Alternatives:** None.
 **Status:** RESOLVED
+
+### 2026-11-09 REVIEW Findings: Distribution Hotfix v0.12.1
+**Phase:** REVIEW
+**Satellite:** Lilith Red + Lilith Blue
+**Decision:** Quality bar: production. 0 Critical, 1 High, 2 Medium, 3 Low. Every finding was reproduced with a probe (Observed) unless marked otherwise.
+- ⚠️ WARNING — H1: no publish guard. `package.json` has no `prepublishOnly`, so `npm publish` right after the CLOSE version bump (without `npm run sync`) ships marketplace version drift again. 0.12.0 was published from a local machine with no CI. Fix: `"prepublishOnly": "npm test"`. **Status:** OPEN
+- ⚠️ CONCERN — M1: `npm run sync` deletes non-Stella files in `.claude/skills/` (probe: `my-local-skill/SKILL.md` was removed without warning). Affects only contributors in this repo; untracked files cannot be recovered. Fix: report orphans and delete only with `--prune`. **Status:** OPEN
+- ⚠️ CONCERN — M2: the Claude Code plugin install path (12-entry `skills` array in marketplace.json) is unverified (Unknown — cannot run `/plugin install` in a cloud session). Manual test added to `brain/test-plan.md`. **Status:** OPEN (manual test for Stella)
+- ⚠️ CONCERN — L1: `String.replace` with the project folder name as the replacement string interprets `$'`/`$&`. Probe: folder `acme$'x` grows project-context.md from 545 to 1048 chars (tail duplicated). This bug existed before the hotfix (init.js). Fix: function replacer. **Status:** OPEN
+- ⚠️ CONCERN — L2: the lint reports CRLF SKILL.md files as "missing YAML frontmatter" (probe), a false positive for Windows checkouts with autocrlf. Fix: normalize `\r\n` before linting. **Status:** OPEN
+- ⚠️ CONCERN — L3: the CI workflow has no `permissions:` block, so it runs with the default GITHUB_TOKEN scope. Fix: `permissions: contents: read`. **Status:** OPEN
+- INFO: installed users now load 7 more skill descriptions (~1,450 chars ≈ 360 tokens per session). This is the intended v0.8.0 design, not a defect. It is relevant to the thin-hook / token work (research brief A7).
+- INFO: users who installed 0.12.0 keep their old CLAUDE.md hook (out of scope per mini-PRD; `stella doctor`, P2).
+**Rationale:** No auth, money, PII or network surface, so Adversarial Mode was not triggered. The only input is the cwd folder name (L1). CI uses `pull_request` (not `pull_request_target`) and no secrets. H1 matters most because the next step (CLOSE + publish) is exactly where the drift returns.
+**Alternatives:** Defer H1 to CLOSE as a checklist item (rejected — a structural guard beats a checklist, which is the lesson of this whole hotfix).
+
+### 2026-11-09 RESOLVED: REVIEW Findings v0.12.1 (H1, M1, L1, L2, L3)
+**Phase:** REVIEW
+**Satellite:** Lilith Blue
+**Decision:** Stella chose "fix all now". H1: `"prepublishOnly": "npm test"` added; `npm publish --dry-run` after a version bump without sync now exits 1 ("marketplace.json is out of date"). M1: `sync.js` reports source-less files in `.claude/skills/` and deletes them only with `--prune` (probe: local skill kept; removed only with `--prune`). L1: function replacers in `cli/manifest.js`; folder `acme$'x` gives a 538-char file (expected 538, was 1048); regression assertion added to `smoke-install.js`. L2: CRLF is normalized before lint (probe: 0 frontmatter errors). L3: `permissions: contents: read` added to CI. Re-ran the earlier drift probes: mirror drift still exits 1, unknown flag exits 2, `npm test` PASS. Cipher Pol INTEL (stella-build description trim) acknowledged by Stella. M2 stays OPEN as a manual test (`brain/test-plan.md`: Claude Code `/plugin install` lists 12 skills).
+**Rationale:** All fixes are a few lines each and every one was re-verified with the probe that exposed it. No new issues found in the re-review of the changed lines.
+**Alternatives:** Fix only H1 + M1 (not chosen by Stella).
+**Status:** RESOLVED (H1, M1, L1, L2, L3) · OPEN (M2 — manual test)
+
+### 2026-11-09 REVIEW Complete: Distribution Hotfix v0.12.1
+**Phase:** REVIEW → CLOSE
+**Satellite:** Lilith Red + Lilith Blue
+**Decision:** EXIT GATE cleared: 0 unresolved Critical findings; `brain/test-plan.md` has a v0.12.1 section. Soft: the High finding is resolved, all findings are logged, and the INTEL was acknowledged. M2 (plugin install path) is a manual check for Stella before or after publish.
+**Rationale:** Production quality bar met for the scope in `brain/prd-hotfix-distribution.md`.
+**Alternatives:** None.

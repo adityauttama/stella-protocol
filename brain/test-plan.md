@@ -1,3 +1,30 @@
+# Test Plan: v0.12.1 Distribution Hotfix
+**Date:** 2026-11-09 | **Status:** Partial — automated (`npm test` + CI) + manual
+
+## Critical Paths (MUST test before publish)
+- [x] `npm test` PASS on a clean tree (sync --check + smoke-install) — automated, CI on every push/PR
+- [x] Smoke install: 12 skills byte-identical to source, 7 brain files, placeholders filled, existing brain files kept — automated
+- [x] Hook: created → skipped on re-run → appended to a foreign CLAUDE.md with its content kept — automated
+- [x] Real interactive `stella install` (pseudo-TTY, defaults) → 12 skills, 7 brain files, hook contains the project-context step — manual, 2026-11-09
+- [x] Real `stella init` → 7 files — manual, 2026-11-09
+- [x] `npm pack --dry-run` includes `cli/manifest.js` — manual, 2026-11-09
+- [ ] **Claude Code plugin path:** `/plugin marketplace add adityauttama/stella-protocol` → `/plugin install stella-protocol@stella-protocol` → all 12 skills are listed — manual, Stella (cannot run in a cloud session)
+- [x] Version bumped without `npm run sync` → `npm publish` is blocked by `prepublishOnly` (verified with `npm publish --dry-run`, 2026-11-09)
+
+## Drift Detection (each must make `npm run sync -- --check` exit 1)
+- [x] Mirror file edited · [x] package.json version bumped without sync · [x] CLAUDE.md edited · [x] description > 250 chars · [x] link escaping the skill folder · [x] frontmatter name ≠ folder · [x] orphan file in `.claude/skills/` — all verified 2026-11-09
+
+## Edge Cases (from REVIEW 2026-11-09 — fixed + re-verified; L1 is also in smoke-install)
+- [x] Project folder name containing `$'`, `$&` or `` $` `` → brain templates not corrupted (L1)
+- [x] `npm run sync` with a non-Stella skill in `.claude/skills/` → reported, not deleted, unless `--prune` (M1)
+- [x] SKILL.md checked out with CRLF line endings → lint passes (L2)
+
+## Regression Check
+- [x] `stella status` unchanged (file untouched)
+- [ ] Upgrade from 0.12.0: re-run `stella install` in a project → 12 skills; the existing CLAUDE.md hook is kept (known gap: the stale hook is not migrated — `stella doctor`, P2)
+
+---
+
 # Test Plan: v0.10.0 Structural Governance
 **Date:** 2026-04-20 | **Status:** Manual
 

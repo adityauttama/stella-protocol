@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node scripts/sync.js --check && node scripts/smoke-install.js",
     "sync": "node scripts/sync.js",
+    "prepublishOnly": "npm test",
     "status": "node cli/index.js status"
   },
   "bin": {
